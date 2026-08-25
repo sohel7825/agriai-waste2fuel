@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgriAI – Waste2Fuel | Agricultural Biomass Decision & Renewable Fuel Platform</title>
+  
+  <!-- Leaflet Map CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  
+  <!-- App Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Favicon / Meta -->
+  <meta name="description" content="AgriAI Waste2Fuel empowers farmers to identify agricultural residue and determine the best renewable-energy or on-farm productive pathway.">
+  <meta name="theme-color" content="#15803d">
+</head>
+<body>
+
+  <!-- Prototype & Demo Mode Disclaimer Top Banner -->
+  <div class="proto-banner">
+    <span data-i18n="proto_title">🌾 <strong>SIH 2026 Student Innovation</strong> — Problem Statement SIH26203 | Renewable Energy</span>
+    <span class="proto-badge" data-i18n="proto_badge">Prototype / Demonstration Data</span>
+    <button class="btn-quick-demo trigger-sih-demo">🎬 SIH 2026 Demo Mode</button>
+  </div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#landing-view" class="nav-brand" data-target-view="landing-view">
+        <div class="brand-logo-icon">🌿</div>
+        <div class="brand-text">
+          <h1>AgriAI – Waste2Fuel</h1>
+          <p data-i18n="tagline">Agricultural Residue to Renewable Fuel Decision Support</p>
+        </div>
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle navigation">☰</button>
+
+      <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <!-- Prominent Language Selector -->
+        <div class="lang-select-wrapper">
+          <select id="app-language-selector" class="lang-select" onchange="I18N.setLanguage(this.value)">
+            <option value="en">🇬🇧 English</option>
+            <option value="te">🇮🇳 తెలుగు (Telugu)</option>
+            <option value="hi">🇮🇳 हिन्दी (Hindi)</option>
+          </select>
+        </div>
+
+        <!-- Accessible Read This Page Button -->
+        <button class="btn btn-outline-primary btn-sm" title="Read this page aloud" onclick="VoiceAssistant.speakCurrentRecommendation()">
+          🔊 <span data-i18n="rec_btn_listen">Listen</span>
+        </button>
+
+        <nav>
+          <ul class="nav-menu" id="nav-menu">
+            <li><button class="nav-link active" data-target-view="landing-view" data-i18n="nav_home">🏠 Home</button></li>
+            <li><button class="nav-link" data-target-view="waste-analysis-view" data-i18n="nav_analyze">🔍 Analyze Waste</button></li>
+            <li><button class="nav-link" data-target-view="recommendation-view" data-i18n="nav_recommendation">💡 Recommendation</button></li>
+            <li><button class="nav-link" data-target-view="farmer-alternatives-view" data-i18n="nav_alternatives">🌱 Farm Alternatives</button></li>
+            <li><button class="nav-link" data-target-view="facility-finder-view" data-i18n="nav_facilities">🏭 Facilities</button></li>
+            <li><button class="nav-link" data-target-view="biomass-collection-view" data-i18n="nav_pooling">🚛 Community Pooling</button></li>
+            <li><button class="nav-link" data-target-view="biomass-map-view" data-i18n="nav_map">🗺️ Biomass Map</button></li>
+            <li><button class="nav-link" data-target-view="farmer-dashboard-view" data-i18n="nav_dashboard">📊 Farmer Dashboard</button></li>
+            <li><button class="nav-link" data-target-view="admin-dashboard-view" data-i18n="nav_admin">📈 Admin Hub</button></li>
+            <li><button class="nav-link" data-target-view="learn-view" data-i18n="nav_learn">📚 Learn & Do</button></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Application Container -->
+  <main class="app-main">
+
+    <!-- ==========================================
+         VIEW 1: REDESIGNED SIMPLE HOMEPAGE
+         ========================================== -->
+    <section id="landing-view" class="view-section active">
+      <div class="hero-card">
+        <div class="hero-tag" data-i18n="hero_tag">🌟 SIH 2026 Student Innovation Prototype</div>
+        <h1 class="hero-title" data-i18n="hero_title">AgriAI – Waste2Fuel</h1>
+        <p class="hero-tagline" data-i18n="hero_tagline">“Agricultural Waste Is Not Waste — It Is a Resource for Future Fuel.”</p>
+        <p class="hero-desc" data-i18n="hero_desc">
+          AgriAI empowers smallholder farmers to convert crop residues into clean bio-energy or high-value organic assets.
+          Using intelligent visual classification, transparent logistical calculations, and community aggregation, AgriAI connects suitable biomass with 2G ethanol bio-refineries, CBG plants, and sustainable farm-level alternatives.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-secondary btn-lg trigger-sih-demo">
+            🎬 Start SIH 2-Min Demo Walkthrough
+          </button>
+          <button class="btn btn-primary btn-lg" data-target-view="waste-analysis-view" data-i18n="btn_analyze">
+            🔍 Check My Farm Waste
+          </button>
+          <button class="btn btn-outline-white btn-lg" onclick="VoiceAssistant.startListening()">
+            🎙️ Speak to AgriAI
+          </button>
+        </div>
+      </div>
+
+      <!-- Large Farmer-Friendly Touch Action Cards -->
+      <div class="section-header">
+        <h2 class="section-title">🌾 What would you like to do today?</h2>
+        <p class="section-subtitle">Tap any option below for simple step-by-step guidance.</p>
+      </div>
+
+      <div class="home-action-grid">
+        <div class="home-action-card" data-target-view="waste-analysis-view">
+          <span class="home-action-icon">📷</span>
+          <div class="home-action-title">Check My Farm Waste</div>
+          <div class="home-action-desc">Take a photo and we will help you understand what you can do with it.</div>
+        </div>
+
+        <div class="home-action-card" onclick="VoiceAssistant.startListening()">
+          <span class="home-action-icon">🎤</span>
+          <div class="home-action-title">Talk to AgriAI</div>
+          <div class="home-action-desc">Speak in Telugu, Hindi, or English to ask what to do with your crop residues.</div>
+        </div>
+
+        <div class="home-action-card" data-target-view="facility-finder-view">
+          <span class="home-action-icon">📍</span>
+          <div class="home-action-title">Find Nearby Facilities</div>
+          <div class="home-action-desc">See bio-energy refineries and factories that buy crop residues near you.</div>
+        </div>
+
+        <div class="home-action-card" data-target-view="farmer-alternatives-view">
+          <span class="home-action-icon">🌱</span>
+          <div class="home-action-title">What Can I Do With This Waste?</div>
+          <div class="home-action-desc">Learn how to make compost, biochar, or oyster mushrooms right on your farm.</div>
+        </div>
+
+        <div class="home-action-card" data-target-view="biomass-map-view">
+          <span class="home-action-icon">📊</span>
+          <div class="home-action-title">View Biomass Map</div>
+          <div class="home-action-desc">Explore regional farms, collection centers, and clean fuel refineries.</div>
+        </div>
+      </div>
+
+      <!-- Strategic Fuel Security & Emergency Energy Mode Banner -->
+      <div class="card-box" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; border: 1px solid #334155; margin-bottom: 2.5rem;">
+        <div style="display: flex; align-items: flex-start; gap: 1rem; flex-wrap: wrap;">
+          <div style="font-size: 2.2rem; background: rgba(255,255,255,0.1); padding: 12px; border-radius: 12px;">🚨</div>
+          <div style="flex: 1; min-width: 280px;">
+            <span class="proto-badge" style="background: #f59e0b; color: #0f172a; margin-bottom: 6px;" data-i18n="sec_reserve_badge">Emergency Energy Mode</span>
+            <h3 style="font-size: 1.35rem; color: #f8fafc; margin: 4px 0 8px 0;" data-i18n="sec_reserve_title">Distributed Domestic Clean Energy Reserve</h3>
+            <p style="color: #cbd5e1; font-size: 0.92rem; line-height: 1.6;" data-i18n="sec_reserve_desc">
+              If a local energy supply disruption occurs, AgriAI helps identify available agricultural biomass resources and potential local renewable energy pathways (2G Ethanol, Biogas, Rural Microgrid Power).
+            </p>
+            <div style="display: flex; gap: 1.5rem; margin-top: 1rem; flex-wrap: wrap; font-size: 0.85rem; color: #86efac;">
+              <span data-i18n="sec_zero_burn">🌾 Zero Burning (Smog Prevented)</span>
+              <span data-i18n="sec_crude_cut">⛽ Crude Bill Cut (Domestic Fuel)</span>
+              <span data-i18n="sec_grid_backup">⚡ Rural Grid Backup (Biomass Power)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unique Value Proposition: 3 Core Outcomes -->
+      <div class="uvp-section">
+        <div class="section-header">
+          <h2 class="section-title" data-i18n="uvp_title">✨ What Makes AgriAI Unique?</h2>
+          <p class="section-subtitle" data-i18n="uvp_subtitle">
+            “AgriAI does not simply identify agricultural waste. It decides what the most practical next step is.”
+          </p>
+        </div>
+        <div class="uvp-grid">
+          <div class="uvp-card outcome-fuel">
+            <span class="uvp-badge">Outcome 1</span>
+            <h3 data-i18n="outcome_1_title">1. CAN BECOME FUEL</h3>
+            <p data-i18n="outcome_1_desc">
+              When lot size, dry condition, and logistics match nearby bio-refineries, AgriAI calculates net earnings and connects farmers directly to 2G Bio-Ethanol, CBG, or Briquetting plants.
+            </p>
+            <button class="btn btn-outline-primary btn-sm" data-target-view="waste-analysis-view">Check Fuel Viability →</button>
+          </div>
+
+          <div class="uvp-card outcome-pool">
+            <span class="uvp-badge">Outcome 2</span>
+            <h3 data-i18n="outcome_2_title">2. CAN BE COLLECTED ECONOMICALLY</h3>
+            <p data-i18n="outcome_2_desc">
+              Single small farm batches (300–800 kg) cannot afford solo trucks. AgriAI pools neighboring farmers into 3000+ kg clusters, unlocking factory pricing and slashing transport costs by 38%.
+            </p>
+            <button class="btn btn-secondary btn-sm" data-target-view="biomass-collection-view">Explore Aggregation →</button>
+          </div>
+
+          <div class="uvp-card outcome-alt">
+            <span class="uvp-badge">Outcome 3</span>
+            <h3 data-i18n="outcome_3_title">3. INDUSTRIAL ROUTE NOT VIABLE</h3>
+            <p data-i18n="outcome_3_desc">
+              If biomass is wet, volume is low, or industrial transport is uneconomical, AgriAI avoids forced industrial routes and delivers step-by-step guidance for Compost, Biochar, or Mushroom cultivation.
+            </p>
+            <button class="btn btn-outline-primary btn-sm" data-target-view="farmer-alternatives-view">View Farm Alternatives →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 2: REDESIGNED 6-STEP WASTE IDENTIFICATION STEPPER
+         ========================================== -->
+    <section id="waste-analysis-view" class="view-section">
+      <div class="section-header">
+        <h2 class="section-title">🔍 Check My Farm Waste (6 Simple Steps)</h2>
+        <p class="section-subtitle">Follow the steps below to identify your residue and find the most profitable pathway.</p>
+      </div>
+
+      <!-- Stepper Progress Bar (1 → 2 → 3 → 4 → 5 → 6) -->
+      <div class="stepper-header">
+        <div id="step-dot-1" class="step-dot active" onclick="App.goToStepperStep(1)">1. 📷 Photo</div>
+        <div id="step-dot-2" class="step-dot" onclick="App.goToStepperStep(2)">2. 🌾 Type</div>
+        <div id="step-dot-3" class="step-dot" onclick="App.goToStepperStep(3)">3. ⚖️ Quantity</div>
+        <div id="step-dot-4" class="step-dot" onclick="App.goToStepperStep(4)">4. 💧 Moisture</div>
+        <div id="step-dot-5" class="step-dot" onclick="App.goToStepperStep(5)">5. 📅 Harvest</div>
+        <div id="step-dot-6" class="step-dot" onclick="App.goToStepperStep(6)">6. 📍 Location</div>
+      </div>
+
+      <form id="waste-analysis-form">
+        <!-- STEP 1: PHOTO UPLOAD / CAMERA -->
+        <div id="step-card-1" class="card-box step-container active">
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">STEP 1: 📷 Take or Upload a Photo</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1.25rem;">
+            Snap a picture of your field crop residue or choose a sample image below.
+          </p>
+
+          <div class="upload-dropzone" id="upload-dropzone">
+            <div class="upload-icon">📷</div>
+            <h4 data-i18n="analyze_dragdrop">Drag & drop waste photo here</h4>
+            <p style="color: #64748b; font-size: 0.85rem; margin-top: 4px;">Tap to select file from phone gallery</p>
+            <input type="file" id="waste-file-input" accept="image/*" style="display: none;">
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 0.75rem;">
+            <button type="button" class="btn btn-outline-primary btn-sm" id="btn-open-camera" style="flex: 1;">
+              📷 Open Camera Simulator
+            </button>
+          </div>
+
+          <div style="margin-top: 1.25rem;">
+            <div class="form-label" style="font-size: 0.85rem; color: #64748b;" data-i18n="analyze_sample_hint">Or test with sample field images:</div>
+            <div class="sample-presets">
+              <button type="button" class="btn-preset btn-sample-preset" data-waste-key="rice-straw">🌾 Rice straw (Paddy)</button>
+              <button type="button" class="btn-preset btn-sample-preset" data-waste-key="sugarcane-bagasse">🎋 Sugarcane bagasse</button>
+              <button type="button" class="btn-preset btn-sample-preset" data-waste-key="maize-stalk">🌽 Maize stalk</button>
+              <button type="button" class="btn-preset btn-sample-preset" data-waste-key="cotton-residue">☁️ Cotton stalks</button>
+              <button type="button" class="btn-preset btn-sample-preset" data-waste-key="groundnut-shell">🥜 Groundnut shell</button>
+              <button type="button" class="btn-preset btn-sample-preset" data-waste-key="coconut-residue">🥥 Coconut residue</button>
+            </div>
+          </div>
+
+          <!-- AI Preview Feedback -->
+          <div id="ai-preview-box" class="ai-preview-box" style="display: none;">
+            <img id="ai-preview-img" class="ai-preview-img" alt="Uploaded Residue Preview" src="">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.85rem; color: #64748b;">AI Vision Result:</span>
+              <span id="ai-confidence-val" style="font-weight: 700; color: #15803d; font-size: 0.85rem;">94.5%</span>
+            </div>
+            <div class="ai-confidence-bar">
+              <div id="ai-confidence-fill" class="ai-confidence-fill" style="width: 94.5%;"></div>
+            </div>
+            <div id="ai-detected-name" style="margin-top: 6px; font-size: 1.1rem;">
+              <strong>Rice straw</strong> <span class="proto-badge">Confidence: 94.5%</span>
+            </div>
+            <p id="ai-traits-text" style="font-size: 0.88rem; color: #475569; margin-top: 4px;">
+              🌾 This crop waste can potentially be used to make clean ethanol fuel.
+            </p>
+          </div>
+
+          <div class="stepper-actions">
+            <div></div>
+            <button type="button" class="btn btn-primary" onclick="App.nextStepperStep()">Next: Confirm Type ➔</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: RESIDUE TYPE CONFIRMATION -->
+        <div id="step-card-2" class="card-box step-container">
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">STEP 2: 🌾 What type of waste is this?</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+            Confirm the detected crop residue or tap your crop below:
+          </p>
+
+          <div class="choice-grid">
+            <div class="btn-choice choice-residue selected" data-id="rice-straw" onclick="App.selectResidueChoice('rice-straw', this)">
+              🌾 Rice straw
+            </div>
+            <div class="btn-choice choice-residue" data-id="sugarcane-bagasse" onclick="App.selectResidueChoice('sugarcane-bagasse', this)">
+              🎋 Sugarcane bagasse
+            </div>
+            <div class="btn-choice choice-residue" data-id="cotton-residue" onclick="App.selectResidueChoice('cotton-residue', this)">
+              ☁️ Cotton stalks
+            </div>
+            <div class="btn-choice choice-residue" data-id="maize-stalk" onclick="App.selectResidueChoice('maize-stalk', this)">
+              🌽 Maize stalk
+            </div>
+            <div class="btn-choice choice-residue" data-id="groundnut-shell" onclick="App.selectResidueChoice('groundnut-shell', this)">
+              🥜 Groundnut shell
+            </div>
+            <div class="btn-choice choice-residue" data-id="rice-husk" onclick="App.selectResidueChoice('rice-husk', this)">
+              🌾 Rice husk
+            </div>
+            <div class="btn-choice choice-residue" data-id="maize-cob" onclick="App.selectResidueChoice('maize-cob', this)">
+              🌽 Maize cob
+            </div>
+            <div class="btn-choice choice-residue" data-id="coconut-residue" onclick="App.selectResidueChoice('coconut-residue', this)">
+              🥥 Coconut residue
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label" for="input-waste-type-override">Or select from full list:</label>
+            <select id="input-waste-type-override" class="form-control"></select>
+          </div>
+
+          <div class="stepper-actions">
+            <button type="button" class="btn btn-outline-primary" onclick="App.prevStepperStep()">⬅ Back</button>
+            <button type="button" class="btn btn-primary" onclick="App.nextStepperStep()">Next: Quantity ➔</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: QUANTITY (BUTTONS + MANUAL) -->
+        <div id="step-card-3" class="card-box step-container">
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">STEP 3: ⚖️ How much waste do you have?</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+            Tap a quick estimate or enter exact kilograms:
+          </p>
+
+          <div class="choice-grid">
+            <div class="btn-choice choice-qty" data-val="100" onclick="App.selectQuantityPreset(100, this)">
+              📦 Less than 100 kg
+            </div>
+            <div class="btn-choice choice-qty" data-val="500" onclick="App.selectQuantityPreset(500, this)">
+              🚛 100 – 500 kg
+            </div>
+            <div class="btn-choice choice-qty selected" data-val="1000" onclick="App.selectQuantityPreset(1000, this)">
+              🚜 500 – 1000 kg
+            </div>
+            <div class="btn-choice choice-qty" data-val="2500" onclick="App.selectQuantityPreset(2500, this)">
+              🏭 More than 1000 kg (2.5T)
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 1.25rem;">
+            <label class="form-label" for="input-quantity-kg">Exact Quantity in kg:</label>
+            <div style="display: flex; gap: 6px;">
+              <input type="number" id="input-quantity-kg" class="form-control" min="10" max="500000" value="1000" required>
+              <button type="button" class="btn btn-outline-primary btn-sm" title="Speak Quantity" onclick="VoiceAssistant.startListening('input-quantity-kg')">
+                🎙️ Speak
+              </button>
+            </div>
+          </div>
+
+          <div class="stepper-actions">
+            <button type="button" class="btn btn-outline-primary" onclick="App.prevStepperStep()">⬅ Back</button>
+            <button type="button" class="btn btn-primary" onclick="App.nextStepperStep()">Next: Moisture ➔</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: MOISTURE CONDITION (DRY / WET) -->
+        <div id="step-card-4" class="card-box step-container">
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">STEP 4: 💧 Is your crop waste Dry or Wet?</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+            Moisture determines whether industrial fuel plants can buy it directly or if composting is better.
+          </p>
+
+          <div class="choice-grid">
+            <div class="btn-choice choice-cond selected" onclick="App.selectConditionPreset('Dry (<15%)', this)">
+              ☀️ Dry (&lt;15% moisture)<br>
+              <small style="font-size:0.75rem; color:#15803d; font-weight:normal;">Cracks when bent, optimal for bio-refinery</small>
+            </div>
+            <div class="btn-choice choice-cond" onclick="App.selectConditionPreset('Semi-dry (15-25%)', this)">
+              ⛅ Semi-dry (15–25% moisture)<br>
+              <small style="font-size:0.75rem; color:#d97706; font-weight:normal;">Slight dampness, good for biogas / briquettes</small>
+            </div>
+            <div class="btn-choice choice-cond" onclick="App.selectConditionPreset('Wet (>30%)', this)">
+              🌧️ Wet (&gt;30% moisture)<br>
+              <small style="font-size:0.75rem; color:#dc2626; font-weight:normal;">Squeezes water, best for farm composting</small>
+            </div>
+          </div>
+
+          <input type="hidden" id="input-condition" value="Dry (<15%)">
+
+          <div class="stepper-actions">
+            <button type="button" class="btn btn-outline-primary" onclick="App.prevStepperStep()">⬅ Back</button>
+            <button type="button" class="btn btn-primary" onclick="App.nextStepperStep()">Next: Harvest Date ➔</button>
+          </div>
+        </div>
+
+        <!-- STEP 5: HARVEST DATE -->
+        <div id="step-card-5" class="card-box step-container">
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">STEP 5: 📅 When was it harvested?</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+            Freshness helps estimate storage stability and degradation rate.
+          </p>
+
+          <div class="choice-grid">
+            <div class="btn-choice choice-harvest" onclick="App.selectHarvestPreset(0, this)">📅 Today / Yesterday</div>
+            <div class="btn-choice choice-harvest" onclick="App.selectHarvestPreset(5, this)">📅 5 Days Ago</div>
+            <div class="btn-choice choice-harvest selected" onclick="App.selectHarvestPreset(10, this)">📅 10 Days Ago</div>
+            <div class="btn-choice choice-harvest" onclick="App.selectHarvestPreset(20, this)">📅 2+ Weeks Ago</div>
+          </div>
+
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label" for="input-harvest-date">Or pick exact date:</label>
+            <input type="date" id="input-harvest-date" class="form-control" value="2026-08-15">
+          </div>
+
+          <div class="stepper-actions">
+            <button type="button" class="btn btn-outline-primary" onclick="App.prevStepperStep()">⬅ Back</button>
+            <button type="button" class="btn btn-primary" onclick="App.nextStepperStep()">Next: Location ➔</button>
+          </div>
+        </div>
+
+        <!-- STEP 6: LOCATION & FINAL CALCULATION -->
+        <div id="step-card-6" class="card-box step-container">
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">STEP 6: 📍 Where is your farm located?</h3>
+          <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
+            We calculate exact road distance to nearest processing plants in Andhra Pradesh.
+          </p>
+
+          <div class="choice-grid">
+            <div class="btn-choice choice-loc selected" onclick="App.selectLocationPreset('Guntur Rural, Andhra Pradesh', 16.3067, 80.4365, this)">
+              📍 Guntur Rural
+            </div>
+            <div class="btn-choice choice-loc" onclick="App.selectLocationPreset('Vijayawada / Krishna, Andhra Pradesh', 16.5062, 80.6480, this)">
+              📍 Vijayawada
+            </div>
+            <div class="btn-choice choice-loc" onclick="App.selectLocationPreset('Tenali, Guntur, Andhra Pradesh', 16.2430, 80.6400, this)">
+              📍 Tenali
+            </div>
+            <div class="btn-choice choice-loc" onclick="App.selectLocationPreset('Ongole / Prakasam, Andhra Pradesh', 15.5057, 80.0499, this)">
+              📍 Ongole
+            </div>
+          </div>
+
+          <div class="form-group" style="margin-top: 1.25rem;">
+            <label class="form-label" for="input-location-name">Village / Region Name:</label>
+            <div style="display: flex; gap: 6px;">
+              <input type="text" id="input-location-name" class="form-control" value="Guntur Rural, Andhra Pradesh">
+              <button type="button" class="btn btn-outline-primary btn-sm" title="Speak Location" onclick="VoiceAssistant.startListening('input-location-name')">
+                🎙️ Speak
+              </button>
+            </div>
+            <input type="hidden" id="input-latitude" value="16.3067">
+            <input type="hidden" id="input-longitude" value="80.4365">
+          </div>
+
+          <div class="stepper-actions">
+            <button type="button" class="btn btn-outline-primary" onclick="App.prevStepperStep()">⬅ Back</button>
+            <button type="submit" class="btn btn-primary btn-lg" style="flex:1;">
+              🚀 Show My Best Options & Value ➔
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 3: RECOMMENDATION & BEST OPTION PAGE
+         ========================================== -->
+    <section id="recommendation-view" class="view-section">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 class="section-title" data-i18n="rec_title_main">💡 Decision Support & Recommendation</h2>
+          <p class="section-subtitle" data-i18n="rec_title_sub">Evaluation of energy potential, logistics feasibility, and transparent net economic returns.</p>
+        </div>
+        <div>
+          <button class="btn btn-outline-primary btn-sm" onclick="VoiceAssistant.speakCurrentRecommendation()">
+            🔊 <span data-i18n="rec_btn_listen">Listen to Advice</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Result Status Banner -->
+      <div id="rec-status-banner" class="viability-banner status-good">
+        <div>
+          <span id="rec-status-pill" class="viability-status-pill">🟢 Good option</span>
+          <h3 id="rec-title" style="font-size: 1.45rem; color: white;">⭐ BEST OPTION: Supply to Bio-Energy Facility</h3>
+          <p id="rec-explanation" style="font-size: 0.95rem; color: #f1f5f9; margin-top: 6px; max-width: 850px;">
+            Your quantity is large enough for collection and a profitable nearby processing route is available.
+          </p>
+        </div>
+      </div>
+
+      <!-- Ranked 🥇 🥈 🥉 Options Cards -->
+      <div class="card-box" style="margin-bottom: 1.5rem;">
+        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">🏆 Ranked Recommendations for You</h3>
+        <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 1rem;">
+          Based on residue type, quantity, moisture, road distance, and market prices:
+        </p>
+        <div id="rec-ranked-options-box" class="ranked-options-grid"></div>
+      </div>
+
+      <div class="form-grid-2col">
+        <!-- Left: Energy & Lot Characteristics -->
+        <div>
+          <div class="card-box">
+            <h3 style="margin-bottom: 0.5rem; font-size: 1.15rem;" data-i18n="rec_energy_title">⚡ Estimated Energy & Bio-Fuel Potential</h3>
+            <p style="color: #64748b; font-size: 0.78rem; font-style: italic;">
+              * Indicative potential based on quantity and typical technical values. Actual output depends on moisture and facility technology.
+            </p>
+            
+            <div id="rec-energy-outputs" class="energy-grid"></div>
+
+            <!-- Environmental Carbon & Smog Protection -->
+            <div style="border-top: 1px solid var(--border-light); padding-top: 1rem; margin-top: 1rem;">
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.25rem;" data-i18n="rec_env_title">🌍 Environmental Carbon & Smog Offset:</h4>
+              <div id="rec-environmental-impact"></div>
+            </div>
+
+            <div style="border-top: 1px solid var(--border-light); padding-top: 1rem; margin-top: 1rem;">
+              <h4 style="font-size: 0.95rem; margin-bottom: 0.5rem;">📋 Lot Summary:</h4>
+              <div id="rec-lot-details"></div>
+            </div>
+          </div>
+
+          <!-- Matched Facility Box -->
+          <div class="card-box">
+            <h3 style="margin-bottom: 0.75rem; font-size: 1.15rem;">🏭 Nearest Compatible Processing Facility</h3>
+            <div id="rec-nearest-facility-box"></div>
+          </div>
+        </div>
+
+        <!-- Right: Transparent Economic Breakdown -->
+        <div>
+          <div class="card-box">
+            <h3 style="margin-bottom: 0.5rem; font-size: 1.15rem;" data-i18n="rec_math_title">💰 Transparent Economic Breakdown</h3>
+            <p style="color: #64748b; font-size: 0.8rem;">Formula: Indicative Net Value = Gross Biomass Value - Estimated Transport Cost - Handling</p>
+            
+            <div id="rec-math-breakdown" class="math-breakdown-card"></div>
+
+            <div style="margin-top: 1.5rem; display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn btn-primary btn-sm" data-target-view="facility-finder-view">
+                🏭 View All Facilities →
+              </button>
+              <button class="btn btn-secondary btn-sm" data-target-view="biomass-collection-view">
+                🚛 Pool with Neighbors (Save 38%) →
+              </button>
+              <button class="btn btn-outline-primary btn-sm" data-target-view="farmer-alternatives-view">
+                🌱 See On-Farm Guides →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fallback Farmer Alternatives -->
+      <div id="rec-alternatives-fallback" style="margin-top: 2rem;">
+        <div class="section-header">
+          <h3 class="section-title" data-i18n="rec_alt_fallback_title">🌱 On-Farm Alternatives for this Residue</h3>
+          <p class="section-subtitle">High-value farm-level uses if you prefer not to transport or if industrial route is unavailable.</p>
+        </div>
+        <div id="rec-fallback-cards" class="uvp-grid"></div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 4: DEDICATED "WHAT CAN I DO WITH THIS WASTE?" PAGE
+         ========================================== -->
+    <section id="farmer-alternatives-view" class="view-section">
+      <div class="section-header">
+        <h2 class="section-title">🌱 What Can I Do With This Waste?</h2>
+        <p class="section-subtitle">Validated farm-level methods to create organic fertilizer, soil carbon, or edible mushrooms on your land.</p>
+      </div>
+
+      <!-- Interactive Yield & ROI Calculator -->
+      <div class="card-box" style="background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%); border: 2px solid #86efac;">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3 style="font-size: 1.2rem; color: #15803d;">🧮 Interactive Farm-Level Yield & Fertilizer Savings Calculator</h3>
+            <p style="font-size: 0.88rem; color: #475569;">Enter your residue weight to see potential compost, mushroom, and fertilizer savings.</p>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <label for="calc-biomass-input" style="font-weight: 700; font-size: 0.9rem;">Residue (kg):</label>
+            <input type="number" id="calc-biomass-input" value="1000" min="50" step="50" class="form-control" style="width: 120px;">
+          </div>
+        </div>
+
+        <div class="energy-grid" style="margin-top: 1rem;">
+          <div class="energy-card">
+            <div class="energy-card-val" id="calc-compost-yield">550 kg Compost</div>
+            <div class="energy-card-unit">Aerobic Compost Humus</div>
+          </div>
+          <div class="energy-card">
+            <div class="energy-card-val" id="calc-vermi-yield">700 kg Vermicompost</div>
+            <div class="energy-card-unit">Earthworm Castings</div>
+          </div>
+          <div class="energy-card">
+            <div class="energy-card-val" id="calc-biochar-yield">300 kg Biochar</div>
+            <div class="energy-card-unit">Fixed Soil Carbon</div>
+          </div>
+          <div class="energy-card">
+            <div class="energy-card-val" id="calc-mushroom-yield">750 kg Mushrooms</div>
+            <div class="energy-card-unit">Edible Oyster Harvest</div>
+          </div>
+          <div class="energy-card">
+            <div class="energy-card-val" id="calc-fert-savings" style="color: #16a34a;">₹3,500</div>
+            <div class="energy-card-unit">Chemical Fertilizer Savings</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Large Alternative Cards (🌱 Compost, 🧫 Biochar, 🪱 Vermicompost, 🍄 Mushrooms, 🧱 Briquettes, 🌾 Mulch) -->
+      <div class="section-header">
+        <h3 class="section-title">📖 Validated On-Farm Alternative Pathways</h3>
+        <p class="section-subtitle">Tap any card to see full materials, steps, time, and safety guidelines.</p>
+      </div>
+      <div id="alternatives-cards-grid" class="uvp-grid"></div>
+
+      <!-- Structured Educational Video Library (ICAR / KVK Verified) -->
+      <div style="margin-top: 3rem;">
+        <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+          <div>
+            <h3 class="section-title">🎥 Video Demonstrations (ICAR / KVK Tutorials)</h3>
+            <p class="section-subtitle">Watch official step-by-step video guides in Telugu, Hindi, and English.</p>
+          </div>
+          <div style="display: flex; gap: 6px;">
+            <button class="btn btn-outline-primary btn-sm" onclick="App.filterVideosByLang('te')">తెలుగు (Telugu)</button>
+            <button class="btn btn-outline-primary btn-sm" onclick="App.filterVideosByLang('hi')">हिन्दी (Hindi)</button>
+            <button class="btn btn-outline-primary btn-sm" onclick="App.filterVideosByLang('en')">English</button>
+          </div>
+        </div>
+
+        <div id="video-language-alert" class="video-fallback-alert" style="display: none;"></div>
+        <div id="video-cards-container" class="video-grid"></div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 5: FACILITY FINDER
+         ========================================== -->
+    <section id="facility-finder-view" class="view-section">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 class="section-title" data-i18n="nav_facilities">🏭 Facility Finder</h2>
+          <p class="section-subtitle">Bio-refineries, CBG plants, and briquette units in Andhra Pradesh & Telangana.</p>
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <select id="facility-waste-filter" class="form-control" style="width: auto;">
+            <option value="">All Accepted Residues</option>
+          </select>
+          <button class="btn btn-outline-primary btn-sm" data-target-view="biomass-map-view">🗺️ Map View</button>
+        </div>
+      </div>
+
+      <div style="background: #fffbeb; border: 1px solid #fef3c7; padding: 0.75rem 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.85rem; color: #92400e;">
+        📌 <strong>DEMO FACILITY DATA:</strong> Facilities displayed below represent realistic regional benchmarks for prototype evaluation. Architecture is ready to plug verified industrial registry APIs.
+      </div>
+
+      <div id="facility-cards-container" class="facility-grid"></div>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 6: BIOMASS COLLECTION & AGGREGATION
+         ========================================== -->
+    <section id="biomass-collection-view" class="view-section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="nav_pooling">🚛 Community Biomass Aggregation Hub</h2>
+        <p class="section-subtitle">
+          Group nearby smallholder farms together to unlock industrial minimum quantities and slash logistics transportation costs.
+        </p>
+      </div>
+
+      <div class="form-grid-2col" style="margin-bottom: 2rem;">
+        <div>
+          <div class="card-box">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">🤝 Why Community Pooling?</h3>
+            <p style="color: #475569; font-size: 0.92rem; line-height: 1.6;">
+              A single farmer with <strong>500 kg</strong> pays ~₹950 in transport (consuming over 85% of revenue).<br>
+              By pooling <strong>Farmer A (500kg) + Farmer B (800kg) + Farmer C (700kg) + Farmer D (1000kg)</strong> into a <strong>3,000 kg</strong> cluster, a single commercial vehicle picks up all lots, reducing the logistics cost to just ~₹0.79/kg!
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="card-box">
+            <h3 style="font-size: 1.15rem; margin-bottom: 0.75rem;">📊 Multi-Farmer Logistics Comparison</h3>
+            <div class="chart-wrapper" style="height: 180px;">
+              <canvas id="chart-logistics-savings"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header">
+        <h3 class="section-title">📍 Active Community Aggregation Clusters</h3>
+      </div>
+      <div id="collections-list-container"></div>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 7: FARMER DASHBOARD
+         ========================================== -->
+    <section id="farmer-dashboard-view" class="view-section">
+      <div class="section-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <div>
+          <h2 class="section-title" data-i18n="nav_dashboard">📊 Farmer Dashboard</h2>
+          <p class="section-subtitle">Track registered biomass batches, renewable energy equivalents, and indicative earnings.</p>
+        </div>
+        <div style="display:flex; gap:8px;">
+          <button class="btn btn-primary btn-sm" data-target-view="waste-analysis-view">🔍 New Analysis</button>
+          <button class="btn btn-secondary btn-sm" data-target-view="biomass-collection-view">🚛 Join Pool</button>
+        </div>
+      </div>
+
+      <!-- Stat Cards -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon-wrapper stat-icon-green">🌾</div>
+          <div class="stat-content">
+            <div class="stat-label" data-i18n="dash_registered_biomass">Registered Biomass</div>
+            <div class="stat-value stat-total-biomass">3,000 kg</div>
+            <div class="stat-subtext">Across Guntur Region</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper stat-icon-amber">⚡</div>
+          <div class="stat-content">
+            <div class="stat-label" data-i18n="dash_clean_energy">Potential Clean Energy</div>
+            <div class="stat-value stat-total-energy">43,500 MJ</div>
+            <div class="stat-subtext">~660 Liters 2G Ethanol</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper stat-icon-blue">💰</div>
+          <div class="stat-content">
+            <div class="stat-label" data-i18n="dash_gross_value">Indicative Gross Value</div>
+            <div class="stat-value stat-total-value">₹7,350</div>
+            <div class="stat-subtext">Based on factory gate rates</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper stat-icon-purple">🏭</div>
+          <div class="stat-content">
+            <div class="stat-label" data-i18n="dash_nearby_fac">Nearby Facilities</div>
+            <div class="stat-value stat-total-facilities">6</div>
+            <div class="stat-subtext">Within 60 km radius</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 8: ADMIN / GOV / INDUSTRY DASHBOARD
+         ========================================== -->
+    <section id="admin-dashboard-view" class="view-section">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 class="section-title" data-i18n="nav_admin">📈 Admin & Government Bio-Energy Dashboard</h2>
+          <p class="section-subtitle">Regional biomass monitoring, renewable fuel feedstock aggregation, and district analytics.</p>
+        </div>
+        <div>
+          <button id="btn-reset-demo-data" class="btn btn-outline-primary btn-sm">🔄 Reset Demo Data</button>
+        </div>
+      </div>
+
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 0.75rem 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; font-size: 0.85rem; color: #15803d;">
+        🏛️ <strong>Prototype Dashboard:</strong> Aggregated data analytics for district collectors, agriculture departments, and bio-refinery procurement managers.
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon-wrapper stat-icon-green">👨‍🌾</div>
+          <div class="stat-content">
+            <div class="stat-label">Registered Farms</div>
+            <div class="stat-value stat-total-farmers">8</div>
+            <div class="stat-subtext">Active Suppliers</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper stat-icon-amber">⚖️</div>
+          <div class="stat-content">
+            <div class="stat-label">Total Regional Biomass</div>
+            <div class="stat-value stat-total-biomass">12,400 kg</div>
+            <div class="stat-subtext">Available for collection</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper stat-icon-blue">⚡</div>
+          <div class="stat-content">
+            <div class="stat-label">Total Clean Energy</div>
+            <div class="stat-value stat-total-energy">192,200 MJ</div>
+            <div class="stat-subtext">~2,720 L 2G Ethanol</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-wrapper stat-icon-purple">🚛</div>
+          <div class="stat-content">
+            <div class="stat-label">Active Clusters</div>
+            <div class="stat-value stat-total-clusters">1</div>
+            <div class="stat-subtext">Pooling in progress</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts Grid -->
+      <div class="charts-grid">
+        <div class="chart-box">
+          <h3 style="font-size: 1.05rem; margin-bottom: 1rem;">🌾 Biomass Breakdown by Crop Type</h3>
+          <div class="chart-wrapper">
+            <canvas id="chart-crop-distribution"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <h3 style="font-size: 1.05rem; margin-bottom: 1rem;">📍 Biomass Availability by District</h3>
+          <div class="chart-wrapper">
+            <canvas id="chart-district-distribution"></canvas>
+          </div>
+        </div>
+
+        <div class="chart-box">
+          <h3 style="font-size: 1.05rem; margin-bottom: 1rem;">⚡ Renewable Energy Pathway Breakdown</h3>
+          <div class="chart-wrapper">
+            <canvas id="chart-pathways"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- Master Farm Registry Table -->
+      <div class="section-header">
+        <h3 class="section-title">📋 Registered Farm Residue Registry</h3>
+      </div>
+      <div class="data-table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Farmer Name</th>
+              <th>Location</th>
+              <th>Residue</th>
+              <th>Quantity</th>
+              <th>Condition</th>
+              <th>Harvest Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="admin-farms-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 9: BIOMASS MAP
+         ========================================== -->
+    <section id="biomass-map-view" class="view-section">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h2 class="section-title" data-i18n="nav_map">🗺️ Regional Biomass & Facility Map</h2>
+          <p class="section-subtitle">Real-time geospatial overview of farms, community aggregation points, and industrial bio-refineries.</p>
+        </div>
+        <div style="display: flex; gap: 12px; font-size: 0.85rem; align-items: center;">
+          <span><span style="color:#15803d;">●</span> Farms (Green)</span>
+          <span><span style="color:#0284c7;">●</span> Processing Facilities (Blue)</span>
+          <span><span style="color:#7e22ce;">●</span> Aggregation Hubs (Purple)</span>
+        </div>
+      </div>
+
+      <div id="biomass-map"></div>
+    </section>
+
+
+    <!-- ==========================================
+         VIEW 10: LEARN & DO (KNOWLEDGE HUB)
+         ========================================== -->
+    <section id="learn-view" class="view-section">
+      <div class="section-header">
+        <h2 class="section-title" data-i18n="nav_learn">📚 Learn & Do: Sustainable Biomass Knowledge Base</h2>
+        <p class="section-subtitle">Educational resources, scientific conversion standards, and field safety protocols.</p>
+      </div>
+
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 2rem;">
+        <h3 style="color: #15803d; font-size: 1.15rem; margin-bottom: 0.5rem;">⚖️ Important Scientific Distinction</h3>
+        <p style="font-size: 0.92rem; color: #334155;">
+          <strong>Educational & On-Farm Guidance:</strong> Methods like composting, vermicomposting, and flame-cap biochar are farmer-executable on-site.<br>
+          <strong>Industrial Bio-Refinery Processing:</strong> Advanced pathways like 2G Bio-Ethanol (enzymatic hydrolysis + fermentation) and Compressed Bio-Gas (CBG) require specialized industrial processing infrastructure. AgriAI provides decision support and logistical matchmaking without claiming direct physical conversion in software.
+        </p>
+      </div>
+
+      <div class="form-grid-2col">
+        <div class="card-box">
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">🧪 How 2G Bio-Ethanol is Made</h3>
+          <p style="font-size: 0.88rem; color: #475569; line-height: 1.6;">
+            <strong>Step 1: Pre-treatment:</strong> High-pressure steam or dilute acid breaks the rigid lignin-hemicellulose sheath.<br>
+            <strong>Step 2: Enzymatic Hydrolysis:</strong> Cellulase enzymes break complex cellulose chains into simple glucose and xylose sugars.<br>
+            <strong>Step 3: Fermentation:</strong> Genetically optimized yeast strains (e.g. <em>Saccharomyces cerevisiae</em>) ferment sugars into ethanol.<br>
+            <strong>Step 4: Distillation:</strong> Distilled to 99.5% fuel-grade ethanol blended with petrol under India's Ethanol Blended Petrol (E20) program.
+          </p>
+        </div>
+
+        <div class="card-box">
+          <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">✋ Quick Field Moisture Test (Hand-Squeeze)</h3>
+          <p style="font-size: 0.88rem; color: #475569; line-height: 1.6;">
+            <strong>Dry (&lt;15%):</strong> Straw crackles when bent and breaks cleanly. No moisture on palm when squeezed tightly. Ideal for fuel plants and briquetting.<br>
+            <strong>Semi-Dry (15–25%):</strong> Straw bends without breaking easily. Slight cool feeling on palm. Suitable for CBG digesters.<br>
+            <strong>Wet (&gt;30%):</strong> Water droplets squeeze out between fingers. Unusable for burning; immediately route to composting or vermicomposting.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Alternative Detail Modal -->
+  <div id="alternative-detail-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('alternative-detail-modal').classList.remove('active')">✕</button>
+      <h3 id="alt-modal-title" style="font-size: 1.35rem; color: #15803d; margin-bottom: 0.5rem;">🌱 Alternative Title</h3>
+      
+      <div style="background: #f0fdf4; border-left: 4px solid #16a34a; padding: 0.75rem 1rem; border-radius: 4px; margin-bottom: 1rem;">
+        <strong>WHY SHOULD I DO THIS?</strong>
+        <p id="alt-modal-why" style="font-size: 0.9rem; color: #334155; margin-top: 4px;"></p>
+      </div>
+
+      <div class="form-grid-2col" style="margin-bottom: 1rem; font-size: 0.88rem;">
+        <div>
+          <p><strong>⏱ Approximate Time:</strong> <span id="alt-modal-time"></span></p>
+          <p><strong>💰 Possible Benefit:</strong> <span id="alt-modal-benefit" style="color: #15803d; font-weight:700;"></span></p>
+        </div>
+        <div>
+          <p><strong>👨‍🌾 Who Can Do It:</strong> <span id="alt-modal-who"></span></p>
+          <p><strong>🏛️ Source:</strong> <span id="alt-modal-source" style="color: #0284c7; font-weight:700;"></span></p>
+        </div>
+      </div>
+
+      <h4 style="font-size: 0.95rem; margin: 1rem 0 0.5rem 0;">🧺 Materials Required:</h4>
+      <ul id="alt-modal-materials" style="list-style: none; font-size: 0.88rem; color: #334155; margin-bottom: 1rem;"></ul>
+
+      <h4 style="font-size: 0.95rem; margin: 1rem 0 0.5rem 0;">📋 Step-by-Step Instructions:</h4>
+      <ul id="alt-modal-steps" class="step-guide-list"></ul>
+
+      <div style="background: #fef2f2; border: 1px solid #fecaca; border-radius: var(--radius-sm); padding: 0.75rem; color: #991b1b; font-size: 0.82rem; margin-top: 1rem;">
+        <strong>⚠️ Safety & Quality Note:</strong> <span id="alt-modal-safety"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Video Player Modal -->
+  <div id="video-player-modal" class="modal-overlay">
+    <div class="modal-box" style="max-width: 700px;">
+      <button class="modal-close" onclick="App.closeVideoModal()">✕</button>
+      <h3 id="video-modal-title" style="margin-bottom: 0.25rem; font-size: 1.25rem;">Video Title</h3>
+      <p id="video-modal-source" style="color: #64748b; font-size: 0.85rem; margin-bottom: 1rem;"></p>
+      
+      <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; background: #000; margin-bottom: 1rem;">
+        <iframe id="video-modal-iframe" style="position: absolute; top:0; left: 0; width: 100%; height: 100%;" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span class="video-source-tag">✅ Verified Agricultural Tutorial</span>
+        <a id="video-modal-ext-link" href="#" target="_blank" class="btn btn-outline-primary btn-sm">
+          🔗 Open Source Guide
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Camera Simulator Modal -->
+  <div id="camera-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close" onclick="document.getElementById('camera-modal').classList.remove('active')">✕</button>
+      <h3 style="margin-bottom: 0.75rem;">📷 Camera Viewfinder Simulator</h3>
+      <p style="color: #64748b; font-size: 0.85rem; margin-bottom: 1rem;">
+        Simulating live mobile camera capture of field crop residue.
+      </p>
+      
+      <div style="background: #0f172a; border-radius: var(--radius-md); height: 260px; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <div style="border: 2px dashed #22c55e; width: 80%; height: 75%; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: #86efac; font-size: 0.9rem;">
+          [ Align Rice Straw / Stalks in Frame ]
+        </div>
+      </div>
+
+      <button id="btn-snap-photo" class="btn btn-primary" style="width: 100%; margin-top: 1.25rem;">
+        📸 Capture & Identify Residue
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating Action Buttons (🎙️ Voice Assistant + 🤖 AI Chatbot) -->
+  <div class="floating-actions-container">
+    <button id="btn-floating-voice" class="btn-floating btn-floating-voice" title="Speak to AgriAI Voice Assistant" onclick="VoiceAssistant.startListening()">
+      🎙️
+      <span class="floating-badge">AI</span>
+    </button>
+    <button id="btn-chatbot-toggle" class="btn-floating btn-floating-chat" title="Open AgriBot AI Advisor" onclick="ChatbotModule.toggleChat()">
+      💬
+    </button>
+  </div>
+
+  <!-- Voice Assistant Waveform Modal -->
+  <div id="voice-assistant-modal" class="modal-overlay">
+    <div class="modal-box" style="text-align: center;">
+      <button class="modal-close" onclick="VoiceAssistant.stopListening()">✕</button>
+      <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎙️</div>
+      <h3 id="voice-modal-title" style="margin-bottom: 0.25rem;" data-i18n="voice_modal_title">AgriAI Voice Assistant</h3>
+      <div style="margin-bottom: 0.75rem;">
+        <span id="voice-modal-lang-badge" class="proto-badge" style="background:#e0f2fe; color:#0284c7;">Telugu / Hindi / English</span>
+      </div>
+      <p id="voice-modal-status" style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;" data-i18n="voice_listening">
+        Listening... Speak your crop waste or question in Telugu, Hindi, or English.
+      </p>
+
+      <div id="voice-wave-anim" class="voice-wave-container">
+        <div class="voice-bar"></div>
+        <div class="voice-bar"></div>
+        <div class="voice-bar"></div>
+        <div class="voice-bar"></div>
+        <div class="voice-bar"></div>
+      </div>
+
+      <div style="display: flex; gap: 8px; justify-content: center;">
+        <button class="btn btn-secondary btn-sm" onclick="VoiceAssistant.stopListening()" data-i18n="voice_btn_done">
+          ⏹️ Done Speaking
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Conversational AI Assistant Widget -->
+  <div id="ai-chatbot-widget" class="ai-chatbot-widget">
+    <div class="chatbot-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span style="font-size: 1.25rem;">🤖</span>
+        <div>
+          <strong style="font-size: 0.95rem;" data-i18n="chat_title">AgriBot – AI Biomass Advisor</strong>
+          <div style="font-size: 0.72rem; color: #dcfce7;" data-i18n="chat_subtitle">Online • Multi-lingual (EN/TE/HI)</div>
+        </div>
+      </div>
+      <button id="btn-chatbot-close" style="background: none; border: none; color: white; font-size: 1.2rem; cursor: pointer;">✕</button>
+    </div>
+
+    <div id="chatbot-messages" class="chatbot-body">
+      <div class="chat-msg chat-msg-bot">
+        <div class="chat-avatar">🤖</div>
+        <div class="chat-bubble bot-bubble" data-i18n="chat_welcome">
+          నమస్కారం! / नमस्ते! / Hello! I am your AgriAI Advisor. Ask me anything about crop residues, 2G Ethanol, CBG, or on-farm Composting.
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Suggestion Chips -->
+    <div class="chatbot-chips">
+      <button class="btn-chat-chip" data-query="1000kg Rice Straw Demo Guntur">🌾 Guntur Demo</button>
+      <button class="btn-chat-chip" data-query="What if my crop waste is wet?">💧 Wet Residue</button>
+      <button class="btn-chat-chip" data-query="Show me facilities in Guntur">🏭 Nearby Facilities</button>
+      <button class="btn-chat-chip" data-query="How does farmer pooling work?">🚛 Community Pooling</button>
+    </div>
+
+    <div class="chatbot-footer">
+      <form id="chatbot-form" class="chatbot-form">
+        <input type="text" id="chatbot-input" class="form-control" placeholder="Ask in English, తెలుగు, or हिन्दी..." style="font-size: 0.85rem;" required>
+        <button type="submit" class="btn btn-primary btn-sm">➤</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-text">
+        <strong>AgriAI – Waste2Fuel</strong> | SIH 2026 Student Innovation Prototype<br>
+        Problem Statement SIH26203 – Student Innovation (Theme: Renewable / Sustainable Energy)
+      </div>
+      <ul class="footer-links">
+        <li><a href="#landing-view" data-target-view="landing-view">Home</a></li>
+        <li><a href="#waste-analysis-view" data-target-view="waste-analysis-view">Analyze</a></li>
+        <li><a href="#farmer-alternatives-view" data-target-view="farmer-alternatives-view">Alternatives</a></li>
+        <li><a href="#biomass-map-view" data-target-view="biomass-map-view">Map</a></li>
+        <li><a href="#admin-dashboard-view" data-target-view="admin-dashboard-view">Admin Hub</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  
+  <!-- App JS Modules -->
+  <script src="js/i18n.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/voice.js"></script>
+  <script src="js/chatbot.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.I18N) window.I18N.init();
+      if (window.VoiceAssistant) window.VoiceAssistant.init();
+      if (window.ChatbotModule) window.ChatbotModule.init();
+    });
+
+    <select class="lang-select" onchange="I18N.setLanguage(this.value)">
+    <option value="en">🇬🇧 English</option>
+    <option value="te">🇮🇳 తెలుగు</option>
+    <option value="hi">🇮🇳 हिन्दी</option>
+</select>
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,389 @@
+[
+  {
+    "id": "compost",
+    "icon": "🌱",
+    "name_en": "Aerobic Microbe Composting",
+    "name_te": "సూక్ష్మజీవుల కంపోస్ట్ ఎరువు",
+    "name_hi": "वैज्ञानिक एरोबिक कम्पोस्ट खाद",
+    "tagline_en": "Convert cellulose crop waste into high-humus organic manure right on your field.",
+    "tagline_te": "పంట వ్యర్థాలను పొలంలోనే నాణ్యమైన సేంద్రియ ఎరువుగా మార్చుకోండి.",
+    "tagline_hi": "खेत पर ही फसल अवशेषों से उच्च गुणवत्ता वाली जैविक खाद बनाएं।",
+    "suitableResidues": ["rice-straw", "maize-stalk", "sugarcane-bagasse", "cotton-residue", "rice-husk"],
+    "whyShouldIDoThis_en": "Instead of burning straw which destroys soil biology and causes air smog, composting recycles nitrogen, phosphorus, and potassium back into your land and rebuilds topsoil organic carbon.",
+    "whyShouldIDoThis_te": "గడ్డిని కాల్చడం వల్ల నేలలోని పోషకాలు నశిస్తాయి. కంపోస్ట్ చేయడం వల్ల నత్రజని, భాస్వరం, పొటాష్ తిరిగి నేలకే చేరి భూమి సారం పెరుగుతుంది.",
+    "whyShouldIDoThis_hi": "पराली जलाने से खेत के मित्र कीट मर जाते हैं। कम्पोस्ट बनाने से मिट्टी में पोषक तत्व लौटते हैं और रासायनिक खाद का खर्च कम होता है।",
+    "whoCanDoIt_en": "Any individual farmer or farm cooperative with a small shaded corner in the field.",
+    "whoCanDoIt_te": "పొలంలో చిన్న నీడ ఉన్న ఏ రైతు అయినా లేదా మహిళా రైతు బృందాలు సులభంగా చేయవచ్చు.",
+    "whoCanDoIt_hi": "कोई भी किसान या किसान समूह खेत के किसी भी खाली कोने में आसानी से कर सकता है।",
+    "materialsRequired_en": [
+      "Crop residue shredded or chopped into 2–4 inch pieces (60%)",
+      "Green weeds, legume leaves, or cow dung slurry as nitrogen starter (30%)",
+      "ICAR Waste Decomposer or Trichoderma bio-culture (10%)",
+      "Water to maintain 50-60% moisture (like a damp sponge)"
+    ],
+    "materialsRequired_te": [
+      "2-4 అంగుళాలుగా కత్తిరించిన పంట వ్యర్థాలు (60%)",
+      "ఆవు పేడ ద్రావణం లేదా పచ్చి ఆకులు (30%)",
+      "వ్యర్థాల డీకంపోజర్ ద్రావణం (10%)",
+      "తేమ కోసం తగినంత నీరు"
+    ],
+    "materialsRequired_hi": [
+      "2-4 इंच कटे हुए फसल अवशेष (60%)",
+      "गोबर का घोल या हरी पत्तियां (30%)",
+      "वेस्ट डीकंपोजर या ट्राइकोडर्मा कल्चर (10%)",
+      "नमी बनाए रखने के लिए पानी"
+    ],
+    "steps_en": [
+      { "step": 1, "title": "Collect Waste", "desc": "Gather clean, dry crop residue from the field into a designated composting area." },
+      { "step": 2, "title": "Cut / Chop Material", "desc": "Chop stalks into 2–4 inch pieces to allow microbes faster surface access." },
+      { "step": 3, "title": "Layer & Inoculate", "desc": "Build an 8-inch residue layer, then sprinkle cow dung slurry and bio-decomposer liquid evenly." },
+      { "step": 4, "title": "Maintain Moisture", "desc": "Repeat alternating layers up to 4 feet high. Keep moisture at 55–60% (damp but not waterlogged)." },
+      { "step": 5, "title": "Turn & Aerate", "desc": "Turn the pile upside down on Day 15 and Day 30 to supply oxygen and regulate temperature." },
+      { "step": 6, "title": "Harvest Humus", "desc": "By Day 45–60, compost turns dark brown and earthy. Sieve and apply at 2–3 tonnes per acre." }
+    ],
+    "steps_te": [
+      { "step": 1, "title": "వ్యర్థాలను సేకరించండి", "desc": "పొలంలోని ఎండిన వరి గడ్డి లేదా కట్టెలను నీడ ప్రదేశంలో పోగు చేయండి." },
+      { "step": 2, "title": "చిన్న ముక్కలుగా చేయండి", "desc": "గడ్డిని 2-4 అంగుళాల ముక్కలుగా కత్తిరిస్తే త్వరగా కుళ్ళుతుంది." },
+      { "step": 3, "title": "పేడ నీరు & డీకంపోజర్", "desc": "గడ్డి పొరలపై ఆవు పేడ నీరు మరియు డీకంపోజర్ ద్రావణాన్ని సమానంగా చల్లండి." },
+      { "step": 4, "title": "తేమను నిర్వహించండి", "desc": "కుప్పను 4 అడుగుల ఎత్తు వరకు పేర్చండి. తడి స్పాంజ్ లాగా 55% తేమ ఉండేలా చూడండి." },
+      { "step": 5, "title": "కుప్పను తిరగవేయండి", "desc": "15వ రోజు మరియు 30వ రోజున కుప్పను గాలితగిలేలా తిరగవేయండి." },
+      { "step": 6, "title": "ఎరువును వాడండి", "desc": "45-60 రోజుల్లో నల్లని వాసన లేని సేంద్రియ ఎరువు తయారవుతుంది. ఎకరానికి 2 టన్నులు వాడండి." }
+    ],
+    "steps_hi": [
+      { "step": 1, "title": "अवशेष इकट्ठा करें", "desc": "खेत से पराली या फसल अवशेष को एक छायादार स्थान पर इकट्ठा करें।" },
+      { "step": 2, "title": "टुकड़ों में काटें", "desc": "डंठल को 2-4 इंच के छोटे टुकड़ों में काट लें ताकि सड़न जल्दी हो।" },
+      { "step": 3, "title": "गोबर घोल व डीकंपोजर", "desc": "अवशेष की परत पर गोबर का घोल और वेस्ट डीकंपोजर का छिड़काव करें।" },
+      { "step": 4, "title": "नमी का ध्यान रखें", "desc": "4 फीट ऊंची ढेरी बनाएं और 55-60% नमी बनाए रखें।" },
+      { "step": 5, "title": "पलटाई करें", "desc": "15वें और 30वें दिन ढेर को पलटें ताकि हवा का संचार बना रहे।" },
+      { "step": 6, "title": "खाद का उपयोग", "desc": "45-60 दिनों में भुरभुरी काली खाद तैयार हो जाती है। खेत में 2 टन प्रति एकड़ डालें।" }
+    ],
+    "approxTime": "45 – 60 Days",
+    "approxManureYield": "500 – 600 kg dark humus per tonne dry residue",
+    "possibleBenefit": "Saves ₹2,500 – ₹4,000 per acre in chemical fertilizer purchases.",
+    "safety": "Ensure core temperature reaches >55°C during week 2 to destroy wild weed seeds and fungal spores.",
+    "sourceOrg": "ICAR - Central Research Institute for Dryland Agriculture (CRIDA)",
+    "sourceLink": "https://icar.org.in/content/crop-residue-management"
+  },
+  {
+    "id": "biochar",
+    "icon": "🧫",
+    "name_en": "Farm-Scale Flame-Cap Biochar Kiln",
+    "name_te": "పొలంలో బయోచార్ బొగ్గు తయారీ (ఫ్లేమ్-క్యాప్ కిన్)",
+    "name_hi": "खेत स्तर पर बायोचार भट्टी (धुआं-रहित)",
+    "tagline_en": "Lock permanent carbon in soil for centuries while supercharging water and fertilizer retention.",
+    "tagline_te": "నేలలో నీటి నిల్వ సామర్థ్యాన్ని పెంచి పోషకాలు కొట్టుకుపోకుండా కాపాడే బయోచార్.",
+    "tagline_hi": "मिट्टी की जलधारण क्षमता और उर्वरता को स्थायी रूप से बढ़ाने वाला बायोचार।",
+    "suitableResidues": ["cotton-residue", "coconut-residue", "groundnut-shell", "maize-cob", "rice-husk", "rice-straw"],
+    "whyShouldIDoThis_en": "Woody crop stalks (cotton, maize cobs, coconut shells) take a long time to decompose. Converting them into porous biochar locks 50% of the carbon into your soil permanently and acts like a permanent sponge for fertilizers.",
+    "whyShouldIDoThis_te": "పత్తి కట్టెలు, కంకులు త్వరగా కుళ్ళవు. వాటిని బయోచార్‌గా మార్చడం వల్ల నేల గుల్లబారి ఎరువులను, నీటిని నిలిపి ఉంచుతుంది.",
+    "whyShouldIDoThis_hi": "कपास के डंठल और भुट्टे आसानी से नहीं सड़ते। बायोचार बनाकर मिट्टी में मिलाने से खाद और पानी सोखने की शक्ति 300% बढ़ जाती है।",
+    "whoCanDoIt_en": "Farmers with woody residues and an open space away from dry structures.",
+    "whoCanDoIt_te": "పత్తి, మిరప, కంది కట్టెలు ఉన్న రైతులు బహిరంగ ప్రదేశంలో సులభంగా చేయవచ్చు.",
+    "whoCanDoIt_hi": "कपास या मक्के की खेती करने वाले किसान खुले स्थान पर आसानी से बना सकते हैं।",
+    "materialsRequired_en": [
+      "Dry crop residues (<15% moisture)",
+      "Simple conical metal flame-cap kiln or dug earth pit",
+      "50L water or dung slurry for quenching",
+      "Metal rake and protective heat-resistant gloves"
+    ],
+    "materialsRequired_te": [
+      "బాగా ఎండిన పంట కట్టెలు (<15% తేమ)",
+      "కోనికల్ ఇనుప కిన్ లేదా తవ్విన చిన్న గుంత",
+      "మంటను ఆర్పడానికి 50 లీటర్ల నీరు లేదా పేడ నీరు",
+      "రక్షణ చేతి తొడుగులు"
+    ],
+    "materialsRequired_hi": [
+      "पूरी तरह सूखे फसल डंठल (<15% नमी)",
+      "लोहे की कोनिकल भट्टी या छोटा गड्ढा",
+      "बुझाने के लिए 50 लीटर पानी या गोबर का घोल",
+      "सुरक्षा दस्ताने"
+    ],
+    "steps_en": [
+      { "step": 1, "title": "Dry Feedstock", "desc": "Ensure stalks and cobs are thoroughly dry (<15% moisture) for clean smokeless combustion." },
+      { "step": 2, "title": "Top Ignition", "desc": "Load small dry kindling into the kiln and ignite from the top." },
+      { "step": 3, "title": "Layer Biomass", "desc": "Add uniform layers of crop stalks as the fire bed glows red." },
+      { "step": 4, "title": "Flame-Cap Pyrolysis", "desc": "The flame cap consumes falling oxygen, turning underlying stalks into pure carbon charcoal." },
+      { "step": 5, "title": "Quench Promptly", "desc": "When the kiln is full of glowing embers, pour water or dung slurry immediately to stop ash formation." },
+      { "step": 6, "title": "Charge with Dung", "desc": "Crush biochar into 2–5mm granules and mix with compost for 14 days before applying to soil." }
+    ],
+    "steps_te": [
+      { "step": 1, "title": "కట్టెలను ఎండబెట్టండి", "desc": "పత్తి లేదా కంది కట్టెలు పొడిగా ఉండేలా చూసుకోండి." },
+      { "step": 2, "title": "పైనుండి వెలిగించండి", "desc": "కిన్ లేదా గుంతలో కట్టెలు వేసి పైనుండి చిన్నగా మంట పెట్టండి." },
+      { "step": 3, "title": "పొరలుగా వేయండి", "desc": "మంట ఎర్రగా మారినప్పుడు మరికొన్ని కట్టెలను సమానంగా వేయండి." },
+      { "step": 4, "title": "పొగ లేకుండా బొగ్గు", "desc": "పైనున్న మంట ఆక్సిజన్ నిలిపివేసి కట్టెలను నల్లని బొగ్గుగా మారుస్తుంది." },
+      { "step": 5, "title": "నీటితో ఆర్పండి", "desc": "ఎర్రటి నిప్పులుగా మారిన వెంటనే నీరు లేదా పేడ నీరు చల్లి మంటను పూర్తిగా ఆర్పండి." },
+      { "step": 6, "title": "ఎరువుతో కలపండి", "desc": "బొగ్గును చిన్న ముక్కలుగా పొడి చేసి పేడ ఎరువుతో కలిపి 14 రోజుల తర్వాత పొలంలో వేయండి." }
+    ],
+    "steps_hi": [
+      { "step": 1, "title": "डंठल सुखाएं", "desc": "कपास के डंठल पूरी तरह सूखे होने चाहिए ताकि धुआं न निकले।" },
+      { "step": 2, "title": "ऊपर से जलाएं", "desc": "भट्टी में सूखी लकड़ी डालकर ऊपर से आग लगाएं।" },
+      { "step": 3, "title": "परत दर परत डालें", "desc": "अंगारे बनने पर और डंठल धीरे-धीरे ऊपर डालते जाएं।" },
+      { "step": 4, "title": "बायोचार निर्माण", "desc": "ऊपरी लौ ऑक्सीजन रोकती है जिससे शुद्ध कार्बन बायोचार बनता है।" },
+      { "step": 5, "title": "पानी से बुझाएं", "desc": "भट्टी भरने पर तुरंत पानी या गोबर घोल डालकर आग बुझा दें।" },
+      { "step": 6, "title": "खाद के साथ उपयोग", "desc": "बारीक पीसकर कम्पोस्ट के साथ 14 दिन मिलाकर खेत में डालें।" }
+    ],
+    "approxTime": "3 Hours production + 14 Days charging",
+    "approxManureYield": "250 – 350 kg biochar per tonne dry residue",
+    "possibleBenefit": "Cuts irrigation water requirement by 25% and locks fertilizer in root zone.",
+    "safety": "Always have emergency quenching water ready. Wear gloves and eye protection in an open field.",
+    "sourceOrg": "ICAR - Central Institute for Research on Cotton Technology (CIRCOT)",
+    "sourceLink": "https://circot.icar.gov.in/"
+  },
+  {
+    "id": "vermicompost",
+    "icon": "🪱",
+    "name_en": "Earthworm Vermicomposting (Eisenia fetida)",
+    "name_te": "ఎర్ర వానపాములతో వర్మీ కంపోస్ట్ తయారీ",
+    "name_hi": "केंचुआ खाद (वर्मी कम्पोस्ट) निर्माण",
+    "tagline_en": "Produce premium black gold organic fertilizer with high microbial diversity.",
+    "tagline_te": "వానపాములతో అధిక పోషకాలు గల మేలైన సేంద్రియ ఎరువు తయారీ.",
+    "tagline_hi": "केंचुओं द्वारा तैयार पोषक तत्वों से भरपूर 'ब्लैक गोल्ड' जैविक खाद।",
+    "suitableResidues": ["rice-straw", "sugarcane-bagasse", "maize-stalk", "groundnut-shell"],
+    "whyShouldIDoThis_en": "Vermicompost contains 5x more available nitrogen, 7x more phosphorus, and 11x more potassium than regular soil. It can be sold locally at ₹6–₹10/kg for vegetables, horticulture, and cash crops.",
+    "whyShouldIDoThis_te": "వర్మీ కంపోస్ట్‌లో సాధారణ మట్టి కంటే 5 రెట్లు నత్రజని, 7 రెట్లు భాస్వరం ఉంటాయి. కిలో ₹6-₹10 చొప్పున అమ్ముకుని అదనపు ఆదాయం పొందవచ్చు.",
+    "whyShouldIDoThis_hi": "केंचुआ खाद में रासायनिक खादों की तुलना में अधिक प्राकृतिक पोषक तत्व होते हैं। इसे ₹6-₹10 प्रति किलो बेचकर किसान अच्छी आय ले सकते हैं।",
+    "whoCanDoIt_en": "Small and marginal farmers with cattle dung access and a thatched shaded area.",
+    "whoCanDoIt_te": "పశువులు మరియు నీడ ప్రదేశం ఉన్న రైతులు తక్కువ పెట్టుబడితో చేయవచ్చు.",
+    "whoCanDoIt_hi": "पशुपालक किसान छायादार जगह पर कम लागत में आसानी से शुरू कर सकते हैं।",
+    "materialsRequired_en": [
+      "Weathered crop residue (semi-decomposed for 15 days)",
+      "Cattle dung (1:1 proportion with biomass)",
+      "Red Wiggler earthworms (Eisenia fetida - 1 kg per tonne waste)",
+      "Shaded vermi-bed (10ft x 3ft x 2ft) or silpaulin HDPE bed",
+      "Gunny bags for top shading"
+    ],
+    "materialsRequired_te": [
+      "15 రోజులు నానబెట్టిన పంట వ్యర్థాలు",
+      "సమాన పరిమాణంలో పశువుల పేడ",
+      "ఎర్ర వానపాములు (ఐసేనియా ఫెటిడా - 1 కేజీ)",
+      "నీడ గల బెడ్ లేదా సిల్పావులిన్ బెడ్",
+      "కప్పడానికి గోనె సంచులు"
+    ],
+    "materialsRequired_hi": [
+      "15 दिन पुराना अधसड़ा फसल अवशेष",
+      "समान मात्रा में ताजा गोबर",
+      "लाल केंचुए (आइसीनिया फेटिडा - 1 किलो)",
+      "छायादार पक्का या एचडीपीई बेड",
+      "ढकने के लिए जूट की बोरी"
+    ],
+    "steps_en": [
+      { "step": 1, "title": "Pre-Cool Biomass", "desc": "Sprinkle dung water on straw for 15 days to reduce fermentation heat." },
+      { "step": 2, "title": "Prepare Bed", "desc": "Fill shaded bed with alternating 3-inch layers of weathered straw and dung." },
+      { "step": 3, "title": "Release Earthworms", "desc": "Release Red Wiggler worms gently on the top surface." },
+      { "step": 4, "title": "Cover with Sacks", "desc": "Cover with wet gunny bags to provide darkness and maintain 65% moisture." },
+      { "step": 5, "title": "Water Regularly", "desc": "Lightly sprinkle water every 2–3 days. Earthworms feed upward through the layers." },
+      { "step": 6, "title": "Harvest Castings", "desc": "Collect granular top vermicompost every 30–45 days, air-dry in shade, and apply." }
+    ],
+    "steps_te": [
+      { "step": 1, "title": "వేడిని తగ్గించండి", "desc": "గడ్డిపై పేడ నీరు చల్లి 15 రోజులు నిల్వ ఉంచి వేడి తగ్గేలా చేయండి." },
+      { "step": 2, "title": "బెడ్ తయారు చేయండి", "desc": "నీడలో 3 అంగుళాల గడ్డి, పేడ పొరలను వరుసగా పేర్చండి." },
+      { "step": 3, "title": "వానపాములు వేయండి", "desc": "ఎర్ర వానపాములను పై పొరపై సమానంగా వదలండి." },
+      { "step": 4, "title": "గోనె సంచులతో కప్పండి", "desc": "చీకటి మరియు 65% తేమ ఉండేలా గోనె సంచులు కప్పండి." },
+      { "step": 5, "title": "రోజూ నీరు చల్లండి", "desc": "2-3 రోజులకు ఒకసారి తేలికగా నీరు చిలకరించండి." },
+      { "step": 6, "title": "ఎరువును సేకరించండి", "desc": "30-45 రోజుల్లో తయారైన పై పొర నల్లని టీ పొడి లాంటి ఎరువును సేకరించండి." }
+    ],
+    "steps_hi": [
+      { "step": 1, "title": "ठंडा करें", "desc": "फसल अवशेष पर गोबर पानी छिड़ककर 15 दिन रखें ताकि गैस और गर्मी निकल जाए।" },
+      { "step": 2, "title": "बेड तैयार करें", "desc": "छाया में 3-3 इंच की अवशेष और गोबर की परतें लगाएं।" },
+      { "step": 3, "title": "केंचुए छोड़ें", "desc": "ऊपरी सतह पर आइसीनिया फेटिडा केंचुए छोड़ें।" },
+      { "step": 4, "title": "बोरी से ढकें", "desc": "अंधेरा और नमी बनाए रखने के लिए गीली बोरी से ढकें।" },
+      { "step": 5, "title": "पानी छिड़कें", "desc": "हर 2-3 दिन में हल्का पानी छिड़कें।" },
+      { "step": 6, "title": "खाद निकालें", "desc": "30-45 दिन में ऊपर की चायपत्ती जैसी भुरभुरी खाद छानकर निकालें।" }
+    ],
+    "approxTime": "45 – 60 Days",
+    "approxManureYield": "650 – 750 kg premium vermicompost per tonne",
+    "possibleBenefit": "High-grade organic fertilizer + commercial sales value (₹5,000 – ₹7,500/tonne).",
+    "safety": "Keep beds completely protected from direct sun and ants. Earthworms die above 38°C.",
+    "sourceOrg": "Krishi Vigyan Kendra (KVK) Lam, Guntur / ANGRAU",
+    "sourceLink": "https://icar.org.in/"
+  },
+  {
+    "id": "mushroom-cultivation",
+    "icon": "🍄",
+    "name_en": "Oyster Mushroom (Pleurotus) on Straw",
+    "name_te": "వరి గడ్డితో ఆయిస్టర్ పుట్టగొడుగుల సాగు",
+    "name_hi": "भूसे पर ढींगरी (ऑयस्टर) मशरूम उत्पादन",
+    "tagline_en": "Turn crop straw into high-value protein food selling at ₹120–₹200/kg.",
+    "tagline_te": "వరి గడ్డితో కిలో ₹150 వరకు పలికే రుచికరమైన పుట్టగొడుగుల పెంపకం.",
+    "tagline_hi": "100 किलो पराली से ₹6000 तक का स्वादिष्ट और पौष्टिक मशरूम उत्पादन।",
+    "suitableResidues": ["rice-straw", "maize-cob", "cotton-residue", "sugarcane-bagasse"],
+    "whyShouldIDoThis_en": "Oyster mushrooms grow rapidly on crop straw without soil. They convert low-value agricultural cellulose into edible culinary mushrooms selling at ₹120–₹200/kg in nearby towns.",
+    "whyShouldIDoThis_te": "వరి గడ్డితో తక్కువ ఖర్చులో పుట్టగొడుగులు పండించవచ్చు. మార్కెట్లో కిలో ₹120 నుండి ₹200 వరకు మంచి డిమాండ్ ఉంది.",
+    "whyShouldIDoThis_hi": "पराली पर बिना मिट्टी के मशरूम उगाकर किसान 30 दिनों में अपनी आय को कई गुना बढ़ा सकते हैं।",
+    "whoCanDoIt_en": "Any farmer, youth, or women self-help group with a dark ventilated room or thatched hut.",
+    "whoCanDoIt_te": "చీకటి మరియు తేమ గల గది ఉన్న ఏ రైతు లేదా మహిళా సంఘాలైనా చేయవచ్చు.",
+    "whoCanDoIt_hi": "महिला स्वयं सहायता समूह या किसान एक छोटे हवादार कमरे में शुरू कर सकते हैं।",
+    "materialsRequired_en": [
+      "Clean mold-free crop straw chopped to 2–3 inches",
+      "Oyster mushroom spawn (wheat/sorghum based - 200g per bag)",
+      "Food-grade PP polybags (12x24 inch) with pin-holes",
+      "Hot water drum for pasteurization (80°C for 90 mins)",
+      "Dark humid incubation room (22–28°C)"
+    ],
+    "materialsRequired_te": [
+      "శుభ్రమైన వరి గడ్డి (2-3 అంగుళాలు కత్తిరించినది)",
+      "పుట్టగొడుగుల విత్తనం (స్పాన్ - 200 గ్రాములు)",
+      "ప్లాస్టిక్ కవర్లు (12x24 అంగుళాలు)",
+      "వేడి నీటి డ్రమ్ (80°C వద్ద 90 నిమిషాలు వేడి చేయడానికి)",
+      "చల్లని చీకటి గది"
+    ],
+    "materialsRequired_hi": [
+      "साफ सूखा धान का भूसा (2-3 इंच कटा हुआ)",
+      "मशरूम स्पॉन (बीज - 200 ग्राम प्रति बैग)",
+      "पॉलीथिन बैग (12x24 इंच)",
+      "उबालने के लिए ड्रम (80°C पर 90 मिनट)",
+      "हवादार छायादार कमरा"
+    ],
+    "steps_en": [
+      { "step": 1, "title": "Chop & Soak Straw", "desc": "Chop straw into 2–3 inch pieces and soak in clean water for 8 hours." },
+      { "step": 2, "title": "Pasteurize", "desc": "Boil soaked straw in 75–80°C water for 90 minutes to kill competitor fungi." },
+      { "step": 3, "title": "Cool & Pack Layers", "desc": "Spread on clean sheet to cool to 25°C. Pack in polybags alternating with mushroom grain spawn." },
+      { "step": 4, "title": "Incubation", "desc": "Hang bags in dark room (22–28°C) for 15–18 days until white mycelium covers the straw." },
+      { "step": 5, "title": "Cropping & Misting", "desc": "Make 10 small slits on the bag and mist water twice daily." },
+      { "step": 6, "title": "Harvest Mushrooms", "desc": "Harvest mushroom clusters when caps uncurl. Harvest 3 flushes over 30 days." }
+    ],
+    "steps_te": [
+      { "step": 1, "title": "గడ్డిని నానబెట్టండి", "desc": "గడ్డిని 2-3 అంగుళాల ముక్కలుగా చేసి 8 గంటలు నీటిలో నానబెట్టండి." },
+      { "step": 2, "title": "వేడి నీటిలో ఉడకబెట్టండి", "desc": "80°C వేడి నీటిలో 90 నిమిషాలు ఉంచి సూక్ష్మజీవులను నిర్మూలించండి." },
+      { "step": 3, "title": "చల్లార్చి విత్తనం కలపండి", "desc": "గడ్డిని చల్లార్చి ప్లాస్టిక్ సంచులలో పొరలుగా విత్తనంతో నింపండి." },
+      { "step": 4, "title": "చీకటి గదిలో ఉంచండి", "desc": "సంచులను చీకటి గదిలో 15-18 రోజులు తెల్లటి బూజు వచ్చే వరకు ఉంచండి." },
+      { "step": 5, "title": "నీరు చిలకరించండి", "desc": "కవర్లకు చిన్న రంధ్రాలు చేసి రోజుకు రెండుసార్లు నీరు పిచికారీ చేయండి." },
+      { "step": 6, "title": "పుట్టగొడుగులు కోయండి", "desc": "పుట్టగొడుగులు విచ్చుకున్నప్పుడు కోసి తాజాగా అమ్మండి. 30 రోజుల్లో 3 సార్లు కోత వస్తుంది." }
+    ],
+    "steps_hi": [
+      { "step": 1, "title": "भूसा भिगोएं", "desc": "भूसे को 2-3 इंच काटकर 8 घंटे साफ पानी में भिगोएं।" },
+      { "step": 2, "title": "उबालें", "desc": "गर्म पानी में 90 मिनट उबालकर कीटाणुरहित करें।" },
+      { "step": 3, "title": "बीज (स्पॉन) मिलाएं", "desc": "ठंडा करके पॉलीथिन बैग में भूसा और बीज की परतें भरें।" },
+      { "step": 4, "title": "कमरे में रखें", "desc": "15-18 दिन अंधेरे कमरे में रखें जब तक सफेद कवक न फैल जाए।" },
+      { "step": 5, "title": "पानी का छिड़काव", "desc": "थैली में छेद करें और दिन में 2 बार पानी का हल्का छिड़काव करें।" },
+      { "step": 6, "title": "मशरूम तुड़ाई", "desc": "मशरूम गुच्छे तोड़कर ताजा बेचें। 30 दिनों में 3 बार फसल मिलती है।" }
+    ],
+    "approxTime": "25 – 35 Days from spawning to harvest",
+    "approxManureYield": "60 – 80 kg fresh edible mushrooms per 100 kg dry straw",
+    "possibleBenefit": "High cash revenue (₹6,000 – ₹10,000 per 100 kg straw processed).",
+    "safety": "Maintain strict hygiene during bag spawning. Wear a face mask to prevent fungal spore inhalation.",
+    "sourceOrg": "ICAR - Directorate of Mushroom Research (DMR), Solan",
+    "sourceLink": "https://dmrsolan.icar.gov.in/"
+  },
+  {
+    "id": "briquettes",
+    "icon": "🧱",
+    "name_en": "Village-Scale Biomass Briquetting & Pellets",
+    "name_te": "గ్రామ స్థాయి బయోమాస్ బ్రికెట్ల తయారీ (బొగ్గు కడ్డీలు)",
+    "name_hi": "बायोमास ब्रिकेट्स (सफेद कोयला) निर्माण",
+    "tagline_en": "Compress loose shells and husks into high-density smokeless fuel logs.",
+    "tagline_te": "వేరుశనగ పొట్టు, వరి తవుడును పొగలేని ఇంధన బ్రికెట్లుగా మార్చే పద్ధతి.",
+    "tagline_hi": "मूंगफली के छिलके और भूसे से धुआं-रहित उच्च ऊर्जा ईंधन ब्रिकेट्स बनाएं।",
+    "suitableResidues": ["groundnut-shell", "rice-husk", "cotton-residue", "maize-cob", "coconut-residue"],
+    "whyShouldIDoThis_en": "Loose husks and shells take up too much volume to transport. Compacting them into dense solid fuel briquettes provides cleaner, high-heat fuel logs that replace firewood and coal in local kilns and commercial boilers.",
+    "whyShouldIDoThis_te": "వదులుగా ఉన్న పొట్టును రవాణా చేయడం కష్టం. బ్రికెట్లుగా మారిస్తే స్థానిక హోటళ్ళు, ఇటుక బట్టీలు మంచి ధరకి కొనుగోలు చేస్తాయి.",
+    "whyShouldIDoThis_hi": "हल्के भूसे को दबाकर बायो-कोल बनाने से स्थानीय ईंट भट्ठों और ढाबों में अच्छी कीमत पर बेचा जा सकता है।",
+    "whoCanDoIt_en": "Farmer Producer Organizations (FPOs) and village enterprise cooperatives.",
+    "whoCanDoIt_te": "రైతు ఉత్పత్తిదారుల సంఘాలు (FPOలు) లేదా గ్రామీణ యువత.",
+    "whoCanDoIt_hi": "किसान उत्पादक संगठन (FPO) या ग्रामीण उद्यमी।",
+    "materialsRequired_en": [
+      "Dry pulverized shells or husks (<10% moisture)",
+      "Simple screw-press extruder or mini 5-10 HP briquetting press",
+      "Dry covered storage shed"
+    ],
+    "materialsRequired_te": [
+      "ఎండిన వేరుశనగ పొట్టు లేదా వరి తవుడు (<10% తేమ)",
+      "చిన్న బ్రికెట్ ప్రెస్ యంత్రం",
+      "ఎండిన నిల్వ ప్రదేశం"
+    ],
+    "materialsRequired_hi": [
+      "सूखा पिसा हुआ छिलका या भूसा (<10% नमी)",
+      "मिनी ब्रिकेटिंग प्रेस मशीन",
+      "सूखा भंडारण शेड"
+    ],
+    "steps_en": [
+      { "step": 1, "title": "Pulverize", "desc": "Crush dry shells or cobs into 2–4mm uniform particles." },
+      { "step": 2, "title": "Condition Moisture", "desc": "Adjust moisture to 8–10% for natural friction binding." },
+      { "step": 3, "title": "Extrude Press", "desc": "Feed into extruder where mechanical pressure melts natural lignins into binder." },
+      { "step": 4, "title": "Cool & Harden", "desc": "Allow hot cylindrical briquettes to cool and harden in ambient air." },
+      { "step": 5, "title": "Bag & Stack", "desc": "Pack in 25–50 kg sacks for storage." },
+      { "step": 6, "title": "Supply Local Users", "desc": "Sell to local dhabas, brick kilns, and bakeries at ₹4,500–₹6,500/tonne." }
+    ],
+    "steps_te": [
+      { "step": 1, "title": "పొడి చేయండి", "desc": "పొట్టును 2-4 మి.మీ పరిమాణంలో నూరండి." },
+      { "step": 2, "title": "తేమను చూసుకోండి", "desc": "తేమ 8-10% ఉండేలా చూసుకోండి." },
+      { "step": 3, "title": "యంత్రంలో ఒత్తండి", "desc": "అధిక పీడన యంత్రంలో ఒత్తడం వల్ల సహజ జిగురుతో కడ్డీలుగా మారుతుంది." },
+      { "step": 4, "title": "చల్లారనివ్వండి", "desc": "వేడి బ్రికెట్లను గాలిలో ఆరబెట్టి గట్టిపడేలా చేయండి." },
+      { "step": 5, "title": "సంచుల్లో నింపండి", "desc": "25-50 కేజీల సంచులలో భద్రపరచండి." },
+      { "step": 6, "title": "విక్రయించండి", "desc": "స్థానిక హోటళ్ళు, బట్టీలకు టన్ను ₹5,000 చొప్పున విక్రయించండి." }
+    ],
+    "steps_hi": [
+      { "step": 1, "title": "पीसें", "desc": "छिलके को 2-4 मिमी के कणों में पीस लें।" },
+      { "step": 2, "title": "नमी जांचें", "desc": "नमी 8-10% रखें।" },
+      { "step": 3, "title": "प्रेस करें", "desc": "ब्रिकेटिंग मशीन में दबाकर ठोस बायो-कोल बनाएं।" },
+      { "step": 4, "title": "ठंडा करें", "desc": "गर्म ब्रिकेट को हवा में ठंडा और सख्त होने दें।" },
+      { "step": 5, "title": "पैकिंग", "desc": "25-50 किलो के बोरों में पैक करें।" },
+      { "step": 6, "title": "स्थानीय बिक्री", "desc": "स्थानीय ढाबों, ईंट भट्ठों को ₹5,000/टन पर आपूर्ति करें।" }
+    ],
+    "approxTime": "Continuous operation (100–250 kg/hour)",
+    "approxManureYield": "950 kg dense smokeless briquettes per tonne",
+    "possibleBenefit": "High calorific value fuel replacement selling at ₹4,500 – ₹6,500/tonne.",
+    "safety": "Store briquettes in a completely dry, rainproof shed. Wear dust masks during crushing.",
+    "sourceOrg": "ICAR - Central Institute of Agricultural Engineering (CIAE), Bhopal",
+    "sourceLink": "https://ciae.icar.gov.in/"
+  },
+  {
+    "id": "soil-mulch",
+    "icon": "🌾",
+    "name_en": "In-Situ Soil Mulching & Happy Seeder",
+    "name_te": "పొలంలోనే నేల రక్షణ కవచం (మల్చింగ్) & తేమ రక్షణ",
+    "name_hi": "इन-सीटू पराली मल्चिंग व मिट्टी सुधार",
+    "tagline_en": "Retain residue directly on field surface to suppress weeds and save 25% irrigation water.",
+    "tagline_te": "గడ్డిని పొలంలోనే సమానంగా పరిచి కలుపును నివారించి నీటిని ఆదా చేయండి.",
+    "tagline_hi": "खेत में पराली बिछाकर खरपतवार रोकें और 25% सिंचाई पानी बचाएं।",
+    "suitableResidues": ["rice-straw", "maize-stalk", "sugarcane-bagasse"],
+    "whyShouldIDoThis_en": "Spreading crop residue as a surface mulch shields soil from harsh sun evaporation, prevents weed emergence, and gradually decomposes into topsoil humus without any transport expense.",
+    "whyShouldIDoThis_te": "గడ్డిని పొలంలో పరచడం వల్ల నేలలో తేమ ఆవిరి కాకుండా ఉంటుంది, కలుపు మొక్కలు మొలవవు మరియు నేల చల్లగా ఉంటుంది.",
+    "whyShouldIDoThis_hi": "खेत में पराली की परत बिछाने से धूप से नमी नहीं उड़ती, खरपतवार नहीं उगते और मिट्टी की सेहत सुधरती है।",
+    "whoCanDoIt_en": "Farmers practicing zero-tillage, orchard farming, or row crops.",
+    "whoCanDoIt_te": "వరి, మొక్కజొన్న, పండ్ల తోటలు సాగు చేసే ఏ రైతులైనా చేయవచ్చు.",
+    "whoCanDoIt_hi": "बागवानी, सब्जी या जीरो-टिलेज खेती करने वाले किसान।",
+    "materialsRequired_en": [
+      "Fresh or dry crop residue chopped and spread uniformly",
+      "Happy Seeder or Super Seeder machine if sowing next crop directly"
+    ],
+    "materialsRequired_te": [
+      "పొలంలో సమానంగా పరచిన పంట గడ్డి",
+      "తదుపరి పంట వేయడానికి హ్యాపీ సీడర్ యంత్రం"
+    ],
+    "materialsRequired_hi": [
+      "खेत में समान रूप से फैली पराली",
+      "अगली फसल बुवाई के लिए हैप्पी सीडर / सुपर सीडर"
+    ],
+    "steps_en": [
+      { "step": 1, "title": "Spread Evenly", "desc": "Use a straw spreader behind combine harvester to spread residue across the plot." },
+      { "step": 2, "title": "Direct Sowing", "desc": "Sow next crop (wheat, chickpea, maize) directly using a Happy Seeder without tilling." },
+      { "step": 3, "title": "Moisture Shield", "desc": "Surface straw acts as a natural mulch blanket, conserving 25% soil moisture." },
+      { "step": 4, "title": "Suppress Weeds", "desc": "The 3-inch straw barrier blocks sunlight, reducing weed germination by 70%." },
+      { "step": 5, "title": "Natural Decay", "desc": "Soil earthworms and bacteria slowly digest the mulch into organic humus." },
+      { "step": 6, "title": "Zero Extra Cost", "desc": "Save ₹1,500/acre in diesel tillage and ₹1,200/acre in weedicide sprays." }
+    ],
+    "steps_te": [
+      { "step": 1, "title": "సమానంగా పరచండి", "desc": "కోత తర్వాత గడ్డిని పొలమంతా సమానంగా పరచండి." },
+      { "step": 2, "title": "నేరుగా విత్తనాలు వేయండి", "desc": "హ్యాపీ సీడర్ యంత్రంతో దున్నకుండానే విత్తనాలు నాటండి." },
+      { "step": 3, "title": "తేమను కాపాడండి", "desc": "గడ్డి కవచం నేలలోని తేమను ఆవిరి కాకుండా 25% వరకు ఆదా చేస్తుంది." },
+      { "step": 4, "title": "కలుపును నివారించండి", "desc": "గడ్డి పొర సూర్యరశ్మిని అడ్డుకుని కలుపు మొక్కలు రాకుండా చేస్తుంది." },
+      { "step": 5, "title": "సహజ ఎరువుగా మార్పిడి", "desc": "నేలలోని సూక్ష్మజీవులు కాలక్రమేణా గడ్డిని సేంద్రియ ఎరువుగా మారుస్తాయి." },
+      { "step": 6, "title": "ఖర్చు ఆదా", "desc": "దుక్కుల డీజిల్ ఖర్చు మరియు కలుపు మందుల ఖర్చులో ఎకరానికి ₹2,500 ఆదా అవుతుంది." }
+    ],
+    "steps_hi": [
+      { "step": 1, "title": "समान रूप से फैलाएं", "desc": "कंबाइन हार्वेस्टर के बाद पराली को खेत में बराबर फैलाएं।" },
+      { "step": 2, "title": "हैप्पी सीडर से बुवाई", "desc": "बिना जुताई किए सीधे हैप्पी सीडर से अगली फसल बोएं।" },
+      { "step": 3, "title": "नमी संरक्षण", "desc": "पराली की चादर मिट्टी की नमी को बचाती है।" },
+      { "step": 4, "title": "खरपतवार नियंत्रण", "desc": "घास-फूस को उगने से 70% तक रोकती है।" },
+      { "step": 5, "title": "प्राकृतिक खाद", "desc": "धीरे-धीरे सड़कर मिट्टी में जैविक कार्बन बढ़ाती है।" },
+      { "step": 6, "title": "जुताई खर्च में बचत", "desc": "डीजल जुताई और खरपतवार नाशक पर ₹2,500 प्रति एकड़ की बचत।" }
+    ],
+    "approxTime": "Immediate in-situ application during cropping cycle",
+    "approxManureYield": "100% soil organic carbon retention",
+    "possibleBenefit": "Saves ₹2,500/acre in tillage diesel and weedicides + 25% less water.",
+    "safety": "Ensure straw is evenly spread without thick heaps that obstruct seedling emergence.",
+    "sourceOrg": "ICAR - Indian Agricultural Research Institute (IARI), New Delhi",
+    "sourceLink": "https://www.iari.res.in/"
+  }
+]

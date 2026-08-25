@@ -1,0 +1,30 @@
+[
+  {
+    "id": "cluster-guntur-01",
+    "name": "Guntur East Agro-Biomass Cluster #1",
+    "district": "Guntur",
+    "state": "Andhra Pradesh",
+    "wasteType": "rice-straw",
+    "wasteTypeName": "Rice straw",
+    "centerLatitude": 16.2915,
+    "centerLongitude": 80.5315,
+    "farmerCount": 4,
+    "totalBiomassKg": 3000,
+    "farms": [
+      { "id": "farm-01", "farmerName": "Ramesh Naidu (Farmer A)", "quantity": 500, "location": "Guntur Rural" },
+      { "id": "farm-02", "farmerName": "Venkatesh Rao (Farmer B)", "quantity": 800, "location": "Chebrolu Mandal" },
+      { "id": "farm-03", "farmerName": "Srinivas Reddy (Farmer C)", "quantity": 700, "location": "Tenali Rural" },
+      { "id": "farm-04", "farmerName": "Lakshmi Narayana (Farmer D)", "quantity": 1000, "location": "Mangalagiri Agro Zone" }
+    ],
+    "destinationFacilityId": "fac-01",
+    "destinationFacilityName": "Demo 2G Bio-Ethanol Refinery – Guntur",
+    "scheduledPickupDate": "2026-08-28",
+    "suggestedTruckType": "6-Tonne Medium Commercial Vehicle (Baled)",
+    "individualTripCostTotal": 3850,
+    "consolidatedTripCost": 2380,
+    "logisticsSavings": 1470,
+    "status": "Scheduled for Consolidation",
+    "indicativeTotalPayout": 6600,
+    "isDemo": true
+  }
+]
