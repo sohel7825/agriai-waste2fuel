@@ -744,7 +744,7 @@ const App = {
           <h4 style="font-size: 1.05rem; margin: 4px 0 6px 0; color: #0f172a;">${title}</h4>
           <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem; flex:1;">${desc}</p>
           <div style="display: flex; gap: 6px;">
-            <button class="btn btn-primary btn-sm" style="flex:1;" onclick="App.playVideoModal('${v.id}')">▶ Watch Video</button>
+          <button class="btn btn-primary btn-sm" style="flex:1;" onclick="App.playVideoModal('${v.id}')">${v.url ? '▶ Watch Video' : '🔗 Official Guide'}</button>
             <button class="btn btn-outline-primary btn-sm" onclick="App.openAlternativeDetail('${v.alternative}')">📋 Guide</button>
           </div>
         </div>
@@ -777,7 +777,7 @@ const App = {
           <span class="video-source-tag">✅ ${v.source}</span>
           <h4 style="font-size: 1.05rem; margin: 4px 0 6px 0;">${title}</h4>
           <p style="font-size: 0.85rem; color: #64748b; margin-bottom: 1rem;">${desc}</p>
-          <button class="btn btn-primary btn-sm" onclick="App.playVideoModal('${v.id}')">▶ Watch Video</button>
+          <button class="btn btn-primary btn-sm" onclick="App.playVideoModal('${v.id}')">${v.url ? '▶ Watch Video' : '🔗 Official Guide'}</button>
         </div>
       `;
       container.appendChild(card);
@@ -794,7 +794,12 @@ const App = {
 
     document.getElementById('video-modal-title').textContent = title;
     document.getElementById('video-modal-source').textContent = `Organization: ${video.organization}`;
-    document.getElementById('video-modal-iframe').src = video.url;
+    const frameWrap = document.getElementById('video-modal-frame-wrap');
+    const resourceNote = document.getElementById('video-modal-resource-note');
+    const frame = document.getElementById('video-modal-iframe');
+    if (frameWrap) frameWrap.style.display = video.url ? 'block' : 'none';
+    if (resourceNote) resourceNote.style.display = video.url ? 'none' : 'block';
+    if (frame) frame.src = video.url || '';
     document.getElementById('video-modal-ext-link').href = video.videoLink;
 
     modal.classList.add('active');
@@ -960,6 +965,7 @@ const App = {
 
       ChartsModule.init(data);
       this.renderMasterFarmTable(data.recentFarms || []);
+      this.renderFarmerLots(data.recentFarms || []);
     } catch (err) {
       console.error('Error loading dashboard:', err);
     }
@@ -982,6 +988,28 @@ const App = {
         <td><span class="proto-badge" style="background:#dcfce7; color:#15803d;">${f.status}</span></td>
       `;
       tbody.appendChild(tr);
+    });
+  },
+
+  renderFarmerLots(farms) {
+    const tbody = document.getElementById('farmer-lots-tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    farms.forEach((farm) => {
+      const row = document.createElement('tr');
+      const cells = [
+        window.I18N ? I18N.getResidueName(farm.wasteType) : farm.wasteTypeName,
+        `${farm.quantity.toLocaleString()} kg`,
+        farm.condition,
+        farm.harvestDate,
+        farm.status
+      ];
+      cells.forEach((value) => {
+        const cell = document.createElement('td');
+        cell.textContent = value || '—';
+        row.appendChild(cell);
+      });
+      tbody.appendChild(row);
     });
   },
 

@@ -15,7 +15,7 @@ let collectionsData = [...require('../data/collections.json')];
 const { classifyBiomassImage } = require('../services/aiClassifier');
 const { evaluateBiomassViability, findMatchingFacilities } = require('../services/viabilityEngine');
 const { createBiomassCluster } = require('../services/aggregationEngine');
-const { processAIChat } = require('../services/aiChatService');
+const { getAdvisorReply, isAIConfigured } = require('../services/aiAdvisor');
 
 /**
  * GET /api/waste-types
@@ -49,17 +49,21 @@ router.post('/analyze', (req, res) => {
  * Multilingual AI Conversational Biomass Advisor
  * Processes natural language queries in English, Telugu, and Hindi
  */
-router.post('/chat', (req, res) => {
+router.post('/chat', async (req, res) => {
   try {
     const { message, language } = req.body || {};
     if (!message) {
       return res.status(400).json({ success: false, message: "Query message is required." });
     }
-    const result = processAIChat(message, language);
+    const result = await getAdvisorReply(message, language);
     res.json(result);
   } catch (error) {
     res.status(500).json({ success: false, message: "AI Chat Error: " + error.message });
   }
+});
+
+router.get('/ai-status', (req, res) => {
+  res.json({ success: true, provider: isAIConfigured() ? 'openai' : 'local' });
 });
 
 /**
@@ -245,7 +249,13 @@ router.get('/collections', (req, res) => {
 router.post('/collections', (req, res) => {
   try {
     const { name, district, farmIds, pickupDate } = req.body || {};
-    const newCluster = createBiomassCluster({ name, district, farmIds, pickupDate });
+    if (farmIds && (!Array.isArray(farmIds) || farmIds.length === 0)) {
+      return res.status(400).json({ success: false, message: 'farmIds must be a non-empty list when supplied.' });
+    }
+    if (farmIds && !farmIds.some(id => farmsData.some(farm => farm.id === id))) {
+      return res.status(400).json({ success: false, message: 'None of the selected farm lots were found.' });
+    }
+    const newCluster = createBiomassCluster({ name, district, farmIds, pickupDate, farms: farmsData });
     
     collectionsData.unshift(newCluster);
 

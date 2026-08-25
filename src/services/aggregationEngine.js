@@ -24,9 +24,10 @@ function getClusters() {
  * @param {Array<string>} farmIds 
  */
 function createBiomassCluster(params) {
+  const availableFarms = Array.isArray(params.farms) ? params.farms : farms;
   const farmList = params.farmIds && params.farmIds.length > 0 
-    ? farms.filter(f => params.farmIds.includes(f.id))
-    : farms.slice(0, 4); // Default to Farmer A, B, C, D
+    ? availableFarms.filter(f => params.farmIds.includes(f.id))
+    : availableFarms.slice(0, 4); // Default to Farmer A, B, C, D
 
   const totalBiomassKg = farmList.reduce((sum, f) => sum + (f.quantity || 0), 0);
   const wasteType = farmList[0] ? farmList[0].wasteType : 'rice-straw';

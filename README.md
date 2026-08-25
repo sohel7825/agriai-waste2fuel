@@ -2,6 +2,10 @@
 
 > **“Agricultural Waste Is Not Waste — It Is a Resource for Future Fuel.”**
 
+## Optional live AI advisor
+
+The built-in advisor works without external services using the project knowledge base. To enable live OpenAI responses, copy `.env.example` to `.env` and add `OPENAI_API_KEY`. The key stays on the server and is never exposed in the browser. You may also set `OPENAI_MODEL`; the default is `gpt-5.4`.
+
 ### 🏆 Smart India Hackathon (SIH 2026) Prototype
 - **Problem Statement ID:** `SIH26203` – Student Innovation
 - **Theme:** Renewable / Sustainable Energy

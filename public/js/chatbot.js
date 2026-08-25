@@ -1,157 +1,92 @@
-/**
- * Conversational AI Assistant Widget for AgriAI – Waste2Fuel
- * Directly interacts with website views, forms, and triggers actions.
- */
-
+/** Safe conversational interface for the AgriAI backend advisor. */
 const ChatbotModule = {
   isOpen: false,
 
   init() {
-    this.setupListeners();
-  },
-
-  setupListeners() {
-    const toggleBtn = document.getElementById('btn-chatbot-toggle');
-    const chatContainer = document.getElementById('ai-chatbot-widget');
-    const closeBtn = document.getElementById('btn-chatbot-close');
-    const form = document.getElementById('chatbot-form');
-    const input = document.getElementById('chatbot-input');
-
-    if (toggleBtn && chatContainer) {
-      toggleBtn.addEventListener('click', () => this.toggleChat());
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => this.closeChat());
-    }
-
-    if (form && input) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const text = input.value.trim();
-        if (text) {
-          this.sendMessage(text);
-          input.value = '';
-        }
-      });
-    }
-
-    // Quick Action Chips
-    document.querySelectorAll('.btn-chat-chip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const query = chip.getAttribute('data-query') || chip.textContent.trim();
-        this.sendMessage(query);
-      });
+    document.getElementById('btn-chatbot-toggle')?.addEventListener('click', () => this.toggleChat());
+    document.getElementById('btn-chatbot-close')?.addEventListener('click', () => this.closeChat());
+    document.getElementById('chatbot-form')?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const input = document.getElementById('chatbot-input');
+      const value = input?.value.trim();
+      if (value) this.sendMessage(value);
+      if (input) input.value = '';
     });
+    document.querySelectorAll('.btn-chat-chip').forEach((chip) => chip.addEventListener('click', () => this.sendMessage(chip.dataset.query || chip.textContent)));
   },
 
-  toggleChat() {
-    this.isOpen = !this.isOpen;
-    const widget = document.getElementById('ai-chatbot-widget');
-    if (widget) {
-      if (this.isOpen) {
-        widget.classList.add('active');
-        document.getElementById('chatbot-input')?.focus();
-      } else {
-        widget.classList.remove('active');
-      }
-    }
-  },
-
+  toggleChat() { this.isOpen ? this.closeChat() : this.openChat(); },
   openChat() {
     this.isOpen = true;
-    const widget = document.getElementById('ai-chatbot-widget');
-    if (widget) widget.classList.add('active');
+    document.getElementById('ai-chatbot-widget')?.classList.add('active');
+    document.getElementById('chatbot-input')?.focus();
   },
-
   closeChat() {
     this.isOpen = false;
-    const widget = document.getElementById('ai-chatbot-widget');
-    if (widget) widget.classList.remove('active');
+    document.getElementById('ai-chatbot-widget')?.classList.remove('active');
   },
 
   appendMessage(text, sender = 'bot', actionTrigger = null) {
-    const msgList = document.getElementById('chatbot-messages');
-    if (!msgList) return;
-
-    const msgEl = document.createElement('div');
-    msgEl.className = `chat-msg chat-msg-${sender}`;
-
+    const list = document.getElementById('chatbot-messages');
+    if (!list) return;
+    const row = document.createElement('div');
+    row.className = `chat-msg chat-msg-${sender}`;
     if (sender === 'user') {
-      msgEl.innerHTML = `<div class="chat-bubble user-bubble">${text}</div>`;
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-bubble user-bubble';
+      bubble.textContent = text;
+      row.appendChild(bubble);
     } else {
-      let actionBtnHtml = '';
-      if (actionTrigger) {
-        if (actionTrigger.type === 'RUN_DEMO') {
-          actionBtnHtml = `<button class="btn btn-secondary btn-sm" style="margin-top: 6px;" onclick="App.runGunturDemoScenario(); ChatbotModule.closeChat();">🚀 Open Demo Recommendation</button>`;
-        } else if (actionTrigger.type === 'NAVIGATE') {
-          actionBtnHtml = `<button class="btn btn-outline-primary btn-sm" style="margin-top: 6px;" onclick="App.navigate('${actionTrigger.view}'); ChatbotModule.closeChat();">👉 View On Website</button>`;
-        }
+      const avatar = document.createElement('div');
+      avatar.className = 'chat-avatar';
+      avatar.textContent = 'AI';
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-bubble bot-bubble';
+      const answer = document.createElement('div');
+      answer.style.whiteSpace = 'pre-line';
+      answer.textContent = text;
+      bubble.appendChild(answer);
+      const controls = document.createElement('div');
+      controls.style.cssText = 'margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap;';
+      const listen = document.createElement('button');
+      listen.className = 'btn-tts-mini';
+      listen.type = 'button';
+      listen.textContent = 'Listen';
+      listen.addEventListener('click', () => window.VoiceAssistant?.speakText(text));
+      controls.appendChild(listen);
+      if (actionTrigger?.type === 'NAVIGATE') {
+        const open = document.createElement('button');
+        open.className = 'btn btn-secondary btn-sm';
+        open.type = 'button';
+        open.textContent = 'Open result';
+        open.addEventListener('click', () => { window.App?.navigate(actionTrigger.view); this.closeChat(); });
+        controls.appendChild(open);
       }
-
-      msgEl.innerHTML = `
-        <div class="chat-avatar">🤖</div>
-        <div class="chat-bubble bot-bubble">
-          <div>${text}</div>
-          ${actionBtnHtml}
-          <div style="margin-top: 6px; display: flex; gap: 6px;">
-            <button class="btn-tts-mini" onclick="VoiceAssistant.speakText('${text.replace(/'/g, "\\'")}')">
-              🔊 Listen
-            </button>
-          </div>
-        </div>
-      `;
+      bubble.appendChild(controls);
+      row.append(avatar, bubble);
     }
-
-    msgList.appendChild(msgEl);
-    msgList.scrollTop = msgList.scrollHeight;
+    list.appendChild(row);
+    list.scrollTop = list.scrollHeight;
   },
 
-  async sendMessage(query) {
+  async sendMessage(query, options = {}) {
+    const text = String(query || '').trim();
+    if (!text) return;
     this.openChat();
-    this.appendMessage(query, 'user');
-
-    // Show typing indicator
-    const typingId = 'typing-' + Date.now();
-    const msgList = document.getElementById('chatbot-messages');
-    if (msgList) {
-      const typingEl = document.createElement('div');
-      typingEl.id = typingId;
-      typingEl.className = 'chat-msg chat-msg-bot';
-      typingEl.innerHTML = `<div class="chat-avatar">🤖</div><div class="chat-bubble bot-bubble" style="color: #64748b;"><em>AgriBot is thinking...</em></div>`;
-      msgList.appendChild(typingEl);
-      msgList.scrollTop = msgList.scrollHeight;
-    }
-
+    this.appendMessage(text, 'user');
+    const list = document.getElementById('chatbot-messages');
+    const typing = document.createElement('div');
+    typing.className = 'chat-msg chat-msg-bot';
+    typing.textContent = 'AgriBot is thinking...';
+    list?.appendChild(typing);
     try {
-      const currentLang = window.I18N ? window.I18N.currentLang : 'en';
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: query, language: currentLang })
-      });
-
-      const data = await response.json();
-      document.getElementById(typingId)?.remove();
-
-      if (data.success) {
-        this.appendMessage(data.reply, 'bot', data.actionTrigger);
-
-        // Execute action automatically if matched
-        if (data.actionTrigger) {
-          if (data.actionTrigger.type === 'RUN_DEMO' && window.App) {
-            window.App.runGunturDemoScenario();
-          } else if (data.actionTrigger.type === 'NAVIGATE' && window.App) {
-            window.App.navigate(data.actionTrigger.view);
-          }
-        }
-      } else {
-        this.appendMessage("I could not process your query. Please try asking about 2G Ethanol, Biomass Pooling, or Composting.", 'bot');
-      }
-    } catch (err) {
-      console.error('Chat error:', err);
-      document.getElementById(typingId)?.remove();
-      this.appendMessage("Sorry, I encountered a temporary connection glitch. You can still use the direct form to analyze residue!", 'bot');
+      const data = await window.API.request('/chat', { method: 'POST', body: JSON.stringify({ message: text, language: window.I18N?.currentLang || 'en' }) });
+      typing.remove();
+      this.appendMessage(data.reply, 'bot', data.actionTrigger);
+      if (options.speakReply) window.VoiceAssistant?.speakText(data.reply);
+    } catch (_) {
+      typing.remove();
+      this.appendMessage('I could not reach the advisor. Please try again or use the analysis form.', 'bot');
     }
   }
 };
