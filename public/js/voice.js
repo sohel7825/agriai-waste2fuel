@@ -88,6 +88,27 @@ const VoiceAssistant = {
     window.speechSynthesis.speak(utterance);
   },
 
+  speakCurrentRecommendation() {
+    const analysis = window.App?.state?.currentAnalysis;
+    if (!analysis) {
+      this.speakText(window.I18N?.getText('voice_no_recommendation') || 'Please analyze your farm waste first to hear the recommendation.');
+      return;
+    }
+
+    const decision = analysis.decision || {};
+    const economic = analysis.economicBreakdown || {};
+    const message = [
+      decision.statusBadge || decision.status || 'Recommendation',
+      decision.bestOptionTitle || '',
+      decision.bestOptionWhy || '',
+      economic.estimatedNetFarmerValue !== undefined
+        ? `Estimated farmer return is rupees ${economic.estimatedNetFarmerValue}.`
+        : ''
+    ].filter(Boolean).join('. ');
+
+    this.speakText(message);
+  },
+
   notify(message, type) {
     window.API?.showToast(message, type);
   }
