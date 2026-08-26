@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: agriai-waste2fuel
+    runtime: node
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        value: gpt-4.1-mini
+      - key: DATA_DIR
+        value: /tmp/agriai-data
