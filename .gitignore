@@ -1,4 +1,12 @@
-﻿node_modules/
+node_modules/
 .env
 .env.*
 !.env.example
+
+# Runtime / local prototype data
+src/data/runtime/
+*.tmp
+
+# Logs
+*.log
+npm-debug.log*
