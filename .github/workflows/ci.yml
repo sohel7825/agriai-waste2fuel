@@ -1,0 +1,56 @@
+name: AgriAI CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Syntax check backend
+        run: |
+          node --check server.js
+          node --check src/routes/api.js
+          node --check src/services/aiClassifier.js
+          node --check src/services/aiAdvisor.js
+
+      - name: Start server
+        run: node server.js > server.log 2>&1 &
+
+      - name: Wait for health endpoint
+        run: |
+          for i in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:3000/api/health > /dev/null; then
+              exit 0
+            fi
+            sleep 1
+          done
+          cat server.log
+          exit 1
+
+      - name: Run API test suite
+        run: npm test
+
+      - name: Upload server log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: server-log
+          path: server.log
