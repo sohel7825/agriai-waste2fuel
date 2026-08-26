@@ -7,11 +7,14 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const fs = require('fs');
 
 const apiRouter = require('./src/routes/api');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const PUBLIC_DIR = path.join(__dirname, 'public');
+const INDEX_FILE = path.join(PUBLIC_DIR, 'index.html');
 
 // Middleware
 app.use(cors());
@@ -35,16 +38,32 @@ app.get('/api/health', (req, res) => {
     app: 'AgriAI – Waste2Fuel',
     version: '1.0.0 (SIH 2026 Ready)',
     tagline: 'Agricultural Waste Is Not Waste — It Is a Resource for Future Fuel.',
+    aiVisionEnabled: Boolean(process.env.OPENAI_API_KEY),
     uptimeSeconds: process.uptime()
   });
 });
 
-// Serve Static Frontend Assets
-app.use(express.static(path.join(__dirname, 'public')));
+// Serve static assets but keep index.html under the SPA route below so we can
+// inject the optional vision bridge without changing the source HTML manually.
+app.use(express.static(PUBLIC_DIR, { index: false }));
 
-// SPA Fallback for client routing
+// SPA fallback for client routing with the vision bridge loaded after app.js.
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ success: false, message: 'API route not found.' });
+  }
+
+  try {
+    let html = fs.readFileSync(INDEX_FILE, 'utf8');
+    const bridgeTag = '<script src="js/vision-bridge.js"></script>';
+    if (!html.includes(bridgeTag)) {
+      html = html.replace('</body>', `  ${bridgeTag}\n</body>`);
+    }
+    res.type('html').send(html);
+  } catch (error) {
+    console.error('Frontend render error:', error);
+    res.status(500).send('AgriAI frontend could not be loaded.');
+  }
 });
 
 // Global Error Handler
@@ -65,5 +84,6 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`  Local URL: http://localhost:${PORT}`);
   console.log(`  Network URL: http://<YOUR-IP>:${PORT}`);
   console.log('  Demo Focus: Andhra Pradesh (Guntur Agro Basin)');
+  console.log(`  Vision AI: ${process.env.OPENAI_API_KEY ? 'ENABLED' : 'fallback mode'}`);
   console.log('===============================================================');
 });
