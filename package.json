@@ -1,22 +1,14 @@
 {
   "name": "agriai-waste2fuel",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "AgriAI – Waste2Fuel: Agricultural Waste Decision Support & Biomass-to-Energy Platform (SIH 2026 Prototype)",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "node tests/api.test.js"
+    "test": "node tests/api.test.js",
+    "check": "node --check server.js && node --check src/routes/api.js && node --check src/services/aiClassifier.js && node --check src/services/dataStore.js"
   },
-  "keywords": [
-    "sih2026",
-    "biomass",
-    "renewable-energy",
-    "2g-ethanol",
-    "biofuel",
-    "agriculture",
-    "sustainability",
-    "express"
-  ],
+  "keywords": ["sih2026", "biomass", "renewable-energy", "2g-ethanol", "biofuel", "agriculture", "sustainability", "express"],
   "author": "AgriAI Team",
   "license": "MIT",
   "dependencies": {
