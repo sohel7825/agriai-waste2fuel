@@ -8,16 +8,24 @@ const API = {
   async request(endpoint, options = {}) {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = {
-      'Content-Type': 'application/json',
+      ...(options.body ? { 'Content-Type': 'application/json' } : {}),
       ...(options.headers || {})
     };
 
     try {
       const response = await fetch(url, { ...options, headers });
-      const data = await response.json();
+      const contentType = response.headers.get('content-type') || '';
+      const data = contentType.includes('application/json')
+        ? await response.json()
+        : await response.text();
+
       if (!response.ok) {
-        throw new Error(data.message || `HTTP Error ${response.status}`);
+        const message = data && typeof data === 'object' && data.message
+          ? data.message
+          : `HTTP Error ${response.status}`;
+        throw new Error(message);
       }
+
       return data;
     } catch (error) {
       console.error(`API Request Error [${endpoint}]:`, error);
@@ -50,7 +58,7 @@ const API = {
   },
 
   async getAlternatives(wasteId = '') {
-    return this.request(`/alternatives${wasteId ? '?wasteId=' + wasteId : ''}`);
+    return this.request(`/alternatives${wasteId ? '?wasteId=' + encodeURIComponent(wasteId) : ''}`);
   },
 
   async getVideos(params = {}) {
@@ -97,12 +105,16 @@ const API = {
 
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
-    
+
     let icon = 'ℹ️';
     if (type === 'success') icon = '✅';
     if (type === 'error') icon = '⚠️';
 
-    toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+    const iconSpan = document.createElement('span');
+    iconSpan.textContent = icon;
+    const messageSpan = document.createElement('span');
+    messageSpan.textContent = String(message || '');
+    toast.append(iconSpan, messageSpan);
     container.appendChild(toast);
 
     setTimeout(() => {
