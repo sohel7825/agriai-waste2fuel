@@ -5,8 +5,7 @@ const wasteTypesData = require('../data/wasteTypes.json');
 const facilitiesData = require('../data/facilities.json');
 const alternativesData = require('../data/alternatives.json');
 const videosData = require('../data/videos.json');
-let farmsData = [...require('../data/farms.json')];
-let collectionsData = [...require('../data/collections.json')];
+const dataStore = require('../services/dataStore');
 
 const { classifyBiomassImage } = require('../services/aiClassifier');
 const { evaluateBiomassViability, findMatchingFacilities } = require('../services/viabilityEngine');
@@ -14,35 +13,20 @@ const { createBiomassCluster } = require('../services/aggregationEngine');
 const { getAdvisorReply, isAIConfigured } = require('../services/aiAdvisor');
 
 const VALID_LANGUAGES = new Set(['en', 'te', 'hi']);
+function isFiniteNumber(value) { return value !== '' && value !== null && value !== undefined && Number.isFinite(Number(value)); }
+function validCoordinate(value, min, max) { return isFiniteNumber(value) && Number(value) >= min && Number(value) <= max; }
 
-function isFiniteNumber(value) {
-  return value !== '' && value !== null && value !== undefined && Number.isFinite(Number(value));
-}
-function validCoordinate(value, min, max) {
-  return isFiniteNumber(value) && Number(value) >= min && Number(value) <= max;
-}
-
-router.get('/waste-types', (req, res) => {
-  res.json({ success: true, count: wasteTypesData.length, data: wasteTypesData });
-});
+router.get('/waste-types', (req, res) => res.json({ success: true, count: wasteTypesData.length, data: wasteTypesData }));
 
 router.post('/analyze', async (req, res) => {
   try {
     const { filename, mimeType, sampleHint, imageData, language } = req.body || {};
-    if (mimeType && !String(mimeType).startsWith('image/')) {
-      return res.status(400).json({ success: false, message: 'Only image files are supported.' });
-    }
-    if (!filename && !sampleHint && !imageData) {
-      return res.status(400).json({ success: false, message: 'Provide an image, image filename, or sample hint.' });
-    }
-    if (imageData && String(imageData).length > 8 * 1024 * 1024) {
-      return res.status(413).json({ success: false, message: 'Image payload is too large. Please use an image below 6 MB.' });
-    }
+    if (mimeType && !String(mimeType).startsWith('image/')) return res.status(400).json({ success: false, message: 'Only image files are supported.' });
+    if (!filename && !sampleHint && !imageData) return res.status(400).json({ success: false, message: 'Provide an image, image filename, or sample hint.' });
+    if (imageData && String(imageData).length > 8 * 1024 * 1024) return res.status(413).json({ success: false, message: 'Image payload is too large. Please use an image below 6 MB.' });
     const safeLanguage = VALID_LANGUAGES.has(language) ? language : 'en';
     return res.json(await classifyBiomassImage({ filename, mimeType, sampleHint, imageData, language: safeLanguage }));
-  } catch (error) {
-    return res.status(500).json({ success: false, message: 'AI Classification Error: ' + error.message });
-  }
+  } catch (error) { return res.status(500).json({ success: false, message: 'AI Classification Error: ' + error.message }); }
 });
 
 router.post('/chat', async (req, res) => {
@@ -51,14 +35,10 @@ router.post('/chat', async (req, res) => {
     if (!String(message || '').trim()) return res.status(400).json({ success: false, message: 'Query message is required.' });
     const safeLanguage = VALID_LANGUAGES.has(language) ? language : 'en';
     return res.json(await getAdvisorReply(String(message).trim(), safeLanguage));
-  } catch (error) {
-    return res.status(500).json({ success: false, message: 'AI Chat Error: ' + error.message });
-  }
+  } catch (error) { return res.status(500).json({ success: false, message: 'AI Chat Error: ' + error.message }); }
 });
 
-router.get('/ai-status', (req, res) => {
-  res.json({ success: true, provider: isAIConfigured() ? 'openai' : 'local' });
-});
+router.get('/ai-status', (req, res) => res.json({ success: true, provider: isAIConfigured() ? 'openai' : 'local' }));
 
 router.get('/facilities', (req, res) => {
   try {
@@ -106,7 +86,7 @@ router.get('/videos', (req, res) => {
 router.get('/farms', (req, res) => {
   const { district, wasteType, availableOnly } = req.query;
   if (wasteType && !wasteTypesData.some(w => w.id === wasteType)) return res.status(400).json({ success: false, message: 'Unknown waste type.' });
-  let results = [...farmsData];
+  let results = dataStore.read('farms');
   if (district) results = results.filter(f => f.district.toLowerCase().includes(String(district).toLowerCase()));
   if (wasteType) results = results.filter(f => f.wasteType === wasteType);
   if (availableOnly === 'true') results = results.filter(f => f.availableForCollection);
@@ -121,37 +101,46 @@ router.post('/farms', (req, res) => {
     if (latitude !== undefined && !validCoordinate(latitude, -90, 90)) return res.status(400).json({ success: false, message: 'Invalid latitude.' });
     if (longitude !== undefined && !validCoordinate(longitude, -180, 180)) return res.status(400).json({ success: false, message: 'Invalid longitude.' });
     const wasteInfo = wasteTypesData.find(w => w.id === wasteType);
+    const farms = dataStore.read('farms');
     const newFarm = {
-      id: `farm-${Date.now()}`,
-      farmerName: String(farmerName).trim(),
-      phone: phone || '+91 98480 ' + Math.floor(10000 + Math.random() * 90000),
+      id: `farm-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      farmerName: String(farmerName).trim(), phone: phone || '',
       location: location || 'Guntur District, Andhra Pradesh', district: district || 'Guntur',
       latitude: latitude === undefined ? 16.3067 : Number(latitude), longitude: longitude === undefined ? 80.4365 : Number(longitude),
       wasteType, wasteTypeName: wasteInfo.name, quantity: Math.round(Number(quantity)),
       harvestDate: harvestDate || new Date().toISOString().split('T')[0], condition: condition || 'Dry (<15%)',
       availableForCollection: true, status: 'Available', notes: notes || 'Registered via AgriAI Web Portal'
     };
-    farmsData.unshift(newFarm);
+    farms.unshift(newFarm);
+    dataStore.write('farms', farms);
     return res.status(201).json({ success: true, message: 'Farm biomass lot registered successfully!', data: newFarm });
   } catch (error) { return res.status(500).json({ success: false, message: 'Farm registration error: ' + error.message }); }
 });
 
-router.get('/collections', (req, res) => res.json({ success: true, count: collectionsData.length, data: collectionsData }));
+router.get('/collections', (req, res) => res.json({ success: true, count: dataStore.read('collections').length, data: dataStore.read('collections') }));
 
 router.post('/collections', (req, res) => {
   try {
     const { name, district, farmIds, pickupDate } = req.body || {};
     if (farmIds !== undefined && (!Array.isArray(farmIds) || farmIds.length === 0)) return res.status(400).json({ success: false, message: 'farmIds must be a non-empty list when supplied.' });
-    if (farmIds && !farmIds.every(id => farmsData.some(farm => farm.id === id))) return res.status(400).json({ success: false, message: 'One or more selected farm lots were not found.' });
-    const newCluster = createBiomassCluster({ name, district, farmIds, pickupDate, farms: farmsData });
-    collectionsData.unshift(newCluster);
-    if (farmIds?.length) farmsData.forEach(f => { if (farmIds.includes(f.id)) f.status = 'Pooled in Cluster'; });
+    const farms = dataStore.read('farms');
+    if (farmIds && !farmIds.every(id => farms.some(farm => farm.id === id))) return res.status(400).json({ success: false, message: 'One or more selected farm lots were not found.' });
+    const newCluster = createBiomassCluster({ name, district, farmIds, pickupDate, farms });
+    const collections = dataStore.read('collections');
+    collections.unshift(newCluster);
+    dataStore.write('collections', collections);
+    if (farmIds?.length) {
+      farms.forEach(f => { if (farmIds.includes(f.id)) f.status = 'Pooled in Cluster'; });
+      dataStore.write('farms', farms);
+    }
     return res.status(201).json({ success: true, message: 'Community biomass aggregation cluster created successfully!', data: newCluster });
   } catch (error) { return res.status(500).json({ success: false, message: 'Cluster creation error: ' + error.message }); }
 });
 
 router.get('/dashboard', (req, res) => {
   try {
+    const farmsData = dataStore.read('farms');
+    const collectionsData = dataStore.read('collections');
     const totalFarms = farmsData.length;
     const totalBiomassKg = farmsData.reduce((sum, f) => sum + (Number(f.quantity) || 0), 0);
     const totalCollections = collectionsData.length;
@@ -162,41 +151,27 @@ router.get('/dashboard', (req, res) => {
     const byDistrictMap = {};
     farmsData.forEach(f => { const dist = f.district || 'Guntur'; byDistrictMap[dist] = (byDistrictMap[dist] || 0) + (Number(f.quantity) || 0); });
     const biomassByDistrict = Object.entries(byDistrictMap).map(([district, kg]) => ({ district, kg }));
-    return res.json({
-      success: true,
-      summary: {
-        totalRegisteredFarmers: totalFarms, totalBiomassRegisteredKg: totalBiomassKg,
-        totalBiomassRegisteredTonnes: +(totalBiomassKg / 1000).toFixed(2),
-        totalPotentialEnergyMJ: Math.round(totalBiomassKg * 15.5),
-        totalElectricityPotentialKwh: Math.round(totalBiomassKg * 4.3 * 0.32),
-        totalEthanolPotentialLiters: Math.round((totalBiomassKg / 1000) * 220),
-        totalCbgPotentialM3: Math.round(totalBiomassKg * 0.28),
-        totalEstimatedValueInr: Math.round(totalBiomassKg * 2.45),
-        totalCo2AvoidedTonnes: +((totalBiomassKg * 1.52) / 1000).toFixed(2),
-        totalCrudeOilSavedLiters: Math.round((totalBiomassKg / 1000) * 165),
-        activeFacilitiesCount: totalFacilities, activeCollectionClusters: totalCollections
-      },
-      charts: {
-        biomassByCrop, biomassByDistrict,
-        pathwaysDistribution: [
-          { pathway: '2G Bio-Ethanol (🚗 Transport)', percentage: 38 },
-          { pathway: 'CBG / Bio-CNG (🚛 Heavy Transport)', percentage: 26 },
-          { pathway: 'Solid Briquettes & Pellets (⚡ Power)', percentage: 22 },
-          { pathway: 'On-Farm Biochar & Compost (🌱 Carbon)', percentage: 14 }
-        ],
-        monthlyTrend: [
-          { month: 'May', tonnes: 18.2 }, { month: 'Jun', tonnes: 24.5 }, { month: 'Jul', tonnes: 31.0 },
-          { month: 'Aug', tonnes: +(totalBiomassKg / 1000 + 42).toFixed(1) }
-        ]
-      },
-      recentFarms: farmsData.slice(0, 5), activeClusters: collectionsData
-    });
+    return res.json({ success: true, summary: {
+      totalRegisteredFarmers: totalFarms, totalBiomassRegisteredKg: totalBiomassKg,
+      totalBiomassRegisteredTonnes: +(totalBiomassKg / 1000).toFixed(2), totalPotentialEnergyMJ: Math.round(totalBiomassKg * 15.5),
+      totalElectricityPotentialKwh: Math.round(totalBiomassKg * 4.3 * 0.32), totalEthanolPotentialLiters: Math.round((totalBiomassKg / 1000) * 220),
+      totalCbgPotentialM3: Math.round(totalBiomassKg * 0.28), totalEstimatedValueInr: Math.round(totalBiomassKg * 2.45),
+      totalCo2AvoidedTonnes: +((totalBiomassKg * 1.52) / 1000).toFixed(2), totalCrudeOilSavedLiters: Math.round((totalBiomassKg / 1000) * 165),
+      activeFacilitiesCount: totalFacilities, activeCollectionClusters: totalCollections
+    }, charts: {
+      biomassByCrop, biomassByDistrict,
+      pathwaysDistribution: [
+        { pathway: '2G Bio-Ethanol (🚗 Transport)', percentage: 38 }, { pathway: 'CBG / Bio-CNG (🚛 Heavy Transport)', percentage: 26 },
+        { pathway: 'Solid Briquettes & Pellets (⚡ Power)', percentage: 22 }, { pathway: 'On-Farm Biochar & Compost (🌱 Carbon)', percentage: 14 }
+      ],
+      monthlyTrend: [{ month: 'May', tonnes: 18.2 }, { month: 'Jun', tonnes: 24.5 }, { month: 'Jul', tonnes: 31.0 }, { month: 'Aug', tonnes: +(totalBiomassKg / 1000 + 42).toFixed(1) }]
+    }, recentFarms: farmsData.slice(0, 5), activeClusters: collectionsData });
   } catch (error) { return res.status(500).json({ success: false, message: 'Dashboard data error: ' + error.message }); }
 });
 
 router.post('/reset-demo', (req, res) => {
-  farmsData = [...require('../data/farms.json')];
-  collectionsData = [...require('../data/collections.json')];
+  dataStore.reset('farms');
+  dataStore.reset('collections');
   res.json({ success: true, message: 'Demo dataset successfully reset to default Guntur, Andhra Pradesh baseline.' });
 });
 
