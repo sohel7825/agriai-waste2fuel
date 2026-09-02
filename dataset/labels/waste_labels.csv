@@ -1,25 +1,25 @@
-Class_ID,Folder_Name,Waste_Type,Crop,Crop_Category,Waste_Category,Primary_Pathway
-1,rice_straw,Rice Straw,Rice,Cereals,Crop Residue (Straw),Ethanol
-2,rice_husk,Rice Husk,Rice,Cereals,Agro-industrial Residue (Husk),Briquettes/Pellets
-3,rice_bran,Rice Bran,Rice,Cereals,Agro-industrial Residue (Milling),Animal Feed
-4,maize_stalk,Maize Stalk,Maize,Cereals,Crop Residue (Stalk),Ethanol
-5,maize_cob,Maize Cob,Maize,Cereals,Crop Residue (Cob),Ethanol
-6,sugarcane_bagasse,Sugarcane Bagasse,Sugarcane,Cash Crops,Agro-industrial Residue (Bagasse),Ethanol
-7,sugarcane_trash,Sugarcane Trash,Sugarcane,Cash Crops,Field Residue (Trash/Leaves),Ethanol
-8,cotton_stalk,Cotton Stalk,Cotton,Fibre Crops,Field Residue (Woody Stalk),Briquettes/Pellets
-9,cotton_waste,Cotton Waste,Cotton,Fibre Crops,Ginning/Processing Waste,Ethanol
-10,chilli_stem,Chilli Stem,Chilli,Spices & Condiments,Field Residue (Stem),Briquettes/Pellets
-11,groundnut_shell,Groundnut Shell,Groundnut,Oilseeds,Agro-industrial Residue (Shell),Briquettes/Pellets
-12,groundnut_haulm,Groundnut Haulm,Groundnut,Oilseeds,Field Residue (Haulm/Vines),Animal Feed
-13,banana_pseudostem,Banana Pseudostem,Banana,Horticulture (Fruits),Field Biomass (Stem/Trunk),Biogas
-14,banana_leaf,Banana Leaf,Banana,Horticulture (Fruits),Field Residue (Leaves),Vermicompost
-15,tobacco_stalk,Tobacco Stalk,Tobacco,Cash Crops,Field Residue (Woody Stalk),Briquettes/Pellets
-16,pulse_residue,Pulse Residue,Pulses (Redgram/Bengalgram),Pulses,Field Residue (Stalks/Pods),Briquettes/Pellets
-17,soybean_residue,Soybean Residue,Soybean,Oilseeds,Field Residue (Straw/Husk),Ethanol
-18,sunflower_residue,Sunflower Residue,Sunflower,Oilseeds,Field Residue (Stalk/Head),Briquettes/Pellets
-19,turmeric_residue,Turmeric Residue,Turmeric,Spices & Condiments,Field/Processing Residue,Compost
-20,mango_waste,Mango Waste,Mango,Horticulture (Fruits),Processing Residue (Peel/Kernel),Ethanol
-21,coconut_husk,Coconut Husk,Coconut,Plantation Crops,Agro-industrial Residue (Husk/Coir),Briquettes/Pellets
-22,coconut_shell,Coconut Shell,Coconut,Plantation Crops,Agro-industrial Residue (Shell),Briquettes/Pellets
-23,vegetable_residue,Vegetable Residue,Mixed Vegetables,Horticulture (Vegetables),Mandi/Farm Residue,Biogas
-24,unknown_other,Unknown / Other,Unknown,Uncategorized,Unclassified Material,Additional Assessment Required
+Class_ID,Folder_Name,Waste_Type,Crop,Crop_Category,Waste_Category,Primary_Pathway,Alternative_Pathway,Requires_Field_Verification
+1,rice_straw,Rice Straw,Rice,Cereals,Crop Residue (Straw),Ethanol (2G),Mushroom Cultivation,No
+2,rice_husk,Rice Husk,Rice,Cereals,Agro-industrial Residue (Husk),Briquettes/Pellets,Ethanol (2G),No
+3,rice_bran,Rice Bran,Rice,Cereals,Agro-industrial Residue (Milling),Animal Feed,Biogas,No
+4,maize_stalk,Maize Stalk,Maize,Cereals,Crop Residue (Stalk),Ethanol (2G),Biogas,No
+5,maize_cob,Maize Cob,Maize,Cereals,Crop Residue (Cob),Ethanol (2G),Briquettes/Pellets,No
+6,sugarcane_bagasse,Sugarcane Bagasse,Sugarcane,Cash Crops,Agro-industrial Residue (Bagasse),Ethanol (2G),Briquettes/Pellets,No
+7,sugarcane_trash,Sugarcane Trash,Sugarcane,Cash Crops,Field Residue (Trash/Leaves),Ethanol (2G),Briquettes/Pellets,No
+8,cotton_stalk,Cotton Stalk,Cotton,Fibre Crops,Field Residue (Woody Stalk),Briquettes/Pellets,Ethanol (2G),No
+9,cotton_waste,Cotton Waste,Cotton,Fibre Crops,Ginning/Processing Waste,Ethanol (2G),Mushroom Cultivation,No
+10,chilli_stem,Chilli Stem,Chilli,Spices & Condiments,Field Residue (Stem),Briquettes/Pellets,Compost,No
+11,groundnut_shell,Groundnut Shell,Groundnut,Oilseeds,Agro-industrial Residue (Shell),Briquettes/Pellets,Industrial Biomass Use,No
+12,groundnut_haulm,Groundnut Haulm,Groundnut,Oilseeds,Field Residue (Haulm/Vines),Animal Feed,Biogas,No
+13,banana_pseudostem,Banana Pseudostem,Banana,Horticulture (Fruits),Field Biomass (Stem/Trunk),Biogas (CBG),Ethanol (2G),No
+14,banana_leaf,Banana Leaf,Banana,Horticulture (Fruits),Field Residue (Leaves),Vermicompost,Biogas,No
+15,tobacco_stalk,Tobacco Stalk,Tobacco,Cash Crops,Field Residue (Woody Stalk),Briquettes/Pellets,Compost,No
+16,pulse_residue,Pulse Residue,Pulses (Redgram/Bengalgram),Pulses,Field Residue (Stalks/Pods),Briquettes/Pellets,Compost,No
+17,soybean_residue,Soybean Residue,Soybean,Oilseeds,Field Residue (Straw/Husk),Ethanol (2G),Mushroom Cultivation,No
+18,sunflower_residue,Sunflower Residue,Sunflower,Oilseeds,Field Residue (Stalk/Head),Briquettes/Pellets,Ethanol (2G),No
+19,turmeric_residue,Turmeric Residue,Turmeric,Spices & Condiments,Field/Processing Residue,Compost,Biogas,No
+20,mango_waste,Mango Waste,Mango,Horticulture (Fruits),Processing Residue (Peel/Kernel),Ethanol (1G/1.5G),Biogas,No
+21,coconut_husk,Coconut Husk,Coconut,Plantation Crops,Agro-industrial Residue (Husk/Coir),Briquettes/Pellets,Industrial Biomass Use,No
+22,coconut_shell,Coconut Shell,Coconut,Plantation Crops,Agro-industrial Residue (Shell),Briquettes/Pellets,Industrial Biomass Use,No
+23,vegetable_residue,Vegetable Residue,Mixed Vegetables,Horticulture (Vegetables),Mandi/Farm Residue,Biogas (CBG),Compost,No
+24,unknown_other,Unknown / Other,Unknown,Uncategorized,Unclassified Material,Assessment Required,Field Verification,Yes
