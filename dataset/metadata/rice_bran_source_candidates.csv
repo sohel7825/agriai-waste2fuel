@@ -1,0 +1,7 @@
+Source_ID,Class,Source_Title,Source_URL,License,Notes,Use_Status
+RB001,rice_bran,Rice bran.jpg,https://commons.wikimedia.org/wiki/File:Rice_bran.jpg,CC BY-SA 3.0,Original photograph by Palagiri; 2138x2448; license requires attribution and share-alike,REVIEW_BEFORE_USE
+RB002,rice_bran,Rice bran pellets.jpg,https://commons.wikimedia.org/wiki/File:Rice_bran_pellets.jpg,CC BY-SA 3.0,Original photograph by Palagiri; 2367x1835; depicts processed rice-bran pellets,REVIEW_LABEL_FIT
+RB003,rice_bran,Rice bran oil.jpeg,https://commons.wikimedia.org/wiki/File:Rice_Bran_Oil.jpeg,CC0 1.0,Depicts rice-bran oil rather than raw bran; should not be used as a rice_bran classifier image,REJECT_FOR_CLASS
+RB004,rice_bran,Crude Rice bran oil.jpg,https://commons.wikimedia.org/wiki/File:Crude_Rice_bran_oil.jpg,CC BY-SA 3.0,Depicts extracted rice-bran oil rather than raw bran; should not be used as a rice_bran classifier image,REJECT_FOR_CLASS
+RB005,rice_bran,LPCC-772-Pellofa d'arròs.jpg,https://commons.wikimedia.org/wiki/File:LPCC-772-Pellofa_d%27arr%C3%B2s.jpg,CC BY-SA 3.0,Page describes rice shells/rice bran; terminology is ambiguous and must be manually reviewed before classifier use,REVIEW_LABEL_FIT
+RB006,rice_bran,Colored rice bran USDA ARS,https://www.ars.usda.gov/oc/images/photos/featuredphoto/nov18/coloredrice/,Public domain,USDA ARS page identifies the image as copyright-free/public domain; colored bran may be useful for diversity but is not a typical field sample,REVIEW_LABEL_FIT
