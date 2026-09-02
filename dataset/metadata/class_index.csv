@@ -1,0 +1,25 @@
+class_index,label,display_name,crop,primary_pathway,alternative_pathway,is_unknown
+0,rice_straw,Rice Straw,Rice,Ethanol (2G),Mushroom Cultivation,false
+1,rice_husk,Rice Husk,Rice,Briquettes/Pellets,Ethanol (2G),false
+2,rice_bran,Rice Bran,Rice,Animal Feed,Biogas,false
+3,maize_stalk,Maize Stalk,Maize,Ethanol (2G),Biogas,false
+4,maize_cob,Maize Cob,Maize,Ethanol (2G),Briquettes/Pellets,false
+5,sugarcane_bagasse,Sugarcane Bagasse,Sugarcane,Ethanol (2G),Briquettes/Pellets,false
+6,sugarcane_trash,Sugarcane Trash,Sugarcane,Ethanol (2G),Briquettes/Pellets,false
+7,cotton_stalk,Cotton Stalk,Cotton,Briquettes/Pellets,Ethanol (2G),false
+8,cotton_waste,Cotton Waste,Cotton,Ethanol (2G),Mushroom Cultivation,false
+9,chilli_stem,Chilli Stem,Chilli,Briquettes/Pellets,Compost,false
+10,groundnut_shell,Groundnut Shell,Groundnut,Briquettes/Pellets,Industrial Biomass Use,false
+11,groundnut_haulm,Groundnut Haulm,Groundnut,Animal Feed,Biogas,false
+12,banana_pseudostem,Banana Pseudostem,Banana,Biogas (CBG),Ethanol (2G),false
+13,banana_leaf,Banana Leaf,Banana,Vermicompost,Biogas,false
+14,tobacco_stalk,Tobacco Stalk,Tobacco,Briquettes/Pellets,Compost,false
+15,pulse_residue,Pulse Residue,Pulses (Redgram/Bengalgram),Briquettes/Pellets,Compost,false
+16,soybean_residue,Soybean Residue,Soybean,Ethanol (2G),Mushroom Cultivation,false
+17,sunflower_residue,Sunflower Residue,Sunflower,Briquettes/Pellets,Ethanol (2G),false
+18,turmeric_residue,Turmeric Residue,Turmeric,Compost,Biogas,false
+19,mango_waste,Mango Waste,Mango,Ethanol (1G/1.5G),Biogas,false
+20,coconut_husk,Coconut Husk,Coconut,Briquettes/Pellets,Industrial Biomass Use,false
+21,coconut_shell,Coconut Shell,Coconut,Briquettes/Pellets,Industrial Biomass Use,false
+22,vegetable_residue,Vegetable Residue,Mixed Vegetables,Biogas (CBG),Compost,false
+23,unknown_other,Unknown / Other,Unknown,Assessment Required,Field Verification,true
