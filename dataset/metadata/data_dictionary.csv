@@ -27,7 +27,7 @@ Ash_Percent,Inorganic ash fraction,Float,%,0-100,13,No,Verified reference or Unk
 Collection_Cost_Per_Kg,Collection cost estimate,Float,currency/kg,0 or greater,1.5,No,Verified estimate
 Transport_Cost_Per_Kg,Transport cost estimate,Float,currency/kg,0 or greater,2,No,Verified estimate
 Processing_Cost_Per_Kg,Processing cost estimate,Float,currency/kg,0 or greater,3,No,Verified estimate
-Current_Disposal_Method,Current disposal/use,String,None,Burning|Composting|Animal Feed|Mulching|Dumping|Selling|Industrial Use|Other, Burning,Yes,Survey
+Current_Disposal_Method,Current disposal/use,String,None,Burning|Composting|Animal Feed|Mulching|Dumping|Selling|Industrial Use|Other,Burning,Yes,Survey
 Burning_Risk,Open-burning risk,String,None,Low|Medium|High,High,Yes,Rule Engine
 Burning_Frequency,Reported/observed burning frequency,String,None,Never|Rare|Sometimes|Often|Unknown,Often,No,Survey
 Environmental_Risk_Level,Overall environmental risk,String,None,Low|Medium|High|Critical,High,Yes,Rule Engine
@@ -42,8 +42,8 @@ Compost_Potential,Qualitative potential,String,None,Low|Medium|High|Very High,Me
 Vermicompost_Suitability,Prototype vermicompost suitability,String,None,Low|Medium|High|Very High,Medium,Yes,Decision Engine
 Vermicompost_Potential,Qualitative potential,String,None,Low|Medium|High|Very High,Medium,Yes,Decision Engine
 Mushroom_Suitability,Prototype mushroom-substrate suitability,String,None,Low|Medium|High|Very High,Medium,Yes,Decision Engine
-Mushroom_Potential,Qualitative potential:String,None,Low|Medium|High|Very High,Medium,Yes,Decision Engine
-Recommended_Pathway,Primary recommendation,String,None,Registered pathway, Ethanol (2G),Yes,Decision Engine
+Mushroom_Potential,Qualitative potential,String,None,Low|Medium|High|Very High,Medium,Yes,Decision Engine
+Recommended_Pathway,Primary recommendation,String,None,Registered pathway,Ethanol (2G),Yes,Decision Engine
 Alternative_Pathway,Secondary recommendation,String,None,Registered pathway,Briquettes/Pellets,Yes,Decision Engine
 Recommendation_Reason,Transparent rationale,String,None,Free text,Suitable dry fibrous feedstock; verify process economics.,Yes,Decision Engine
 Farmer_Action,Farmer-facing action,String,None,Free text,Dry and aggregate residue safely; avoid open burning.,Yes,Advisory Engine
