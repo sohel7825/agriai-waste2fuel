@@ -1,0 +1,25 @@
+Class_ID,Class_Name,Label_Type,Target_Verified_Photos,Minimum_Photos,Current_Status,Source_Strategy,Notes
+01,rice_straw,known,150,100,collection_in_progress,Public licensed + real field,Do not count duplicates or unverified provenance
+02,rice_husk,known,150,100,collection_in_progress,Public licensed + real field,Keep raw husk separate from straw/sawdust
+03,rice_bran,known,150,100,collection_in_progress,Public licensed + real field,Reject rice-bran oil/product-only images
+04,maize_stalk,known,150,100,collection_in_progress,Public licensed + real field,Prefer harvested/stover stalks; avoid green crop-only images unless label scope allows
+05,maize_cob,known,150,100,collection_in_progress,Public licensed + real field,Prefer empty/used cobs for waste class; avoid intact food corn as primary examples
+06,sugarcane_bagasse,known,150,100,collection_in_progress,Public licensed + real field,Distinguish bagasse from field trash
+07,sugarcane_trash,known,150,100,planned,Public licensed + real field,Leaves/tops/residue after harvest; avoid bagasse
+08,cotton_stalk,known,150,100,planned,Public licensed + real field,Harvest residue/stalks; avoid cotton bolls as primary object
+09,cotton_waste,known,150,100,planned,Public licensed + real field,Define exact waste scope before labeling
+10,chilli_stem,known,150,100,planned,Public licensed + real field,Use post-harvest chilli stems; avoid whole fresh chilli
+11,groundnut_shell,known,150,100,planned,Public licensed + real field,Shell/husk only; distinguish from groundnut haulm
+12,groundnut_haulm,known,150,100,planned,Public licensed + real field,Leaves/stems after harvest; distinguish from shells
+13,banana_pseudostem,known,150,100,planned,Public licensed + real field,Post-harvest pseudostem; avoid leaf-only images
+14,banana_leaf,known,150,100,planned,Public licensed + real field,Define waste condition where possible; avoid decorative/food-use-only images
+15,tobacco_stalk,known,150,100,planned,Public licensed + real field,Post-harvest stalks; avoid tobacco leaves as primary object
+16,pulse_residue,known,150,100,planned,Public licensed + real field,Record crop species when known; avoid mixed unknown residue
+17,soybean_residue,known,150,100,planned,Public licensed + real field,Post-harvest stems/leaves/pods; record condition
+18,sunflower_residue,known,150,100,planned,Public licensed + real field,Post-harvest stalk/head residue; define label scope
+19,turmeric_residue,known,150,100,planned,Public licensed + real field,Separate leaves/stems/rhizome-processing waste where possible
+20,mango_waste,known,150,100,planned,Public licensed + real field,Define waste scope: peel/seed/processing residue; avoid fresh whole mango
+21,coconut_husk,known,150,100,planned,Public licensed + real field,Coir husk/fibrous husk; distinguish from shell
+22,coconut_shell,known,150,100,planned,Public licensed + real field,Hard shell only; distinguish from husk
+23,vegetable_residue,known,150,100,planned,Public licensed + real field,Record vegetable type; avoid mixed compost unless label is intentionally mixed
+24,unknown_other,catch_all,150,100,planned,Real field + controlled unknown samples,Use only when none of the 23 known labels fits
