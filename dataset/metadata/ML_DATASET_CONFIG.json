@@ -1,0 +1,31 @@
+{
+  "dataset_name": "AgriAI Agricultural Waste Image Dataset",
+  "version": "0.1.0",
+  "task": "24-class agricultural-waste image classification",
+  "labels_file": "dataset/labels/waste_labels.csv",
+  "metadata_file": "dataset/metadata/image_metadata.csv",
+  "image_root": "dataset/images",
+  "stages": {
+    "raw": "dataset/images/raw",
+    "cleaned": "dataset/images/cleaned",
+    "processed": "dataset/images/processed"
+  },
+  "labels": 24,
+  "known_labels": 23,
+  "unknown_label": "unknown_other",
+  "minimum_images_per_class": 100,
+  "preferred_images_per_class": 150,
+  "preferred_total_images": 3600,
+  "minimum_total_images": 2400,
+  "minimum_resolution": [640, 480],
+  "preferred_resolution": [1280, 720],
+  "split": {"train": 0.70, "validation": 0.15, "test": 0.15, "group_aware": true},
+  "integrity": {
+    "sha256_required": true,
+    "exact_duplicates_allowed": false,
+    "cross_split_group_leakage_allowed": false,
+    "provenance_verified_required": true,
+    "label_qa_required": true
+  },
+  "production_status": "NOT_RELEASED_UNTIL_VALIDATOR_PASSES"
+}
