@@ -1,0 +1,25 @@
+class_index,label,min_images,preferred_images,minimum_resolution,primary_visual_scope,common_confusions
+0,rice_straw,100,150,640x480,dry/fresh rice straw residue,wheat straw;grass
+1,rice_husk,100,150,640x480,rice milling husk,rice straw;sawdust
+2,rice_bran,100,150,640x480,raw rice bran from milling,rice flour;bran oil
+3,maize_stalk,100,150,640x480,maize stalk/stem residue,sorghum stalk;dry grass
+4,maize_cob,100,150,640x480,post-harvest maize cob,corn in field;wood
+5,sugarcane_bagasse,100,150,640x480,pressed sugarcane fiber residue,sugarcane trash;dry grass
+6,sugarcane_trash,100,150,640x480,sugarcane field leaves/trash,bagasse;grass
+7,cotton_stalk,100,150,640x480,dry cotton stalk residue,other woody stalks
+8,cotton_waste,100,150,640x480,cotton ginning/processing waste,cotton crop;soil
+9,chilli_stem,100,150,640x480,post-harvest chilli stems,other herb stems
+10,groundnut_shell,100,150,640x480,peanut/groundnut shell waste,coconut shell
+11,groundnut_haulm,100,150,640x480,groundnut vines/haulm,other legume residue
+12,banana_pseudostem,100,150,640x480,banana pseudostem/trunk waste,banana leaf
+13,banana_leaf,100,150,640x480,banana leaf residue,banana pseudostem
+14,tobacco_stalk,100,150,640x480,tobacco stalk residue,other woody stalks
+15,pulse_residue,100,150,640x480,pulse crop stalks/pods residue,other crop residue
+16,soybean_residue,100,150,640x480,soybean post-harvest residue,other legume residue
+17,sunflower_residue,100,150,640x480,sunflower stalk/head residue,other stalks
+18,turmeric_residue,100,150,640x480,turmeric field/processing residue,soil;other plant material
+19,mango_waste,100,150,640x480,mango peel/kernel/processing residue,whole mango;leaves
+20,coconut_husk,100,150,640x480,coconut husk/coir material,coconut shell
+21,coconut_shell,100,150,640x480,coconut shell waste,groundnut shell
+22,vegetable_residue,100,150,640x480,mixed vegetable farm/market residue,healthy vegetables;soil
+23,unknown_other,100,150,640x480,unclassified agricultural/biomass material,all known classes
