@@ -1,0 +1,38 @@
+{
+  "dataset_name": "AgriAI Agricultural Waste Intelligence Image Dataset",
+  "version": "0.1.0-framework",
+  "task": "24-class agricultural-waste image classification",
+  "labels_file": "dataset/metadata/class_index.csv",
+  "label_count": 24,
+  "unknown_label": "unknown_other",
+  "hard_negatives_are_labels": false,
+  "minimum_images_per_class": 100,
+  "preferred_images_per_class": 150,
+  "preferred_total_images": 3600,
+  "minimum_total_images": 2400,
+  "image_min_width": 640,
+  "image_min_height": 480,
+  "recommended_input_size": [224, 224],
+  "split": {
+    "strategy": "group-aware",
+    "train": 0.70,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "required_metadata": [
+    "Image_ID",
+    "Image_Path",
+    "Label",
+    "Source_URL",
+    "License",
+    "Data_Source_Type",
+    "Group_ID",
+    "SHA256_Hash",
+    "Label_Status",
+    "Provenance_Status",
+    "QA_Status"
+  ],
+  "production_release_requires_validator_status": "PASSED_VERIFIED",
+  "synthetic_images_allowed_in_production_training": false,
+  "notes": "The current repository is an ML/app framework release. Physical image coverage and provenance verification must pass before a production model is trained."
+}
