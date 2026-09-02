@@ -1,36 +1,70 @@
-# Agricultural-Waste Image Collection
+# AgriAI Image Dataset
 
-This directory contains image-classification classes for AgriAI – Waste2Fuel.
+## Purpose
 
-## Important provenance rule
+This directory contains image data for agricultural-waste identification. Images are organized by waste class and are intended for computer-vision experiments.
 
-Do not treat a filename, metadata row, or generated placeholder as proof that a photograph is a real field photograph. Every real image must have a traceable source and annotation record.
+## Dataset quality rules
 
-For production-quality training data, collect photographs with permission and record:
+Each training image must have:
 
-- Image_ID
-- Waste_Type / Label
-- Crop
-- District (or privacy-safe location)
-- Group_ID for the physical pile/capture session
-- Capture context, lighting, background and view angle
-- Image quality
-- Source type and source/license
-- Annotation status
-- SHA-256 hash
+- A valid class label matching the class directory.
+- A traceable source/provenance record in `dataset/metadata/image_metadata.csv`.
+- A truthful `Image_Source` and `Data_Source_Type` value.
+- No fabricated field location, capture date, farmer identity, or measurement.
+- No duplicate or near-duplicate image across train/validation/test splits.
+- A stable `Group_ID` so images from the same original capture/session/source are kept in one split.
+- A SHA-256 hash for integrity and duplicate detection.
 
-## Recommended collection target
+## Target image coverage
 
-Start with 100–200 verified photographs per class for a prototype and expand toward 500+ per class as collection capacity grows. The target is a planning goal, not a claim that these images already exist.
+The target for the first serious training release is **at least 100 verified images per class**, with **150 images per class preferred**. The long-term expansion target is 500+ images per class.
 
-## Image quality
+For 24 classes, the preferred first release is therefore **3,600 verified images**.
 
-Prefer original smartphone photographs with enough resolution to show texture and structure. Include realistic variation: close-up, medium distance, bulk pile, different lighting, dry/fresh states and field/farmyard backgrounds.
+## Image diversity requirements
 
-## Hard negatives
+Where legitimately available, each class should include variation in:
 
-Collect visually similar materials deliberately, such as rice straw vs wheat straw and groundnut shell vs coconut shell. Keep hard-negative evaluation images separate from training when appropriate.
+- Farm/background conditions
+- Lighting and weather
+- Camera/phone models
+- Distance and viewing angle
+- Fresh/green and dry/brown appearance where applicable
+- Whole-residue and close-up views
+- Different geographic locations and collection sessions
 
-## Privacy
+These are targets, not permission to invent or synthetically relabel data.
 
-Do not store unnecessary faces, phone numbers, exact home coordinates or other personal information. Obtain consent where people or identifiable private locations are visible.
+## Provenance policy
+
+Images may be collected directly, obtained from a public dataset/archive with compatible licensing, or otherwise used only when the source permits the intended use. The metadata must identify the real source.
+
+Do **not** describe an image as a field photograph, field measurement, farmer-collected image, or open-archive image unless that description is factually true and documented.
+
+## Current status
+
+The folder structure and metadata framework are prepared, but this directory is **not declared 100% complete** until the required number of verified images has been collected, provenance-checked, deduplicated, and split without leakage.
+
+## Recommended split
+
+Use a group-aware split such as:
+
+- 70% train
+- 15% validation
+- 15% test
+
+The split must be performed by `Group_ID`, not by randomly splitting individual near-identical images.
+
+## Quality gate before model training
+
+1. Verify every image opens correctly.
+2. Verify class label.
+3. Verify source/provenance.
+4. Remove exact duplicates using SHA-256.
+5. Detect near duplicates perceptually.
+6. Check image resolution and corruption.
+7. Check class balance.
+8. Check Group_ID leakage.
+9. Create train/validation/test manifests.
+10. Record the dataset version and validation report.
