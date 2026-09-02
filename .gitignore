@@ -1,12 +1,38 @@
+# Dependencies
 node_modules/
+package-lock.json.bak
+
+# Environment & Local Config
 .env
-.env.*
-!.env.example
+.env.local
+.env.*.local
+*.local
 
-# Runtime / local prototype data
-src/data/runtime/
-*.tmp
+# Python Virtual Environments & Bytecode
+.venv/
+venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
 
-# Logs
-*.log
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs & Runtime Dumps
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# Build & Output Directories
+dist/
+build/
+coverage/

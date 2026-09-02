@@ -1,0 +1,70 @@
+Column,Description,Data_Type,Unit,Allowed_Values,Example,Required,Source
+Record_ID,Unique multimodal record identifier,String,None,REC000001 to REC999999,REC000001,Yes,System Generated
+Image_ID,Unique image asset identifier,String,None,IMG000001 to IMG999999,IMG000001,Yes,System Generated
+Image_Path,Relative path to image file in repository,String,Path,images/<class_folder>/<image_id>.jpg,images/rice_straw/IMG000001.jpg,Yes,System Generated
+State,State of origin in India,String,None,Andhra Pradesh,Andhra Pradesh,Yes,Administrative Boundary
+District,District of Andhra Pradesh,String,None,"Guntur, Palnadu, Bapatla, Krishna, NTR, Eluru, West Godavari, etc.",Guntur,Yes,Farmer / Collector
+Mandal,Sub-district / administrative taluk,String,None,Standard AP mandal names or Unknown,Tenali,No,Farmer / Survey
+Village,Village of waste generation,String,None,Verified village name or Unknown,Unknown,No,Farmer / Survey
+Crop,Source agricultural crop,String,None,"Rice, Maize, Sugarcane, Cotton, Chilli, Groundnut, etc.",Rice,Yes,Farmer / Agronomist
+Crop_Category,Agricultural crop broad classification,String,None,"Cereals, Cash Crops, Oilseeds, Fibre Crops, Spices & Condiments, Horticulture, Plantation Crops, Pulses",Cereals,Yes,Standard Classification
+Waste_Type,Specific agricultural residue type name,String,None,"Rice Straw, Rice Husk, Maize Stalk, Sugarcane Bagasse, etc.",Rice Straw,Yes,AI Classification / Expert
+Waste_Category,Functional residue categorization,String,None,"Crop Residue, Agro-industrial Residue, Field Biomass, Mandi Residue",Crop Residue (Straw),Yes,Standard Classification
+Waste_Source,Location or stage where waste was produced,String,None,"Field, Farmyard, Processing Mill, Mandi, Storage Yard",Field,Yes,Farmer / Survey
+Harvest_Season,Agricultural cropping season in AP,String,None,"Kharif, Rabi, Zaid, Perennial",Kharif,Yes,Farmer / Survey
+Harvest_Month,Month of crop harvest,String,None,January to December,November,Yes,Farmer / Survey
+Farm_Size_Acres,Size of the farmland in acres,Float,Acres,0.5 to 100.0,4.5,No,Farmer Survey
+Waste_Quantity_Kg,Total estimated waste quantity available,Float,Kilograms (kg),10.0 to 100000.0,1500.0,Yes,Farmer / Weighment
+Moisture_Percent,Moisture content percentage on wet basis,Float,Percent (%),5.0 to 95.0,14.5,Yes,Field Sensor / Lab Test / Estimate
+Dry_Matter_Percent,Dry matter fraction percentage (100 - Moisture),Float,Percent (%),5.0 to 95.0,85.5,Yes,Derived (100 - Moisture)
+Collection_Distance_Km,Distance from field/mill to nearest processing hub,Float,Kilometers (km),0.5 to 150.0,12.0,No,GIS / Logistical Mapping
+Storage_Days,Number of days the waste has been stored post-harvest,Integer,Days,0 to 365,7,Yes,Farmer Survey
+Cellulose_Percent,"Polymeric beta-1,4-glucan fraction (dry basis)",Float,Percent (%),0.0 to 85.0,36.5,Yes,Biochemical Standard Reference
+Hemicellulose_Percent,Heteropolymeric xylan/glucomannan fraction (dry basis),Float,Percent (%),0.0 to 45.0,24.0,Yes,Biochemical Standard Reference
+Lignin_Percent,Complex aromatic polyphenol fraction (dry basis),Float,Percent (%),0.0 to 55.0,14.5,Yes,Biochemical Standard Reference
+Sugar_Content_Percent,Directly fermentable soluble sugar fraction (dry basis),Float,Percent (%),0.0 to 40.0,3.5,Yes,Biochemical Standard Reference
+Ash_Percent,Inorganic mineral / silica residue after combustion,Float,Percent (%),0.5 to 25.0,13.0,Yes,Biochemical Standard Reference
+Current_Disposal_Method,How the farmer currently disposes of the residue,String,None,"Burning, Dumping in Field, Incorporating into Soil, Livestock Feeding, Open Selling, Biochar",Burning,Yes,Farmer Survey
+Burning_Risk,Risk of open field incineration and air pollution,String,None,"High, Medium, Low, None",High,Yes,Rule Engine
+Environmental_Risk_Level,Overall environmental hazard level of current disposal,String,None,"Severe, Moderate, Low, Negligible",Severe,Yes,Rule Engine
+Ethanol_Suitability,Suitability level for 2G/1G bioethanol production,String,None,"Very High, High, Medium, Low",High,Yes,Biochemical Rule Engine
+Ethanol_Potential,Expected qualitative ethanol yield potential,String,None,"Very High, High, Medium, Low",High,Yes,Biochemical Rule Engine
+Biogas_Suitability,Suitability level for anaerobic digestion / CBG,String,None,"Very High, High, Medium, Low",Medium,Yes,Biochemical Rule Engine
+Biogas_Potential,Expected qualitative biomethane yield potential,String,None,"Very High, High, Medium, Low",Medium,Yes,Biochemical Rule Engine
+Briquette_Suitability,Suitability level for solid fuel densification,String,None,"Very High, High, Medium, Low",High,Yes,Biochemical Rule Engine
+Briquette_Potential,Expected calorific densification potential,String,None,"Very High, High, Medium, Low",High,Yes,Biochemical Rule Engine
+Compost_Suitability,Suitability for aerobic microbial composting,String,None,"Very High, High, Medium, Low",Medium,Yes,Biochemical Rule Engine
+Compost_Potential,Expected organic compost yield potential,String,None,"Very High, High, Medium, Low",Medium,Yes,Biochemical Rule Engine
+Vermicompost_Suitability,Suitability for earthworm bioconversion,String,None,"Very High, High, Medium, Low",Medium,Yes,Biochemical Rule Engine
+Vermicompost_Potential,Expected vermicast production potential,String,None,"Very High, High, Medium, Low",Medium,Yes,Biochemical Rule Engine
+Mushroom_Suitability,Suitability as substrate for edible mushrooms,String,None,"Very High, High, Medium, Low",Very High,Yes,Biochemical Rule Engine
+Mushroom_Potential,Expected mushroom biological efficiency,String,None,"Very High, High, Medium, Low",Very High,Yes,Biochemical Rule Engine
+Recommended_Pathway,Primary optimal utilization recommendation,String,None,"Ethanol, Biogas, Briquettes/Pellets, Compost, Vermicompost, Mushroom Cultivation, Animal Feed, Industrial Biomass Use",Ethanol,Yes,Decision Engine
+Alternative_Pathway,Secondary viable utilization recommendation,String,None,"Ethanol, Biogas, Briquettes/Pellets, Compost, Vermicompost, Mushroom Cultivation, Animal Feed, Industrial Biomass Use",Mushroom Cultivation,Yes,Decision Engine
+Recommendation_Reason,Scientific & economic rationale for recommendation,String,None,Detailed justification string,High holocellulose (~60.5%) suitable for 2G ethanol.,Yes,Decision Engine
+Farmer_Action,Specific immediate actionable advice for the farmer,String,None,Practical farmer step string,Dry straw to <15% moisture and bundle for biorefinery aggregator.,Yes,Advisory Engine
+Government_Action,Policy and incentive scheme linkage in Andhra Pradesh,String,None,Government scheme string,Subsidize baler aggregation machinery under AP Agritech Scheme.,Yes,Advisory Engine
+Farmer_Selected_Crop,Crop selected by farmer in questionnaire,String,None,"Rice, Maize, Cotton, Sugarcane, Chilli, etc., or Not Specified",Rice,Yes,Farmer Response
+Farmer_Waste_Name,Residue name provided by farmer in local vernacular,String,None,"Rice straw, Vadikolu, Mokkajonna chetta, etc.",Rice straw / Vari gaddi,No,Farmer Response
+Farmer_Estimated_Quantity,Quantity estimate provided by farmer,String,None,"e.g. 500 kg, 2 trolleys, 5 quintals",1500 kg,Yes,Farmer Response
+Farmer_Moisture_Description,Qualitative moisture status described by farmer,String,None,"Completely Dry, Freshly Harvested, Moist/Wet, Partially Rotten",Completely Dry,Yes,Farmer Response
+Farmer_Storage_Duration,Qualitative duration of storage described by farmer,String,None,"Just Harvested (0-3 days), 1-2 Weeks, 1 Month+, 6 Months+",1-2 Weeks,Yes,Farmer Response
+Farmer_Current_Disposal,Farmer statement of disposal practice,String,None,"Burning in field, Leaving to rot, Selling to traders, Cattle feeding",Burning in field,Yes,Farmer Response
+Farmer_Location,Location coordinates or district name confirmed by farmer,String,None,District or GPS coordinates string,Guntur,Yes,Farmer Response
+Farmer_Confidence,Self-assessed farmer certainty in answering questions,String,None,"High, Medium, Low",High,Yes,Farmer Response
+Image_Source,Collection apparatus or pipeline entity,String,None,"Farmer Smartphone Upload, Extension Officer, Research Repository, Synthetic Generator",Synthetic Generator / Template,Yes,Metadata
+Data_Source_Type,Origin classification of record (Rule 19 compliant),String,None,"Government, Research Paper, Farmer Survey, Field Measurement, Industry, Public Dataset, Synthetic/Demo",Synthetic/Demo,Yes,Data Governance
+Capture_Type,Context of photography,String,None,"Field, Farmyard, Mill, Mandi, Lab, Field Simulation",Field Simulation,Yes,Image Capture
+Lighting,Ambient lighting condition during photography,String,None,"Bright Sunlight, Cloudy/Overcast, Indoor/Shed, Evening/Low Light, Flash Photography",Bright Sunlight,Yes,Image Capture
+Background,Background environment behind agricultural waste,String,None,"Soil / Field, Farmyard Concrete, Tarpaulin, Sack/Burlap, Mixed Foliage, Indoor Shed",Soil / Field,Yes,Image Capture
+View_Angle,Camera perspective and distance relative to waste,String,None,"Close-up (10-30cm), Medium (1-2m), Pile/Bulk Overhead, Side View",Medium (1-2m),Yes,Image Capture
+Image_Condition,Physical state of the waste depicted in image,String,None,"Fresh, Dry, Partially Decomposed, Dirty/Mixed, Cut/Chopped",Dry,Yes,Image Capture
+Image_Quality,Quality classification of image clarity and exposure,String,None,"Excellent, Good, Acceptable, Poor, Unusable",Good,Yes,Image Assessment
+Is_Mixed_Waste,Whether non-target debris or multiple wastes are present,String,None,"Yes, No",No,Yes,Image Annotation
+Primary_Object,Main object focused in camera view,String,None,"Rice Straw, Maize Cob, etc.",Rice Straw,Yes,Image Annotation
+Label,Machine learning directory classification token,String,None,"rice_straw, maize_stalk, etc.",rice_straw,Yes,Annotation
+Group_ID,Grouping key to prevent data leakage between splits,String,None,GRP_0001 to GRP_9999,GRP_0001,Yes,Data Governance
+SHA256_Hash,Cryptographic file checksum for deduplication,String,Hexadecimal (64 chars),64 hex characters,e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855,Yes,System Generated
+Annotation_Status,Annotation and labeling verification state,String,None,"Template_Annotated, Expert_Verified, Unannotated",Template_Annotated,Yes,Annotation Pipeline
+Verified_By,Person or system confirming record authenticity,String,None,"AgriAI Automated Builder, Domain Expert Name",AgriAI Automated Builder,Yes,Data Governance
+Data_Confidence,Overall confidence grade of record values,String,None,"High, Medium, Low",Medium,Yes,Data Governance
