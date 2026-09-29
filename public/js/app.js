@@ -1,5 +1,5 @@
 /**
- * AgriAI – Waste2Fuel Main Application Controller (SIH 2026 Enhanced Prototype)
+ * AgriAI — Agricultural Material Intelligence System Main Application Controller (Agricultural Intelligence Prototype)
  * Farmer-centric, Multilingual, 6-Step Stepper, Video Library, Ranked Decisions, Automated Demo
  */
 
@@ -19,7 +19,7 @@ const App = {
   },
 
   async init() {
-    console.log('🌱 Initializing AgriAI – Waste2Fuel Farmer Assistant...');
+    console.log('🌱 Initializing AgriAI — Agricultural Material Intelligence System Farmer Assistant...');
     this.setupEventListeners();
     await this.loadInitialData();
     this.handleRouting();
@@ -65,9 +65,9 @@ const App = {
       navToggle.addEventListener('click', () => navMenu.classList.toggle('open'));
     }
 
-    // SIH Interactive Demo Trigger
-    document.querySelectorAll('.trigger-sih-demo').forEach(btn => {
-      btn.addEventListener('click', () => this.startSIHInteractiveDemo());
+    // Interactive Walkthrough Trigger
+    document.querySelectorAll('.trigger-intelligence-demo').forEach(btn => {
+      btn.addEventListener('click', () => this.startIntelligenceDemo());
     });
 
     // 1-Click Demo Scenario (Guntur)
@@ -115,6 +115,12 @@ const App = {
     const farmForm = document.getElementById('farm-register-form');
     if (farmForm) {
       farmForm.addEventListener('submit', (e) => this.handleFarmRegister(e));
+    }
+
+    // Agricultural Loss & Insurance Case Form
+    const lossForm = document.getElementById('loss-case-form');
+    if (lossForm) {
+      lossForm.addEventListener('submit', (e) => this.handleLossCaseSubmit(e));
     }
 
     // Reset Demo Data Button
@@ -864,7 +870,7 @@ const App = {
   );
 },
   // 🎬 SIH Interactive Judge Demonstration Walkthrough
-  async startSIHInteractiveDemo() {
+  async startIntelligenceDemo() {
     API.showToast('🎬 Starting SIH 2026 Interactive Demonstration...', 'info');
 
     // Step 1: Navigate to Analyze and populate Guntur profile
@@ -889,7 +895,7 @@ const App = {
   },
 
   runGunturDemoScenario() {
-    this.startSIHInteractiveDemo();
+    this.startIntelligenceDemo();
   },
 
   renderFacilitiesList(facilities) {
