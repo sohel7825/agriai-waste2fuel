@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AgriAI – Waste2Fuel | Agricultural Biomass Decision & Renewable Fuel Platform</title>
+  <title>AgriAI — Agricultural Material Intelligence System | Agricultural Biomass Decision & Renewable Fuel Platform</title>
   
   <!-- Leaflet Map CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
@@ -12,16 +12,16 @@
   <link rel="stylesheet" href="css/style.css">
   
   <!-- Favicon / Meta -->
-  <meta name="description" content="AgriAI Waste2Fuel empowers farmers to identify agricultural residue and determine the best renewable-energy or on-farm productive pathway.">
+  <meta name="description" content="AgriAI Agricultural Intelligence empowers farmers to identify agricultural residue and determine the best renewable-energy or on-farm productive pathway.">
   <meta name="theme-color" content="#15803d">
 </head>
 <body>
 
   <!-- Prototype & Demo Mode Disclaimer Top Banner -->
   <div class="proto-banner">
-    <span data-i18n="proto_title">🌾 <strong>SIH 2026 Student Innovation</strong> — Problem Statement SIH26203 | Renewable Energy</span>
+    <span data-i18n="proto_title">🌾 <strong>Agricultural Intelligence Prototype</strong> — Problem Statement AI for Agriculture & Sustainability</span>
     <span class="proto-badge" data-i18n="proto_badge">Prototype / Demonstration Data</span>
-    <button class="btn-quick-demo trigger-sih-demo">🎬 SIH 2026 Demo Mode</button>
+    <button class="btn-quick-demo trigger-intelligence-demo">🎬 AgriAI Walkthrough Mode</button>
   </div>
 
   <!-- Navigation Bar -->
@@ -30,7 +30,7 @@
       <a href="#landing-view" class="nav-brand" data-target-view="landing-view">
         <div class="brand-logo-icon">🌿</div>
         <div class="brand-text">
-          <h1>AgriAI – Waste2Fuel</h1>
+          <h1>AgriAI — Agricultural Material Intelligence System</h1>
           <p data-i18n="tagline">Agricultural Residue to Renewable Fuel Decision Support</p>
         </div>
       </a>
@@ -55,13 +55,14 @@
         <nav>
           <ul class="nav-menu" id="nav-menu">
             <li><button class="nav-link active" data-target-view="landing-view" data-i18n="nav_home">🏠 Home</button></li>
-            <li><button class="nav-link" data-target-view="waste-analysis-view" data-i18n="nav_analyze">🔍 Analyze Waste</button></li>
+            <li><button class="nav-link" data-target-view="waste-analysis-view" data-i18n="nav_analyze">🔍 Analyze Material</button></li>
             <li><button class="nav-link" data-target-view="recommendation-view" data-i18n="nav_recommendation">💡 Recommendation</button></li>
             <li><button class="nav-link" data-target-view="farmer-alternatives-view" data-i18n="nav_alternatives">🌱 Farm Alternatives</button></li>
             <li><button class="nav-link" data-target-view="facility-finder-view" data-i18n="nav_facilities">🏭 Facilities</button></li>
             <li><button class="nav-link" data-target-view="biomass-collection-view" data-i18n="nav_pooling">🚛 Community Pooling</button></li>
             <li><button class="nav-link" data-target-view="biomass-map-view" data-i18n="nav_map">🗺️ Biomass Map</button></li>
             <li><button class="nav-link" data-target-view="farmer-dashboard-view" data-i18n="nav_dashboard">📊 Farmer Dashboard</button></li>
+            <li><button class="nav-link" data-target-view="insurance-intelligence-view" data-i18n="nav_insurance">🛡️ Insurance & Loss</button></li>
             <li><button class="nav-link" data-target-view="admin-dashboard-view" data-i18n="nav_admin">📈 Admin Hub</button></li>
             <li><button class="nav-link" data-target-view="learn-view" data-i18n="nav_learn">📚 Learn & Do</button></li>
           </ul>
@@ -78,19 +79,19 @@
          ========================================== -->
     <section id="landing-view" class="view-section active">
       <div class="hero-card">
-        <div class="hero-tag" data-i18n="hero_tag">🌟 SIH 2026 Student Innovation Prototype</div>
-        <h1 class="hero-title" data-i18n="hero_title">AgriAI – Waste2Fuel</h1>
+        <div class="hero-tag" data-i18n="hero_tag">🌟 Agricultural Intelligence Prototype Prototype</div>
+        <h1 class="hero-title" data-i18n="hero_title">AgriAI — Agricultural Material Intelligence System</h1>
         <p class="hero-tagline" data-i18n="hero_tagline">“Agricultural Waste Is Not Waste — It Is a Resource for Future Fuel.”</p>
         <p class="hero-desc" data-i18n="hero_desc">
           AgriAI empowers smallholder farmers to convert crop residues into clean bio-energy or high-value organic assets.
           Using intelligent visual classification, transparent logistical calculations, and community aggregation, AgriAI connects suitable biomass with 2G ethanol bio-refineries, CBG plants, and sustainable farm-level alternatives.
         </p>
         <div class="hero-actions">
-          <button class="btn btn-secondary btn-lg trigger-sih-demo">
-            🎬 Start SIH 2-Min Demo Walkthrough
+          <button class="btn btn-secondary btn-lg trigger-intelligence-demo">
+            🎬 Start AgriAI Walkthrough
           </button>
           <button class="btn btn-primary btn-lg" data-target-view="waste-analysis-view" data-i18n="btn_analyze">
-            🔍 Check My Farm Waste
+            🔍 Check My Farm Material
           </button>
           <button class="btn btn-outline-white btn-lg" onclick="VoiceAssistant.startListening()">
             🎙️ Speak to AgriAI
@@ -107,7 +108,7 @@
       <div class="home-action-grid">
         <div class="home-action-card" data-target-view="waste-analysis-view">
           <span class="home-action-icon">📷</span>
-          <div class="home-action-title">Check My Farm Waste</div>
+          <div class="home-action-title">Check My Farm Material</div>
           <div class="home-action-desc">Take a photo and we will help you understand what you can do with it.</div>
         </div>
 
@@ -125,7 +126,7 @@
 
         <div class="home-action-card" data-target-view="farmer-alternatives-view">
           <span class="home-action-icon">🌱</span>
-          <div class="home-action-title">What Can I Do With This Waste?</div>
+          <div class="home-action-title">What Can I Do With This Material?</div>
           <div class="home-action-desc">Learn how to make compost, biochar, or oyster mushrooms right on your farm.</div>
         </div>
 
@@ -200,7 +201,7 @@
          ========================================== -->
     <section id="waste-analysis-view" class="view-section">
       <div class="section-header">
-        <h2 class="section-title">🔍 Check My Farm Waste (6 Simple Steps)</h2>
+        <h2 class="section-title">🔍 Check My Farm Material (6 Simple Steps)</h2>
         <p class="section-subtitle">Follow the steps below to identify your residue and find the most profitable pathway.</p>
       </div>
 
@@ -224,7 +225,7 @@
 
           <div class="upload-dropzone" id="upload-dropzone">
             <div class="upload-icon">📷</div>
-            <h4 data-i18n="analyze_dragdrop">Drag & drop waste photo here</h4>
+            <h4 data-i18n="analyze_dragdrop">Drag & drop agricultural material photo here</h4>
             <p style="color: #64748b; font-size: 0.85rem; margin-top: 4px;">Tap to select file from phone gallery</p>
             <input type="file" id="waste-file-input" accept="image/*" style="display: none;">
           </div>
@@ -261,7 +262,7 @@
               <strong>Rice straw</strong> <span class="proto-badge">Confidence: 94.5%</span>
             </div>
             <p id="ai-traits-text" style="font-size: 0.88rem; color: #475569; margin-top: 4px;">
-              🌾 This crop waste can potentially be used to make clean ethanol fuel.
+              🌾 This agricultural material can potentially be used to make clean ethanol fuel.
             </p>
           </div>
 
@@ -356,7 +357,7 @@
 
         <!-- STEP 4: MOISTURE CONDITION (DRY / WET) -->
         <div id="step-card-4" class="card-box step-container">
-          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">STEP 4: 💧 Is your crop waste Dry or Wet?</h3>
+          <h3 style="margin-bottom: 0.5rem; font-size: 1.25rem;">STEP 4: 💧 Is your agricultural material Dry or Wet?</h3>
           <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;">
             Moisture determines whether industrial fuel plants can buy it directly or if composting is better.
           </p>
@@ -559,7 +560,7 @@
          ========================================== -->
     <section id="farmer-alternatives-view" class="view-section">
       <div class="section-header">
-        <h2 class="section-title">🌱 What Can I Do With This Waste?</h2>
+        <h2 class="section-title">🌱 What Can I Do With This Material?</h2>
         <p class="section-subtitle">Validated farm-level methods to create organic fertilizer, soil carbon, or edible mushrooms on your land.</p>
       </div>
 
@@ -920,6 +921,41 @@
       </div>
     </section>
 
+  
+
+    <!-- AGRICULTURAL LOSS & INSURANCE INTELLIGENCE -->
+    <section id="insurance-intelligence-view" class="view-section">
+      <div class="section-header">
+        <h2 class="section-title">🛡️ Insurance & Agricultural Loss Intelligence</h2>
+        <p class="section-subtitle">Prepare a structured crop-loss case and get guidance for the applicable official insurance/reporting process.</p>
+      </div>
+
+      <div class="card-box" style="border-left: 4px solid #15803d; margin-bottom: 1rem;">
+        <h3>How AgriAI helps</h3>
+        <p style="color:#475569;line-height:1.6;">AgriAI collects the information needed to organize a loss case, explains the next steps, and helps the farmer keep a case reference. It does not approve claims or decide compensation.</p>
+        <div id="insurance-guidance-list" style="margin-top:1rem;"></div>
+      </div>
+
+      <form id="loss-case-form" class="card-box">
+        <h3 style="margin-bottom:1rem;">Create Loss Evidence Case</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;">
+          <div class="form-group"><label class="form-label">Farmer name</label><input id="loss-farmer-name" class="form-control" placeholder="Name"></div>
+          <div class="form-group"><label class="form-label">Phone</label><input id="loss-phone" class="form-control" placeholder="Phone"></div>
+          <div class="form-group"><label class="form-label">Crop *</label><input id="loss-crop" class="form-control" required placeholder="e.g. Paddy"></div>
+          <div class="form-group"><label class="form-label">Season</label><input id="loss-season" class="form-control" placeholder="e.g. Kharif"></div>
+          <div class="form-group"><label class="form-label">Location *</label><input id="loss-location" class="form-control" required placeholder="Village / Mandal / District"></div>
+          <div class="form-group"><label class="form-label">Affected area (acres)</label><input id="loss-area" type="number" min="0" step="0.01" class="form-control"></div>
+          <div class="form-group"><label class="form-label">Quantity affected (kg)</label><input id="loss-quantity" type="number" min="0" step="1" class="form-control"></div>
+          <div class="form-group"><label class="form-label">Damage type *</label><select id="loss-damage-type" class="form-control" required><option value="">Select</option><option>Heavy rain</option><option>Flood</option><option>Cyclone</option><option>Drought</option><option>Hailstorm</option><option>Crop spoilage</option><option>Other</option></select></div>
+          <div class="form-group"><label class="form-label">Damage date *</label><input id="loss-date" type="date" class="form-control" required></div>
+        </div>
+        <div class="form-group" style="margin-top:12px;"><label class="form-label">Damage description</label><textarea id="loss-description" class="form-control" rows="3" placeholder="Describe what happened and what you observed."></textarea></div>
+        <div class="form-group"><label class="form-label">Evidence notes</label><input id="loss-evidence" class="form-control" placeholder="Photo taken, location verified, documents available, etc."></div>
+        <button class="btn btn-primary" type="submit">Create Case ID</button>
+        <div id="loss-case-result" style="margin-top:1rem;"></div>
+      </form>
+    </section>
+
   </main>
 
   <!-- Alternative Detail Modal -->
@@ -1021,7 +1057,7 @@
         <span id="voice-modal-lang-badge" class="proto-badge" style="background:#e0f2fe; color:#0284c7;">Telugu / Hindi / English</span>
       </div>
       <p id="voice-modal-status" style="color: #64748b; font-size: 0.9rem; margin-bottom: 1rem;" data-i18n="voice_listening">
-        Listening... Speak your crop waste or question in Telugu, Hindi, or English.
+        Listening... Speak your agricultural material or question in Telugu, Hindi, or English.
       </p>
 
       <div id="voice-wave-anim" class="voice-wave-container">
@@ -1065,7 +1101,7 @@
     <!-- Quick Suggestion Chips -->
     <div class="chatbot-chips">
       <button class="btn-chat-chip" data-query="1000kg Rice Straw Demo Guntur">🌾 Guntur Demo</button>
-      <button class="btn-chat-chip" data-query="What if my crop waste is wet?">💧 Wet Residue</button>
+      <button class="btn-chat-chip" data-query="What if my agricultural material is wet?">💧 Wet Residue</button>
       <button class="btn-chat-chip" data-query="Show me facilities in Guntur">🏭 Nearby Facilities</button>
       <button class="btn-chat-chip" data-query="How does farmer pooling work?">🚛 Community Pooling</button>
     </div>
@@ -1085,7 +1121,7 @@
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-text">
-        <strong>AgriAI – Waste2Fuel</strong> | SIH 2026 Student Innovation Prototype<br>
+        <strong>AgriAI — Agricultural Material Intelligence System</strong> | Agricultural Intelligence Prototype Prototype<br>
         Problem Statement SIH26203 – Student Innovation (Theme: Renewable / Sustainable Energy)
       </div>
       <ul class="footer-links">
