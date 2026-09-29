@@ -27,7 +27,7 @@ const I18N = {
 
       hero_tag: "🌟 Agricultural Intelligence Prototype",
       hero_title: "AgriAI – Agricultural Material Intelligence System",
-      hero_tagline: "“Agricultural Waste Is Not Waste — It Is a Resource for Future Fuel.”",
+      hero_tagline: "“From Agricultural Loss & Waste to the Best Possible Action.”",
       hero_desc: "AgriAI empowers smallholder farmers to convert crop residues into clean bio-energy or high-value organic assets. Using intelligent visual classification, transparent logistical calculations, and community aggregation, AgriAI connects suitable biomass with 2G ethanol bio-refineries, CBG plants, and sustainable farm-level alternatives.",
       btn_analyze: "🔍 Analyze My Waste",
       btn_demo: "⚡ Run Demo Mode (Guntur, AP)",
