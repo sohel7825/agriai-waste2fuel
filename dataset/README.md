@@ -1,4 +1,4 @@
-# AgriAI – Waste2Fuel Multimodal Dataset Suite
+# AgriAI – Agricultural Material Intelligence System Multimodal Dataset Suite
 
 ## Status
 
