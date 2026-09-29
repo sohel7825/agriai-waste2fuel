@@ -1,0 +1,22 @@
+{
+  "system": "Pradhan Mantri Fasal Bima Yojana (PMFBY)",
+  "purpose": "Guidance only. Farmers should verify the applicable season, crop, area notification, deadlines, documents, and authorized reporting channel for their location.",
+  "steps": [
+    "Enter crop, location, season, cultivated area, and sowing information.",
+    "Check the current official crop-insurance notification applicable to the farmer's area and season.",
+    "Use an authorized enrollment or service channel for insurance registration.",
+    "If crop damage occurs, record photographs, date, location, crop, affected area, and damage details as early as possible.",
+    "Submit loss information through the authorized government or insurance process within the applicable reporting window.",
+    "Keep the application or loss reference number and track its status through the authorized channel."
+  ],
+  "evidence": [
+    "Farmer photograph or photographs of the affected crop/material",
+    "Crop and variety information when available",
+    "Farm location or geolocation",
+    "Date and approximate time of damage",
+    "Cultivated/affected area",
+    "Description of the event such as heavy rain, flood, cyclone, drought, hailstorm, pest, or other notified risk",
+    "Available application, policy, or reference number"
+  ],
+  "disclaimer": "AgriAI does not determine final insurance eligibility, assess losses, approve claims, or determine compensation. Those decisions remain with authorized government and insurance authorities."
+}
