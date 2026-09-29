@@ -1,5 +1,5 @@
 /**
- * Farmer-Centric Economic Viability & Best Option Decision Engine (SIH 2026 Prototype)
+ * Farmer-Centric Economic Viability & Best Option Decision Engine (Agricultural Intelligence Prototype Prototype)
  * 
  * CORE RULES:
  * - Simple plain-language explanations first, technical names separately.
