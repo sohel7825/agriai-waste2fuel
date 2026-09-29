@@ -1,8 +1,8 @@
 # ==============================================================================
-# AgriAI - Waste2Fuel: Image Dataset Builder & Preprocessing Pipeline
+# AgriAI - Agricultural Material Intelligence System: Image Dataset Builder & Preprocessing Pipeline
 # ==============================================================================
 """
-Image Dataset Builder for AgriAI - Waste2Fuel.
+Image Dataset Builder for AgriAI - Agricultural Material Intelligence System.
 Handles:
 1. Directory hierarchy creation for 23 core agricultural waste classes + unknown + hard negatives.
 2. Generation of clearly marked synthetic/demo placeholder images with visual watermarks and SHA-256 hashes.
@@ -207,7 +207,7 @@ class ImageDatasetBuilder:
 
         # Center Label Card
         draw.rectangle([(30, 160), (width - 30, 320)], fill=(20, 20, 20), outline=(255, 255, 255), width=2)
-        draw.text((50, 180), f"AgriAI Waste2Fuel - Class: {class_name}", fill=(255, 255, 255))
+        draw.text((50, 180), f"AgriAI Agricultural Material Intelligence System - Class: {class_name}", fill=(255, 255, 255))
         draw.text((50, 205), f"Image ID: {img_id} | Condition: {condition}", fill=(220, 220, 220))
         draw.text((50, 230), f"Lighting: {lighting} | View: {view_angle} | Quality: {quality}", fill=(200, 200, 200))
         draw.text((50, 260), "DATA_SOURCE_TYPE: Synthetic/Demo (Explicitly Tagged)", fill=(252, 211, 77))
