@@ -1,5 +1,5 @@
 /**
- * Community Biomass Aggregation & Logistics Pooling Engine (SIH 2026 Prototype)
+ * Community Biomass Aggregation & Logistics Pooling Engine (Agricultural Intelligence Prototype Prototype)
  * 
  * CORE VALUE:
  * Smallholder farmers with 300–800 kg cannot economically hire individual 5-tonne trucks.
