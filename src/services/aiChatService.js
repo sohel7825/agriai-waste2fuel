@@ -65,7 +65,7 @@ function processAIChat(userQuery = '', currentLang = 'en') {
 
   if (query.includes('loss') || query.includes('damage') || query.includes('flood') || query.includes('rain') || query.includes('cyclone') || query.includes('నష్టం') || query.includes('వరద') || query.includes('వర్షం') || query.includes('नुकसान') || query.includes('बाढ़')) {
     actionTrigger = { type: 'NAVIGATE', view: 'insurance-intelligence-view' };
-    return { ...buildResponse(materialId, quantityKg, wet ? 'wet' : 'dry', lang), success: true, language: lang, actionTrigger };
+    return { success: true, language: lang, reply: buildResponse(materialId, quantityKg, wet ? 'wet' : 'dry', lang), actionTrigger };
   }
 
   if (query.includes('facility') || query.includes('plant') || query.includes('map') || query.includes('కేంద్రం') || query.includes('प्लांट')) {
