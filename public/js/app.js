@@ -869,9 +869,9 @@ const App = {
     `₹${fertSaving.toLocaleString()}`
   );
 },
-  // 🎬 SIH Interactive Judge Demonstration Walkthrough
+  // 🎬 Agricultural Intelligence Interactive Judge Demonstration Walkthrough
   async startIntelligenceDemo() {
-    API.showToast('🎬 Starting SIH 2026 Interactive Demonstration...', 'info');
+    API.showToast('🎬 Starting Agricultural Intelligence 2026 Interactive Demonstration...', 'info');
 
     // Step 1: Navigate to Analyze and populate Guntur profile
     this.navigate('waste-analysis-view');
@@ -890,7 +890,7 @@ const App = {
     setTimeout(() => {
       this.goToStepperStep(6);
       this.handleAnalysisSubmit();
-      API.showToast('SIH Demo: Guntur Rice Straw -> 2G Bio-Ethanol Matched!', 'success');
+      API.showToast('Agricultural Intelligence Demo: Guntur Rice Straw -> 2G Bio-Ethanol Matched!', 'success');
     }, 3000);
   },
 
