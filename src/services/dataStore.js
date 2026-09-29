@@ -1,7 +1,7 @@
 /**
- * Small persistent store for the SIH prototype.
+ * Small persistent store for the AgriAI prototype.
  *
- * Farm and collection records are persisted as JSON so a server restart no
+ * Farm, collection, and agricultural loss-case records are persisted as JSON so a server restart no
  * longer wipes registrations. DATA_DIR can be changed for a writable volume
  * on a hosting provider. This is intentionally dependency-free; a managed
  * database can replace this service later without changing the API contract.
@@ -15,12 +15,14 @@ const DATA_DIR = process.env.DATA_DIR
 
 const SOURCE_FILES = {
   farms: path.join(__dirname, '../data/farms.json'),
-  collections: path.join(__dirname, '../data/collections.json')
+  collections: path.join(__dirname, '../data/collections.json'),
+  lossCases: path.join(__dirname, '../data/lossCases.json')
 };
 
 const RUNTIME_FILES = {
   farms: path.join(DATA_DIR, 'farms.json'),
-  collections: path.join(DATA_DIR, 'collections.json')
+  collections: path.join(DATA_DIR, 'collections.json'),
+  lossCases: path.join(DATA_DIR, 'lossCases.json')
 };
 
 function ensureStore() {
