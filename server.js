@@ -1,5 +1,5 @@
 /**
- * AgriAI – Waste2Fuel Server Entrypoint (SIH 2026 Prototype)
+ * AgriAI — Agricultural Material Intelligence System
  */
 require('dotenv').config();
 const express = require('express');
@@ -34,9 +34,9 @@ app.use('/api', apiRouter);
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'healthy',
-    app: 'AgriAI – Waste2Fuel',
-    version: '1.1.0',
-    tagline: 'Agricultural Waste Is Not Waste — It Is a Resource for Future Fuel.',
+    app: 'AgriAI — Agricultural Material Intelligence System',
+    version: '2.0.0',
+    tagline: 'From Agricultural Loss & Waste to the Best Possible Action.',
     aiVisionEnabled: Boolean(process.env.OPENAI_API_KEY),
     aiChatEnabled: Boolean(process.env.OPENAI_API_KEY),
     persistentStore: true,
@@ -68,7 +68,7 @@ app.use((err, req, res, next) => {
 if (require.main === module) {
   app.listen(PORT, '0.0.0.0', () => {
     console.log('===============================================================');
-    console.log('  AgriAI – Waste2Fuel Server Active');
+    console.log('  AgriAI — Agricultural Material Intelligence System Server Active');
     console.log(`  Local URL: http://localhost:${PORT}`);
     console.log(`  Vision AI: ${process.env.OPENAI_API_KEY ? 'ENABLED' : 'fallback mode'}`);
     console.log(`  Persistent data: ${dataStore.DATA_DIR}`);
