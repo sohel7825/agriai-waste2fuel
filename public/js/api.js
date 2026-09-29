@@ -1,5 +1,5 @@
 /**
- * Client-Side REST API Service for AgriAI – Waste2Fuel
+ * Client-Side REST API Service for AgriAI – Agricultural Material Intelligence System
  */
 
 const API = {
@@ -123,7 +123,8 @@ const API = {
       toast.style.transition = 'all 0.3s ease';
       setTimeout(() => toast.remove(), 300);
     }, 4000);
-  }
+  },
+
   getInsuranceGuidance() { return this.request('/insurance-guidance'); },
   createLossCase(payload) { return this.request('/loss-cases', { method: 'POST', body: JSON.stringify(payload) }); },
   getLossCases() { return this.request('/loss-cases'); },
