@@ -124,6 +124,10 @@ const API = {
       setTimeout(() => toast.remove(), 300);
     }, 4000);
   }
+  getInsuranceGuidance() { return this.request('/insurance-guidance'); },
+  createLossCase(payload) { return this.request('/loss-cases', { method: 'POST', body: JSON.stringify(payload) }); },
+  getLossCases() { return this.request('/loss-cases'); },
+
 };
 
 window.API = API;
