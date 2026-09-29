@@ -1,5 +1,5 @@
 # ==============================================================================
-# AgriAI - Waste2Fuel: Multimodal Decision Engine
+# AgriAI - Agricultural Material Intelligence System: Multimodal Decision Engine
 # ==============================================================================
 # End-to-End Decision Support Pipeline
 # 1. Image Quality Verification (Filter out blurry/dark/unusable uploads)
@@ -160,7 +160,7 @@ class AgriAIDecisionEngine:
 if __name__ == "__main__":
     engine = AgriAIDecisionEngine()
     print("=" * 80)
-    print(" AgriAI Waste2Fuel - Decision Engine Demonstration")
+    print(" AgriAI Agricultural Material Intelligence System - Decision Engine Demonstration")
     print("=" * 80)
 
     # Test Case 1: High Confidence Rice Straw -> 2G Bioethanol
