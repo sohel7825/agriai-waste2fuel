@@ -1,6 +1,6 @@
 /**
- * Automated Verification Test Suite for AgriAI – Waste2Fuel Backend REST APIs
- * SIH 2026 — Problem Statement SIH26203 | Renewable / Sustainable Energy
+ * Automated Verification Test Suite for AgriAI – Agricultural Material Intelligence System Backend REST APIs
+ * Agricultural Intelligence — Problem Statement Agricultural Intelligence | Renewable / Sustainable Energy
  *
  * Tests: 11 suites covering all API endpoints and new enhanced response structures.
  */
