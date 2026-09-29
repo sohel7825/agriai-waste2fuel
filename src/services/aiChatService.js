@@ -1,125 +1,83 @@
-/**
- * Conversational Agricultural Material Intelligence Assistant for AgriAI
- * 
- * DESIGN:
- * Answers in English, Telugu (తెలుగు), or Hindi (हिन्दी)
- * Follows the 7-Part Farmer-Friendly Actionable Format:
- * WHAT I FOUND → WHAT YOU CAN DO → BEST OPTION → WHY → NEARBY OPTION → IF NOT POSSIBLE → ALTERNATIVE
- */
+const materialTypes = require('../data/wasteTypes.json');
 
-const materialTypes = require('../data/materialTypes.json');
-const facilities = require('../data/facilities.json');
-const alternatives = require('../data/alternatives.json');
-
-/**
- * Detect language from user query
- */
 function detectLanguage(text = '') {
-  if (/[\u0c00-\u0c7f]/.test(text)) return 'te'; // Telugu
-  if (/[\u0900-\u097f]/.test(text)) return 'hi'; // Hindi
+  if (/[\u0c00-\u0c7f]/.test(text)) return 'te';
+  if (/[\u0900-\u097f]/.test(text)) return 'hi';
   return 'en';
 }
 
-/**
- * Build structured 7-part farmer response
- */
-function generateStructuredFarmerResponse(materialId, qtyKg, condition, lang = 'en') {
-  const agricultural material = materialTypes.find(w => w.id === materialId) || materialTypes[0];
-  const isWet = (condition || '').toLowerCase().includes('wet');
+function findMaterial(query) {
+  if (query.includes('bagasse') || query.includes('చెరకు') || query.includes('बगास') || query.includes('गन्ना')) return 'sugarcane-bagasse';
+  if (query.includes('cotton') || query.includes('పత్తి') || query.includes('कपास')) return 'cotton-residue';
+  if (query.includes('maize') || query.includes('మొక్కజొన్న') || query.includes('मक्का')) return 'maize-stalk';
+  if (query.includes('husk') || query.includes('పొట్టు') || query.includes('तवుడు') || query.includes('भूसा')) return 'rice-husk';
+  if (query.includes('groundnut') || query.includes('వేరుశనగ') || query.includes('मूंगफली')) return 'groundnut-shell';
+  if (query.includes('coconut') || query.includes('కొబ్బరి') || query.includes('नारियल')) return 'coconut-residue';
+  return 'rice-straw';
+}
+
+function buildResponse(materialId, quantityKg, condition, lang) {
+  const material = materialTypes.find(item => item.id === materialId) || materialTypes[0];
+  const wet = condition === 'wet';
+  const name = lang === 'te' ? (material.name_te || material.name) : lang === 'hi' ? (material.name_hi || material.name) : material.name;
 
   if (lang === 'te') {
-    if (isWet) {
-      return `🌾 నేను కనుగొన్నది:\n${agricultural material.name_te || agricultural material.name}\n\n📦 పరిమాణం & పరిస్థితి:\n${qtyKg} కిలోలు (తడి వ్యర్థం)\n\n⭐ ఉత్తమ ఎంపిక:\nపొలంలోనే సేంద్రియ కంపోస్ట్ ఎరువు తయారు చేయండి.\n\n❓ ఎందుకు (కారణం):\nతేమ ఎక్కువగా ఉండటం వల్ల ఫ్యాక్టరీకి పంపడం లాభదాయకం కాదు. కంపోస్ట్ చేయడం వల్ల ఎకరానికి ₹3,500 ఎరువుల ఖర్చు ఆదా అవుతుంది.\n\n🏭 సమీప అవకాశం:\nపొడి వ్యర్థమైతే గుంటూరు 2G బయో-ఇథనాల్ రిఫైనరీ కొనుగోలు చేస్తుంది.\n\n🔄 ప్రత్యామ్నాయం:\nవర్మీ కంపోస్ట్ లేదా పుట్టగొడుగుల పెంపకం ద్వారా అదనపు ఆదాయం పొందవచ్చు.`;
-    } else {
-      return `🌾 నేను కనుగొన్నది:\n${agricultural material.name_te || agricultural material.name}\n\n📦 పరిమాణం & పరిస్థితి:\n${qtyKg} కిలోలు (ఎండిన వ్యర్థం)\n\n⭐ ఉత్తమ ఎంపిక:\nసమీపంలోని బయో-ఇంధన కేంద్రానికి పంపండి.\n\n❓ ఎందుకు (కారణం):\nమీ వ్యర్థాల పరిమాణం పెద్దది మరియు సమీప రిఫైనరీ అందుబాటులో ఉంది (అంచనా నికర లాభం: ₹1,482).\n\n🏭 సమీప కేంద్రం:\nడెమో 2G బయో-ఇథనాల్ రిఫైనరీ – గుంటూరు (సుమారు 12 కి.మీ).\n\n🔄 ఒకవేళ రవాణా వీలుకాకపోతే:\nపొలంలోనే వర్మీ కంపోస్ట్ లేదా ఆయిస్టర్ పుట్టగొడుగుల సాగు ద్వారా ₹6,000+ ఆదాయం పొందండి.`;
-    }
-  } else if (lang === 'hi') {
-    if (isWet) {
-      return `🌾 मुझे क्या मिला:\n${agricultural material.name_hi || agricultural material.name}\n\n📦 मात्रा और स्थिति:\n${qtyKg} किलो (गीला अवशेष)\n\n⭐ सर्वोत्तम विकल्प:\nखेत पर ही जैविक कम्पोस्ट खाद बनाएं।\n\n❓ क्यों (कारण):\nअधिक नमी होने के कारण फैक्ट्री भेजना अलाभकारी है। कम्पोस्ट खाद बनाने से ₹3,500 प्रति एकड़ रासायनिक खाद बचेगी।\n\n🏭 नजदीकी प्लांट:\nसूखा होने पर गुंटूर 2G बायो-इथेनॉल रिफाइनरी में भेजा जा सकता है।\n\n🔄 यदि यह संभव न हो:\nवर्मी कम्पोस्ट या बायोचार बनाकर खेत की मिट्टी उपजाऊ बनाएं।`;
-    } else {
-      return `🌾 मुझे क्या मिला:\n${agricultural material.name_hi || agricultural material.name}\n\n📦 मात्रा और स्थिति:\n${qtyKg} किलो (सूखा बायोमास)\n\n⭐ सर्वोत्तम विकल्प:\nनजदीकी बायोमास/ईंधन केंद्र को आपूर्ति करें।\n\n❓ क्यों (कारण):\nमात्रा पर्याप्त है और नजदीकी रिफाइनरी उपलब्ध है (अनुमानित शुद्ध लाभ: ₹1,482)।\n\n🏭 नजदीकी केंद्र:\nडेमो 2G बायो-इथेनॉल रिफाइनरी – गुंटूर (लगभग 12 किमी दूर)।\n\n🔄 यदि परिवहन संभव न हो:\nखेत पर ढींगरी (ऑयस्टर) मशरूम उगाएं या वर्मी कम्पोस्ट बनाएं।`;
-    }
-  } else {
-    if (isWet) {
-      return `🌾 WHAT I FOUND:\n${agricultural material.name}\n\n📦 QUANTITY & CONDITION:\n${qtyKg} kg (Wet residue)\n\n⭐ BEST OPTION:\nMake on-farm aerobic compost.\n\n❓ WHY:\nHigh moisture makes industrial transport uneconomical. Composting saves ₹3,500/acre in fertilizer costs without transport expense.\n\n🏭 NEARBY FACILITY:\nDemo 2G Bio-Ethanol Refinery – Guntur (accepts dry residue).\n\n🔄 IF THAT IS NOT POSSIBLE:\nTry earthworm vermicomposting or field mulching for soil carbon.`;
-    } else {
-      return `🌾 WHAT I FOUND:\n${agricultural material.name}\n\n📦 QUANTITY & CONDITION:\n${qtyKg} kg (Dry residue)\n\n⭐ BEST OPTION:\nSend to a suitable biomass bio-energy facility.\n\n❓ WHY:\nYour quantity is large enough for collection and a profitable nearby processing route is available (Estimated net return: ₹1,482).\n\n🏭 NEARBY FACILITY:\nDemo 2G Bio-Ethanol Refinery – Guntur (approx 12 km away).\n\n🔄 IF THAT IS NOT POSSIBLE:\nTry on-farm oyster mushroom cultivation (₹6,000+ return) or vermicomposting.`;
-    }
+    return wet
+      ? `🌾 గుర్తించిన పదార్థం: ${name}\n\n📦 పరిమాణం & పరిస్థితి: ${quantityKg} కిలోలు, తడి\n\n⭐ తదుపరి చర్య: ముందుగా ఆరబెట్టడం లేదా సురక్షితమైన పొల స్థాయి వినియోగాన్ని పరిశీలించండి.\n\n❓ కారణం: అధిక తేమ ఉన్నప్పుడు పారిశ్రామిక రవాణా ఎల్లప్పుడూ అనుకూలం కాదు.\n\n🛡️ పంట నష్టం అయితే, ఫోటోలు, తేదీ, ప్రదేశం మరియు నష్టం వివరాలతో Loss Case రూపొందించండి.`
+      : `🌾 గుర్తించిన పదార్థం: ${name}\n\n📦 పరిమాణం & పరిస్థితి: ${quantityKg} కిలోలు, పొడి\n\n⭐ తదుపరి చర్య: సమీపంలో ధృవీకరించబడిన బయోమాస్, బయోఫ్యూయల్ లేదా ఇతర వినియోగ మార్గాలను పోల్చండి.\n\n❓ కారణం: పరిమాణం, రవాణా, పరిస్థితి మరియు స్థానిక సదుపాయాల ఆధారంగా సరైన మార్గం మారుతుంది.\n\n🛡️ పంట నష్టం అయితే, అధికారిక బీమా/రిపోర్టింగ్ ప్రక్రియకు అవసరమైన ఆధారాలను సిద్ధం చేయండి.`;
   }
+
+  if (lang === 'hi') {
+    return wet
+      ? `🌾 पहचानी गई सामग्री: ${name}\n\n📦 मात्रा और स्थिति: ${quantityKg} किलो, गीली\n\n⭐ अगला कदम: पहले सुखाने या सुरक्षित खेत-स्तरीय उपयोग पर विचार करें।\n\n❓ कारण: अधिक नमी में औद्योगिक परिवहन हमेशा उपयुक्त नहीं होता।\n\n🛡️ फसल नुकसान होने पर फोटो, तारीख, स्थान और नुकसान के विवरण के साथ Loss Case बनाएं।`
+      : `🌾 पहचानी गई सामग्री: ${name}\n\n📦 मात्रा और स्थिति: ${quantityKg} किलो, सूखी\n\n⭐ अगला कदम: पास के सत्यापित बायोमास, बायोफ्यूल या अन्य उपयोग मार्गों की तुलना करें।\n\n❓ कारण: सही मार्ग मात्रा, परिवहन, स्थिति और स्थानीय सुविधाओं पर निर्भर करता है।\n\n🛡️ फसल नुकसान होने पर आधिकारिक बीमा/रिपोर्टिंग प्रक्रिया के लिए साक्ष्य तैयार करें।`;
+  }
+
+  return wet
+    ? `🌾 MATERIAL IDENTIFIED: ${name}\n\n📦 QUANTITY & CONDITION: ${quantityKg} kg, wet\n\n⭐ NEXT ACTION: Consider drying, safe storage, or a suitable on-farm pathway before industrial transport.\n\n❓ WHY: High moisture can make some processing and transport routes unsuitable.\n\n🛡️ If this is crop damage, create a loss case with photos, date, location, crop, and damage details.`
+    : `🌾 MATERIAL IDENTIFIED: ${name}\n\n📦 QUANTITY & CONDITION: ${quantityKg} kg, dry\n\n⭐ NEXT ACTION: Compare suitable biomass, biofuel, on-farm, and other utilization pathways.\n\n❓ WHY: The practical route depends on quantity, condition, transport, local facilities, safety, and farmer goals.\n\n🛡️ If this is crop damage, prepare evidence for the applicable official insurance/reporting process.`;
 }
 
-/**
- * Process natural language user query
- */
 function processAIChat(userQuery = '', currentLang = 'en') {
-  const query = userQuery.trim().toLowerCase();
-  const detected = detectLanguage(userQuery);
-  const lang = (detected !== 'en') ? detected : (currentLang || 'en');
+  const raw = String(userQuery || '').trim();
+  const query = raw.toLowerCase();
+  const lang = detectLanguage(raw) !== 'en' ? detectLanguage(raw) : (currentLang || 'en');
+  const quantityMatch = query.match(/(\d+(?:\.\d+)?)/);
+  const quantityKg = quantityMatch ? Number(quantityMatch[1]) : 1000;
+  const materialId = findMaterial(query);
+  const wet = query.includes('wet') || query.includes('తడి') || query.includes('తేమ') || query.includes('गीला') || query.includes('नमी');
 
-  let reply = "";
   let actionTrigger = null;
 
-  // Extract quantity if present
-  const qtyMatch = query.match(/(\d+)/);
-  const qty = qtyMatch ? parseInt(qtyMatch[1], 10) : 1000;
-
-  // Extract residue
-  let materialId = 'rice-straw';
-  if (query.includes('bagasse') || query.includes('చెరకు') || query.includes('बगास') || query.includes('गन्ना')) materialId = 'sugarcane-bagasse';
-  else if (query.includes('cotton') || query.includes('పత్తి') || query.includes('कपास')) materialId = 'cotton-residue';
-  else if (query.includes('maize') || query.includes('మొక్కజొన్న') || query.includes('मक्का')) materialId = 'maize-stalk';
-  else if (query.includes('husk') || query.includes('పొట్టు') || query.includes('तవుడు') || query.includes('भूसा')) materialId = 'rice-husk';
-  else if (query.includes('groundnut') || query.includes('వేరుశనగ') || query.includes('मूंगफली')) materialId = 'groundnut-shell';
-  else if (query.includes('coconut') || query.includes('కొబ్బరి') || query.includes('नारियल')) materialId = 'coconut-residue';
-
-  const isWet = query.includes('wet') || query.includes('తడి') || query.includes('తేమ') || query.includes('गीला') || query.includes('नमी');
-
-  // Intent 1: Demo / Test
-  if (query.includes('demo') || query.includes('డెమో') || query.includes('डेमो') || query.includes('guntur')) {
-    actionTrigger = { type: 'RUN_DEMO' };
-    reply = generateStructuredFarmerResponse('rice-straw', 1000, 'Dry (<15%)', lang);
+  if (query.includes('insurance') || query.includes('claim') || query.includes('బీమా') || query.includes('बीमा')) {
+    actionTrigger = { type: 'NAVIGATE', view: 'insurance-intelligence-view' };
+    return {
+      success: true,
+      language: lang,
+      reply: lang === 'te'
+        ? '🛡️ పంట బీమా సహాయం: మీ పంట, సీజన్, ప్రదేశం మరియు నష్టం వివరాలను నమోదు చేసి అధికారిక బీమా ప్రక్రియను తనిఖీ చేయండి. AgriAI క్లెయిమ్‌ను ఆమోదించదు లేదా పరిహారాన్ని నిర్ణయించదు.'
+        : lang === 'hi'
+          ? '🛡️ फसल बीमा सहायता: फसल, मौसम, स्थान और नुकसान का विवरण दर्ज करें और लागू आधिकारिक बीमा प्रक्रिया जांचें। AgriAI दावा मंजूर या मुआवजा तय नहीं करता।'
+          : '🛡️ Crop insurance assistance: enter your crop, season, location, and damage details and follow the applicable official insurance process. AgriAI does not approve claims or determine compensation.',
+      actionTrigger
+    };
   }
-  // Intent 2: General Agricultural Material Question
-  else if (query.includes('straw') || query.includes('వరి') || query.includes('पराली') || query.includes('కచరా') || query.includes('agricultural material') || query.includes('कचरे') || query.includes('చేయాలి') || query.includes('करें')) {
-    reply = generateStructuredFarmerResponse(materialId, qty, isWet ? 'Wet (>30%)' : 'Dry (<15%)', lang);
-    actionTrigger = { type: 'NAVIGATE', view: isWet ? 'farmer-alternatives-view' : 'recommendation-view' };
+
+  if (query.includes('loss') || query.includes('damage') || query.includes('flood') || query.includes('rain') || query.includes('cyclone') || query.includes('నష్టం') || query.includes('వరద') || query.includes('వర్షం') || query.includes('नुकसान') || query.includes('बाढ़')) {
+    actionTrigger = { type: 'NAVIGATE', view: 'insurance-intelligence-view' };
+    return { ...buildResponse(materialId, quantityKg, wet ? 'wet' : 'dry', lang), success: true, language: lang, actionTrigger };
   }
-  // Intent 3: Facilities / Map
-  else if (query.includes('facility') || query.includes('plant') || query.includes('map') || query.includes('కేంద్రాలు') || query.includes('నక్షా') || query.includes('प्लांट')) {
+
+  if (query.includes('facility') || query.includes('plant') || query.includes('map') || query.includes('కేంద్రం') || query.includes('प्लांट')) {
     actionTrigger = { type: 'NAVIGATE', view: 'facility-finder-view' };
-    if (lang === 'te') {
-      reply = "🏭 సమీప ఇంధన కేంద్రాలు:\nగుంటూరు పారిశ్రామిక ప్రాంతంలో 2G బయో-ఇథనాల్ రిఫైనరీ, విజయవాడలో CBG బయోగ్యాస్ ప్లాంట్ మరియు తెనాలిలో బ్రికెట్ తయారీ కేంద్రం అందుబాటులో ఉన్నాయి. వివరాలు తెరుస్తున్నాను.";
-    } else if (lang === 'hi') {
-      reply = "🏭 नजदीकी बायोमास केंद्र:\nगुंटूर औद्योगिक क्षेत्र में 2G बायो-इथेनॉल रिफाइनरी, विजयवाड़ा में सीबीजी प्लांट और तेनाली में ब्रिकेटिंग सेंटर स्थित हैं।";
-    } else {
-      reply = "🏭 Nearby Facilities:\nDemo 2G Bio-Ethanol Refinery (Guntur), Demo CBG Center (Vijayawada), and Demo Briquette Plant (Tenali) are available in the regional database.";
-    }
-  }
-  // Intent 4: Alternatives / Compost / Mushroom
-  else if (query.includes('compost') || query.includes('biochar') || query.includes('mushroom') || query.includes('ఎరువు') || query.includes('పుట్టగొడుగు') || query.includes('खाद') || query.includes('मशरूम')) {
+  } else if (query.includes('compost') || query.includes('biochar') || query.includes('mushroom') || query.includes('ఎరువు') || query.includes('పుట్టగొడుగు') || query.includes('खाद') || query.includes('मशरूम')) {
     actionTrigger = { type: 'NAVIGATE', view: 'farmer-alternatives-view' };
-    if (lang === 'te') {
-      reply = "🌱 పొలంలోనే ఉత్తమ ప్రత్యామ్నాయాలు:\n1. సూక్ష్మజీవుల కంపోస్ట్ ఎరువు (45 రోజులు - ₹3,500 ఆదా)\n2. ఆయిస్టర్ పుట్టగొడుగుల సాగు (₹6,000+ ఆదాయం)\n3. వర్మీ కంపోస్ట్ మరియు బయోచార్ బొగ్గు తయారీ. పూర్తి గైడ్ తెరుస్తున్నాను.";
-    } else if (lang === 'hi') {
-      reply = "🌱 खेत स्तर पर विकल्प:\n1. एरोबिक कम्पोस्ट खाद (45 दिन - ₹3,500 बचत)\n2. ढींगरी (ऑयस्टर) मशरूम उत्पादन (₹6,000+ आय)\n3. वर्मी कम्पोस्ट एवं बायोचार। पूरी गाइड खोली जा रही है।";
-    } else {
-      reply = "🌱 On-Farm Alternatives:\n1. Aerobic Microbial Composting (45-60 days, saves ₹3,500/acre)\n2. Oyster Mushroom Cultivation (yields ₹6,000+ revenue)\n3. Earthworm Vermicompost & Flame-Cap Biochar.";
-    }
-  }
-  // Default greeting / general
-  else {
-    reply = generateStructuredFarmerResponse(materialId, qty, 'Dry (<15%)', lang);
+  } else if (query.includes('waste') || query.includes('residue') || query.includes('straw') || query.includes('crop') || query.includes('వరి') || query.includes('पराली')) {
+    actionTrigger = { type: 'NAVIGATE', view: wet ? 'farmer-alternatives-view' : 'recommendation-view' };
   }
 
-  return {
-    success: true,
-    language: lang,
-    reply: reply,
-    actionTrigger: actionTrigger
-  };
+  const result = buildResponse(materialId, quantityKg, wet ? 'wet' : 'dry', lang);
+  return { success: true, language: lang, reply: result, actionTrigger };
 }
 
-module.exports = {
-  processAIChat,
-  generateStructuredFarmerResponse
-};
+module.exports = { processAIChat, buildResponse };
