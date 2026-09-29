@@ -1,5 +1,5 @@
 # ==============================================================================
-# AgriAI - Waste2Fuel: Master Dataset Validator
+# AgriAI - Agricultural Material Intelligence System: Master Dataset Validator
 # ==============================================================================
 import sys
 import csv
@@ -38,7 +38,7 @@ class DatasetValidator:
 
     def run_full_validation(self):
         print("=" * 80)
-        print("          AgriAI - Waste2Fuel Multimodal Dataset Validation Suite")
+        print("          AgriAI - Agricultural Material Intelligence System Multimodal Dataset Validation Suite")
         print("=" * 80)
 
         results = {
