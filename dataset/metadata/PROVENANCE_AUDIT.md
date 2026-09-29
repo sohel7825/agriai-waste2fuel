@@ -1,4 +1,4 @@
-# AgriAI – Waste2Fuel: Provenance Audit Gate
+# AgriAI – Agricultural Material Intelligence System: Provenance Audit Gate
 
 ## Audit date
 2026-09-02
