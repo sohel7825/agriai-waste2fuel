@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: agriai-waste2fuel
+    name: agriai-agricultural-intelligence
     runtime: node
     buildCommand: npm ci
     startCommand: npm start
