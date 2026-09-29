@@ -17,6 +17,7 @@ const INDEX_FILE = path.join(PUBLIC_DIR, 'index.html');
 // Initialize the writable prototype data store at startup.
 dataStore.read('farms');
 dataStore.read('collections');
+dataStore.read('lossCases');
 
 app.disable('x-powered-by');
 app.use(cors());
