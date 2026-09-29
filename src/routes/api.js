@@ -5,6 +5,7 @@ const wasteTypesData = require('../data/wasteTypes.json');
 const facilitiesData = require('../data/facilities.json');
 const alternativesData = require('../data/alternatives.json');
 const videosData = require('../data/videos.json');
+const insuranceGuidance = require('../data/insuranceGuidance.json');
 const dataStore = require('../services/dataStore');
 
 const { classifyBiomassImage } = require('../services/aiClassifier');
@@ -15,6 +16,51 @@ const { getAdvisorReply, isAIConfigured } = require('../services/aiAdvisor');
 const VALID_LANGUAGES = new Set(['en', 'te', 'hi']);
 function isFiniteNumber(value) { return value !== '' && value !== null && value !== undefined && Number.isFinite(Number(value)); }
 function validCoordinate(value, min, max) { return isFiniteNumber(value) && Number(value) >= min && Number(value) <= max; }
+
+router.get('/insurance-guidance', (req, res) => {
+  return res.json({ success: true, data: insuranceGuidance });
+});
+
+router.post('/loss-cases', (req, res) => {
+  try {
+    const { farmerName, phone, crop, season, location, district, quantity, affectedArea, damageType, damageDate, description, evidence } = req.body || {};
+    if (!crop || !location || !damageType || !damageDate) {
+      return res.status(400).json({ success: false, message: 'Crop, location, damage type, and damage date are required.' });
+    }
+    const cases = dataStore.read('lossCases');
+    const caseRecord = {
+      id: `loss-${Date.now()}-${Math.random().toString(36).slice(2, 7)}`,
+      farmerName: String(farmerName || '').trim(),
+      phone: String(phone || '').trim(),
+      crop: String(crop).trim(),
+      season: String(season || '').trim(),
+      location: String(location).trim(),
+      district: String(district || '').trim(),
+      quantity: quantity === undefined || quantity === '' ? null : Number(quantity),
+      affectedArea: affectedArea === undefined || affectedArea === '' ? null : Number(affectedArea),
+      damageType: String(damageType).trim(),
+      damageDate: String(damageDate).trim(),
+      description: String(description || '').trim(),
+      evidence: Array.isArray(evidence) ? evidence : [],
+      status: 'Evidence prepared — official reporting required',
+      createdAt: new Date().toISOString()
+    };
+    cases.unshift(caseRecord);
+    dataStore.write('lossCases', cases);
+    return res.status(201).json({
+      success: true,
+      message: 'Loss evidence case created. Use the case ID when following the authorized insurance/reporting process.',
+      data: caseRecord
+    });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: 'Loss case creation error: ' + error.message });
+  }
+});
+
+router.get('/loss-cases', (req, res) => {
+  const cases = dataStore.read('lossCases');
+  return res.json({ success: true, count: cases.length, data: cases });
+});
 
 router.get('/waste-types', (req, res) => res.json({ success: true, count: wasteTypesData.length, data: wasteTypesData }));
 
