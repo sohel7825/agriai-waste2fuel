@@ -15,7 +15,8 @@ const App = {
     collections: [],
     currentAnalysis: null,
     selectedImagePayload: null,
-    activeAlternativeDetail: null
+    activeAlternativeDetail: null,
+    insuranceGuidance: null
   },
 
   async init() {
@@ -27,19 +28,22 @@ const App = {
 
   async loadInitialData() {
     try {
-      const [wasteRes, altRes, facRes, vidRes] = await Promise.all([
+      const [wasteRes, altRes, facRes, vidRes, insuranceRes] = await Promise.all([
         API.getWasteTypes(),
         API.getAlternatives(),
         API.getFacilities(),
-        API.getVideos()
+        API.getVideos(),
+        API.getInsuranceGuidance()
       ]);
 
       this.state.wasteTypes = wasteRes.data || [];
       this.state.alternatives = altRes.data || [];
       this.state.facilities = facRes.data || [];
       this.state.videos = vidRes.data || [];
+      this.state.insuranceGuidance = insuranceRes.data || null;
 
       this.populateWasteTypeDropdowns();
+      this.renderInsuranceGuidance();
       this.renderAlternativesList(this.state.alternatives);
       this.renderFacilitiesList(this.state.facilities);
       this.renderVideoLibrary();
@@ -1129,6 +1133,19 @@ const App = {
         console.error('Reset error:', err);
       }
     }
+  },
+
+  renderInsuranceGuidance() {
+    const container = document.getElementById('insurance-guidance-list');
+    const guidance = this.state.insuranceGuidance;
+    if (!container || !guidance) return;
+
+    const steps = Array.isArray(guidance.steps) ? guidance.steps : [];
+    container.innerHTML =
+      '<strong>Official-process checklist:</strong><ol style="color:#475569;line-height:1.7;">' +
+      steps.map(step => '<li>' + step + '</li>').join('') +
+      '</ol>' +
+      '<p style="font-size:0.85rem;color:#64748b;">' + guidance.disclaimer + '</p>';
   },
 
   async handleLossCaseSubmit(event) {
