@@ -1,8 +1,8 @@
 # ==============================================================================
-# AgriAI - Waste2Fuel: Leakage-Free Dataset Splitter
+# AgriAI - Agricultural Material Intelligence System: Leakage-Free Dataset Splitter
 # ==============================================================================
 """
-Dataset Splitter for AgriAI - Waste2Fuel.
+Dataset Splitter for AgriAI - Agricultural Material Intelligence System.
 Ensures zero data leakage by grouping records strictly on 'Group_ID'.
 Allocates:
 - 70% Training Split
