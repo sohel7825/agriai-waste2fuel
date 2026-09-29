@@ -1131,6 +1131,40 @@ const App = {
     }
   },
 
+  async handleLossCaseSubmit(event) {
+    event.preventDefault();
+    const result = document.getElementById('loss-case-result');
+    if (result) result.textContent = 'Preparing loss evidence case...';
+
+    try {
+      const payload = {
+        farmerName: document.getElementById('loss-farmer-name')?.value || '',
+        phone: document.getElementById('loss-phone')?.value || '',
+        crop: document.getElementById('loss-crop')?.value || '',
+        season: document.getElementById('loss-season')?.value || '',
+        location: document.getElementById('loss-location')?.value || '',
+        affectedArea: document.getElementById('loss-area')?.value || '',
+        quantity: document.getElementById('loss-quantity')?.value || '',
+        damageType: document.getElementById('loss-damage-type')?.value || '',
+        damageDate: document.getElementById('loss-date')?.value || '',
+        description: document.getElementById('loss-description')?.value || '',
+        evidence: [document.getElementById('loss-evidence')?.value || ''].filter(Boolean)
+      };
+
+      const response = await API.createLossCase(payload);
+      if (!response.success) throw new Error(response.message || 'Unable to create case.');
+
+      if (result) {
+        result.innerHTML = '<strong>Case ID:</strong> ' + response.data.id +
+          '<br><span style="color:#475569;">' + response.data.status + '</span>';
+      }
+      API.showToast('Loss evidence case created.', 'success');
+    } catch (error) {
+      if (result) result.textContent = error.message;
+      API.showToast(error.message, 'error');
+    }
+  },
+
   contactFacility(facName, phone) {
     alert(`[Demo Facility Contact]\n\nFacility: ${facName}\nDesk: ${phone}\n\nIn production, this initiates a digital dispatch request to the plant logistics desk.`);
   }
