@@ -21,6 +21,7 @@ const I18N = {
       nav_alternatives: "🌱 Farm Alternatives",
       nav_pooling: "🚛 Community Pooling",
       nav_map: "🗺️ Biomass Map",
+      nav_insurance: '🛡️ Insurance & Loss',
       nav_admin: "📈 Admin Hub",
       nav_learn: "📚 Learn & Do",
 
@@ -111,6 +112,7 @@ const I18N = {
       nav_alternatives: "🌱 పొలం ఎంపికలు",
       nav_pooling: "🚛 రైతుల సమూహం (పూలింగ్)",
       nav_map: "🗺️ బయోమాస్ మ్యాప్",
+      nav_insurance: '🛡️ బీమా & పంట నష్టం',
       nav_admin: "📈 అడ్మిన్ హబ్",
       nav_learn: "📚 నేర్చుకోండి & చేయండి",
 
@@ -201,6 +203,7 @@ const I18N = {
       nav_alternatives: "🌱 खेत के विकल्प",
       nav_pooling: "🚛 सामूहिक एकत्रीकरण",
       nav_map: "🗺️ बायोमास नक्शा",
+      nav_insurance: '🛡️ बीमा और फसल नुकसान',
       nav_admin: "📈 एडमिन हब",
       nav_learn: "📚 सीखें और करें",
 
