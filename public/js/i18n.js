@@ -1,5 +1,5 @@
 /**
- * Comprehensive Multilingual Translation Engine (i18n) for AgriAI – Waste2Fuel
+ * Comprehensive Multilingual Translation Engine (i18n) for AgriAI – Agricultural Material Intelligence System
  * Supports: English (en), Telugu (te - తెలుగు), Hindi (hi - हिन्दी)
  */
 
@@ -9,7 +9,7 @@ const I18N = {
   translations: {
     en: {
       tagline: "Agricultural Residue to Renewable Fuel Decision Support",
-      proto_title: "🌾 SIH 2026 Prototype — Problem Statement SIH26203 | Renewable Energy",
+      proto_title: "🌾 Agricultural Intelligence Prototype — Problem Statement AI for Agriculture & Sustainability | Renewable Energy",
       proto_badge: "Prototype / Demonstration Data",
       quick_demo_btn: "⚡ 1-Click Demo Mode (Guntur, AP)",
 
@@ -25,8 +25,8 @@ const I18N = {
       nav_admin: "📈 Admin Hub",
       nav_learn: "📚 Learn & Do",
 
-      hero_tag: "🌟 SIH 2026 Student Innovation Prototype",
-      hero_title: "AgriAI – Waste2Fuel",
+      hero_tag: "🌟 Agricultural Intelligence Prototype",
+      hero_title: "AgriAI – Agricultural Material Intelligence System",
       hero_tagline: "“Agricultural Waste Is Not Waste — It Is a Resource for Future Fuel.”",
       hero_desc: "AgriAI empowers smallholder farmers to convert crop residues into clean bio-energy or high-value organic assets. Using intelligent visual classification, transparent logistical calculations, and community aggregation, AgriAI connects suitable biomass with 2G ethanol bio-refineries, CBG plants, and sustainable farm-level alternatives.",
       btn_analyze: "🔍 Analyze My Waste",
@@ -100,7 +100,7 @@ const I18N = {
 
     te: {
       tagline: "వ్యవసాయ వ్యర్థాల నుండి పునరుత్పాదక ఇంధనం వైపు నిర్ణయ మద్దతు వేదిక",
-      proto_title: "🌾 SIH 2026 విద్యార్థి ఆవిష్కరణ ప్రాజెక్ట్ — సమస్య ID: SIH26203 | పునరుత్పాదక ఇంధనం",
+      proto_title: "🌾 Agricultural Intelligence విద్యార్థి ఆవిష్కరణ ప్రాజెక్ట్ — సమస్య ID: AI for Agriculture & Sustainability | పునరుత్పాదక ఇంధనం",
       proto_badge: "డెమో / నమూనా డేటా",
       quick_demo_btn: "⚡ 1-క్లిక్ గుంటూరు డెమో (వరి గడ్డి)",
 
@@ -116,7 +116,7 @@ const I18N = {
       nav_admin: "📈 అడ్మిన్ హబ్",
       nav_learn: "📚 నేర్చుకోండి & చేయండి",
 
-      hero_tag: "🌟 SIH 2026 విద్యార్థి ఆవిష్కరణ ప్రాజెక్ట్",
+      hero_tag: "🌟 Agricultural Intelligence విద్యార్థి ఆవిష్కరణ ప్రాజెక్ట్",
       hero_title: "అగ్రి-ఏఐ – వేస్ట్ టు ఫ్యూయల్ (AgriAI)",
       hero_tagline: "“వ్యవసాయ వ్యర్థాలు చెత్త కాదు — అవి భవిష్యత్ ఇంధన సంపద.”",
       hero_desc: "వరి గడ్డి, పత్తి కట్టెలు, చెరకు పిప్పి వంటి పంట వ్యర్థాలను తగులబెట్టకుండా... 2G బయో-ఇథనాల్, బయోగ్యాస్ (CBG), బయోచార్ మరియు సేంద్రియ ఎరువులుగా మార్చుకోవడానికి అగ్రి-ఏఐ రైతులకు మార్గదర్శనం చేస్తుంది. ప్రత్యక్ష లాభాలు, రవాణా లెక్కలు మరియు సమీప రిఫైనరీలతో అనుసంధానం అందిస్తుంది.",
@@ -191,7 +191,7 @@ const I18N = {
 
     hi: {
       tagline: "कृषि अवशेष से नवीकरणीय ईंधन निर्णय प्रणाली",
-      proto_title: "🌾 SIH 2026 छात्र नवाचार — समस्या ID: SIH26203 | नवीकरणीय ऊर्जा",
+      proto_title: "🌾 Agricultural Intelligence छात्र नवाचार — समस्या ID: AI for Agriculture & Sustainability | नवीकरणीय ऊर्जा",
       proto_badge: "डेमो / प्रोटोटाइप डेटा",
       quick_demo_btn: "⚡ 1-क्लिक गुंटूर डेमो (धान की पराली)",
 
@@ -207,7 +207,7 @@ const I18N = {
       nav_admin: "📈 एडमिन हब",
       nav_learn: "📚 सीखें और करें",
 
-      hero_tag: "🌟 SIH 2026 नवाचार प्रोटोटाइप",
+      hero_tag: "🌟 Agricultural Intelligence नवाचार प्रोटोटाइप",
       hero_title: "एग्री-एआई – वेस्ट टू फ्यूल (AgriAI)",
       hero_tagline: "“कृषि अवशेष कचरा नहीं — यह भविष्य का ईंधन संसाधन है।”",
       hero_desc: "एग्री-एआई किसानों को पराली, भूसा और फसल अवशेषों को जलाने से रोककर 2G इथेनॉल, सीबीजी (CBG) बायोगैस, बायोचार या वर्मी कम्पोस्ट में बदलने में मदद करता है। सटीक परिवहन लागत, नजदीकी बायो-रिफाइनरी और वास्तविक लाभ की जानकारी पाएं।",
